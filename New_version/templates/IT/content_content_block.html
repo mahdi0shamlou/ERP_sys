@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="nk-content">
+                        <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block-head nk-block-head-sm">
+                                        <div class="nk-block-between">
+                                            <div class="nk-block-head-content">
+                                                <h3 class="nk-block-title page-title">
+                                                    نمای کلی فروش
+                                                </h3>
+                                                <div class="nk-block-des text-soft">
+                                                    <p>به قالب داشبورد دش‌لایت خوش آمدید.</p>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                            <div class="nk-block-head-content">
+                                                <div class="toggle-wrap nk-block-tools-toggle">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                                        <ul class="nk-block-tools g-3">
+                                                            <li>
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown">
+                                                                        <em class="d-none d-sm-inline icon ni ni-calender-date"></em><span>30 روز <span class="d-none d-md-inline">گذشته</span></span>
+                                                                        <em class="dd-indc icon ni ni-chevron-right"></em>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li>
+                                                                                <a href="#"><span>30 روز گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>6 ماه گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>1 سال گذشته</span></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="nk-block-tools-opt">
+                                                                <a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>گزارش ها</span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                        </div>
+                                        <!-- .nk-block-between -->
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="row g-gs">
+                                            <div class="col-xxl-6">
+                                                <div class="row g-gs">
+                                                    <div class="col-lg-6 col-xxl-12">
+                                                        <div class="card card-bordered">
+                                                            <div class="card-inner">
+                                                                <div class="card-title-group align-start mb-2">
+                                                                    <div class="card-title">
+                                                                        <h6 class="title">درآمد فروش</h6>
+                                                                        <p>
+                                                                            درآمد حاصل از اشتراک در 30 روز گذشته.
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="card-tools">
+                                                                        <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="درآمد حاصل از اشتراک"></em>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="align-end gy-3 gx-5 flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                                                                    <div class="nk-sale-data-group flex-md-nowrap g-4">
+                                                                        <div class="nk-sale-data">
+                                                                            <span class="amount">
+                                                                                14,299,000
+                                                                                <span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>16.93%</span>
+                                                                            </span>
+                                                                            <span class="sub-title">این ماه</span>
+                                                                        </div>
+                                                                        <div class="nk-sale-data">
+                                                                            <span class="amount">
+                                                                                7,299,000
+                                                                                <span class="change up text-success"><em class="icon ni ni-arrow-long-up"></em>4.26%</span>
+                                                                            </span>
+                                                                            <span class="sub-title">این هفته</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="nk-sales-ck sales-revenue">
+                                                                        <canvas class="sales-bar-chart" id="salesRevenue"></canvas>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .col -->
+                                                    <div class="col-lg-6 col-xxl-12">
+                                                        <div class="row g-gs">
+                                                            <div class="col-sm-6 col-lg-12 col-xxl-6">
+                                                                <div class="card card-bordered">
+                                                                    <div class="card-inner">
+                                                                        <div class="card-title-group align-start mb-2">
+                                                                            <div class="card-title">
+                                                                                <h6 class="title">
+                                                                                    اشتراک های فعال
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="card-tools">
+                                                                                <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="کل اشتراک فعال"></em>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+                                                                            <div class="nk-sale-data">
+                                                                                <span class="amount">9.69هزار</span>
+                                                                                <span class="sub-title">
+                                                                                    <span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>1.93%</span>در مقایسه با ماه گذشته
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="nk-sales-ck">
+                                                                                <canvas class="sales-bar-chart" id="activeSubscription"></canvas>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- .card -->
+                                                            </div>
+                                                            <!-- .col -->
+                                                            <div class="col-sm-6 col-lg-12 col-xxl-6">
+                                                                <div class="card card-bordered">
+                                                                    <div class="card-inner">
+                                                                        <div class="card-title-group align-start mb-2">
+                                                                            <div class="card-title">
+                                                                                <h6 class="title">میانگین اشتراک ها</h6>
+                                                                            </div>
+                                                                            <div class="card-tools">
+                                                                                <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="میانگین اشتراک روزانه"></em>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+                                                                            <div class="nk-sale-data">
+                                                                                <span class="amount">346.2</span>
+                                                                                <span class="sub-title">
+                                                                                    <span class="change up text-success"><em class="icon ni ni-arrow-long-up"></em>2.45%</span>در مقایسه با هفته گذشته
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="nk-sales-ck">
+                                                                                <canvas class="sales-bar-chart" id="totalSubscription"></canvas>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- .card -->
+                                                            </div>
+                                                            <!-- .col -->
+                                                        </div>
+                                                        <!-- .row -->
+                                                    </div>
+                                                    <!-- .col -->
+                                                </div>
+                                                <!-- .row -->
+                                            </div>
+                                            <!-- .col -->
+                                            <div class="col-xxl-6">
+                                                <div class="card card-bordered h-100">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group align-start gx-3 mb-3">
+                                                            <div class="card-title">
+                                                                <h6 class="title">نمای کلی فروش</h6>
+                                                                <p>
+                                                                    فروش اشتراک محصول در 30 روز. <a href="#">مشاهده جزئیات</a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="card-tools">
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="btn btn-primary btn-dim d-none d-sm-inline-flex" data-bs-toggle="dropdown">
+                                                                        <em class="icon ni ni-download-cloud"></em><span><span class="d-none d-md-inline">دانلود</span> گزارش</span>
+                                                                    </a>
+                                                                    <a href="#" class="btn btn-icon btn-primary btn-dim d-sm-none" data-bs-toggle="dropdown"><em class="icon ni ni-download-cloud"></em></a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li>
+                                                                                <a href="#"><span>دانلود نسخه کوچک</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>دانلود نسخه کامل</span></a>
+                                                                            </li>
+                                                                            <li class="divider"></li>
+                                                                            <li>
+                                                                                <a href="#"><em class="icon ni ni-opt-alt"></em><span>تنظیمات بیشتر</span></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-sale-data-group align-center justify-between gy-3 gx-5">
+                                                            <div class="nk-sale-data">
+                                                                <span class="amount">82,944,000 تومان</span>
+                                                            </div>
+                                                            <div class="nk-sale-data">
+                                                                <span class="amount sm">1,937 <small>مشترک</small></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-sales-ck large pt-4">
+                                                            <canvas class="sales-overview-chart" id="salesOverview"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+                                            <div class="col-xxl-8">
+                                                <div class="card card-bordered card-full">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">
+                                                                    <span class="me-2">تراکنش ها</span>
+                                                                    <a href="#" class="link d-none d-sm-inline">مشاهده تاریخچه</a>
+                                                                </h6>
+                                                            </div>
+                                                            <div class="card-tools">
+                                                                <ul class="card-tools-nav">
+                                                                    <li>
+                                                                        <a href="#"><span>پرداخت شده</span></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#"><span>در انتظار</span></a>
+                                                                    </li>
+                                                                    <li class="active">
+                                                                        <a href="#"><span>همه</span></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-inner p-0 border-top">
+                                                        <div class="nk-tb-list nk-tb-orders">
+                                                            <div class="nk-tb-item nk-tb-head">
+                                                                <div class="nk-tb-col">
+                                                                    <span>شماره سفارش</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <span>مشتری</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span>تاریخ</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span>ارجاع</span>
+                                                                </div>
+                                                                <div class="nk-tb-col"><span>مبلغ</span></div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="d-none d-sm-inline">وضعیت</span>
+                                                                </div>
+                                                                <div class="nk-tb-col"><span>&nbsp;</span></div>
+                                                            </div>
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a href="#">#95954</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-avatar user-avatar-sm bg-purple">
+                                                                            <span>ف‌ت</span>
+                                                                        </div>
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">فرشید ترنیان</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">1402/08/21</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span class="tb-sub text-primary">SUB-2309232</span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-sub tb-amount">4,597,000 <span>تومان</span></span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="badge badge-dot badge-dot-xs bg-success">پرداخت شده</span>
+                                                                </div>
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="#">مشاهده</a></li>
+                                                                                <li><a href="#">فاکتورها</a></li>
+                                                                                <li><a href="#">چاپ</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a href="#">#95850</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-avatar user-avatar-sm bg-azure">
+                                                                            <span>ف‌ا</span>
+                                                                        </div>
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">فریبا آتش دامن</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">1402/02/02</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span class="tb-sub text-primary">SUB-2309154</span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-sub tb-amount">597,000 <span>تومان</span></span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="badge badge-dot badge-dot-xs bg-danger">لغو شده</span>
+                                                                </div>
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="#">مشاهده</a></li>
+                                                                                <li><a href="#">حذف</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a href="#">#95812</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-avatar user-avatar-sm bg-warning">
+                                                                            <img src="./images/avatar/b-sm.jpg" alt="" />
+                                                                        </div>
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">دانیال عطاران</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">1402/01/02</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span class="tb-sub text-primary">SUB-2309143</span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-sub tb-amount">200,000 <span>تومان</span></span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="badge badge-dot badge-dot-xs bg-success">پرداخت شده</span>
+                                                                </div>
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="#">مشاهده</a></li>
+                                                                                <li><a href="#">فاکتورها</a></li>
+                                                                                <li><a href="#">چاپ</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a href="#">#95256</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-avatar user-avatar-sm bg-purple">
+                                                                            <span>م‌ج</span>
+                                                                        </div>
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">مهدیه جباری</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">1402/01/29</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span class="tb-sub text-primary">SUB-2305684</span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-sub tb-amount">1,100,000 <span>تومان</span></span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="badge badge-dot badge-dot-xs bg-success">پرداخت شده</span>
+                                                                </div>
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="#">مشاهده</a></li>
+                                                                                <li><a href="#">فاکتورها</a></li>
+                                                                                <li><a href="#">چاپ</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="nk-tb-item">
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-lead"><a href="#">#95135</a></span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-sm">
+                                                                    <div class="user-card">
+                                                                        <div class="user-avatar user-avatar-sm bg-success">
+                                                                            <span>ی‌چ</span>
+                                                                        </div>
+                                                                        <div class="user-name">
+                                                                            <span class="tb-lead">یاسمن چگینی</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-md">
+                                                                    <span class="tb-sub">1402/01/29</span>
+                                                                </div>
+                                                                <div class="nk-tb-col tb-col-lg">
+                                                                    <span class="tb-sub text-primary">SUB-2305564</span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="tb-sub tb-amount">1,100,000 <span>تومان</span></span>
+                                                                </div>
+                                                                <div class="nk-tb-col">
+                                                                    <span class="badge badge-dot badge-dot-xs bg-warning">موعد پرداخت</span>
+                                                                </div>
+                                                                <div class="nk-tb-col nk-tb-col-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                                                            <ul class="link-list-plain">
+                                                                                <li><a href="#">مشاهده</a></li>
+                                                                                <li><a href="#">فاکتورها</a></li>
+                                                                                <li><a href="#">اطلاع دادن</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-inner-sm border-top text-center d-sm-none">
+                                                        <a href="#" class="btn btn-link btn-block">مشاهده تاریخچه</a>
+                                                    </div>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+                                            <div class="col-md-6 col-xxl-4">
+                                                <div class="card card-bordered card-full">
+                                                    <div class="card-inner border-bottom">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">فعالیت های اخیر</h6>
+                                                            </div>
+                                                            <div class="card-tools">
+                                                                <ul class="card-tools-nav">
+                                                                    <li>
+                                                                        <a href="#"><span>لغو</span></a>
+                                                                    </li>
+                                                                    <li class="active">
+                                                                        <a href="#"><span>همه</span></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nk-activity">
+                                                        <li class="nk-activity-item">
+                                                            <div class="nk-activity-media user-avatar bg-success">
+                                                                <img src="./images/avatar/c-sm.jpg" alt="" />
+                                                            </div>
+                                                            <div class="nk-activity-data">
+                                                                <div class="label">
+                                                                    سوسن آبتین درخواست برداشت کرد.
+                                                                </div>
+                                                                <span class="time">2 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-activity-item">
+                                                            <div class="nk-activity-media user-avatar bg-warning">
+                                                                م‌ن
+                                                            </div>
+                                                            <div class="nk-activity-data">
+                                                                <div class="label">
+                                                                    مصطفی نوروزی سفارش داد.
+                                                                </div>
+                                                                <span class="time">2 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-activity-item">
+                                                            <div class="nk-activity-media user-avatar bg-azure">
+                                                                د‌ف
+                                                            </div>
+                                                            <div class="nk-activity-data">
+                                                                <div class="label">
+                                                                    دنیا فراهانی پاداش بزرگی دریافت کرد.
+                                                                </div>
+                                                                <span class="time">2 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-activity-item">
+                                                            <div class="nk-activity-media user-avatar bg-purple">
+                                                                <img src="./images/avatar/d-sm.jpg" alt="" />
+                                                            </div>
+                                                            <div class="nk-activity-data">
+                                                                <div class="label">
+                                                                    میلاد فتحی پول را واریز کرد.
+                                                                </div>
+                                                                <span class="time">2 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-activity-item">
+                                                            <div class="nk-activity-media user-avatar bg-pink">
+                                                                ح‌ر
+                                                            </div>
+                                                            <div class="nk-activity-data">
+                                                                <div class="label">
+                                                                    حامد رضازاده سفارش داد.
+                                                                </div>
+                                                                <span class="time">2 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+                                            <div class="col-md-6 col-xxl-4">
+                                                <div class="card card-bordered card-full">
+                                                    <div class="card-inner-group">
+                                                        <div class="card-inner">
+                                                            <div class="card-title-group">
+                                                                <div class="card-title">
+                                                                    <h6 class="title">کاربران جدید</h6>
+                                                                </div>
+                                                                <div class="card-tools">
+                                                                    <a href="html/user-list-regular.html" class="link">مشاهده همه</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-inner card-inner-md">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar bg-primary-dim">
+                                                                    <span>ف‌ت</span>
+                                                                </div>
+                                                                <div class="user-info">
+                                                                    <span class="lead-text">فرشید ترنیان</span>
+                                                                    <span class="sub-text">someone@email.com</span>
+                                                                </div>
+                                                                <div class="user-action">
+                                                                    <div class="drodown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger me-n1" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-setting"></em><span>تنظیمات اقدام</span></a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-notify"></em><span>پوش نوتیفیکیشن</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-inner card-inner-md">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar bg-pink-dim">
+                                                                    <span>س‌ع</span>
+                                                                </div>
+                                                                <div class="user-info">
+                                                                    <span class="lead-text">سحر عبدی</span>
+                                                                    <span class="sub-text">someone@email.com</span>
+                                                                </div>
+                                                                <div class="user-action">
+                                                                    <div class="drodown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger me-n1" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-setting"></em><span>تنظیمات اقدام</span></a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-notify"></em><span>پوش نوتیفیکیشن</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-inner card-inner-md">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar bg-warning-dim">
+                                                                    <span>ت‌ک</span>
+                                                                </div>
+                                                                <div class="user-info">
+                                                                    <span class="lead-text">تینا کریمیان</span>
+                                                                    <span class="sub-text">someone@email.com</span>
+                                                                </div>
+                                                                <div class="user-action">
+                                                                    <div class="drodown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger me-n1" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-setting"></em><span>تنظیمات اقدام</span></a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-notify"></em><span>پوش نوتیفیکیشن</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-inner card-inner-md">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar bg-success-dim">
+                                                                    <span>خ‌ض</span>
+                                                                </div>
+                                                                <div class="user-info">
+                                                                    <span class="lead-text">خسرو ضیایی</span>
+                                                                    <span class="sub-text">someone@email.com</span>
+                                                                </div>
+                                                                <div class="user-action">
+                                                                    <div class="drodown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger me-n1" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-setting"></em><span>تنظیمات اقدام</span></a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-notify"></em><span>پوش نوتیفیکیشن</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+                                            <div class="col-lg-6 col-xxl-4">
+                                                <div class="card card-bordered h-100">
+                                                    <div class="card-inner border-bottom">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">درخواست های پشتیبانی</h6>
+                                                            </div>
+                                                            <div class="card-tools">
+                                                                <a href="#" class="link">همه تیکت ها</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nk-support">
+                                                        <li class="nk-support-item">
+                                                            <div class="user-avatar">
+                                                                <img src="./images/avatar/a-sm.jpg" alt="" />
+                                                            </div>
+                                                            <div class="nk-support-content">
+                                                                <div class="title"><span>محمدحسن غفاری</span><span class="badge badge-dot badge-dot-xs bg-warning ms-1">در انتظار</span></div>
+                                                                <p>با تشکر از اینکه درباره مشکلات خودتان با ما تماس گرفتید...</p>
+                                                                <span class="time">6 دقیقه پیش</span>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-support-item">
+                                                            <div class="user-avatar bg-purple-dim">
+                                                                <span>د‌م</span>
+                                                            </div>
+                                                            <div class="nk-support-content">
+                                                                <div class="title"><span>دانیال مدرس</span><span class="badge badge-dot badge-dot-xs bg-info ms-1">باز</span></div>
+                                                                <p>با تشکر از اینکه درباره مشکلات خودتان با ما تماس گرفتید...</p>
+                                                                <span class="time">2 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-support-item">
+                                                            <div class="user-avatar">
+                                                                <img src="./images/avatar/b-sm.jpg" alt="" />
+                                                            </div>
+                                                            <div class="nk-support-content">
+                                                                <div class="title"><span>مهدی پیری</span><span class="badge badge-dot badge-dot-xs bg-success ms-1">حل شده</span></div>
+                                                                <p>با تشکر از اینکه درباره مشکلات خودتان با ما تماس گرفتید...</p>
+                                                                <span class="time">3 ساعت پیش</span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+                                            <div class="col-lg-6 col-xxl-4">
+                                                <div class="card card-bordered h-100">
+                                                    <div class="card-inner border-bottom">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">اطلاع رسانی ها</h6>
+                                                            </div>
+                                                            <div class="card-tools">
+                                                                <a href="#" class="link">مشاهده همه</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-inner">
+                                                        <div class="timeline">
+                                                            <h6 class="timeline-head">آبان 1402</h6>
+                                                            <ul class="timeline-list">
+                                                                <li class="timeline-item">
+                                                                    <div class="timeline-status bg-primary is-outline"></div>
+                                                                    <div class="timeline-date">
+                                                                        21 آبان
+                                                                        <em class="icon ni ni-alarm-alt"></em>
+                                                                    </div>
+                                                                    <div class="timeline-data">
+                                                                        <h6 class="timeline-title">
+                                                                            درخواست احراز هویت مشتری ارسال شد
+                                                                        </h6>
+                                                                        <div class="timeline-des">
+                                                                            <p>فرم درخواست احراز هویت مشتری دوباره ارسال شد.</p>
+                                                                            <span class="time">09:30 صبح</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="timeline-item">
+                                                                    <div class="timeline-status bg-primary"></div>
+                                                                    <div class="timeline-date">
+                                                                        21 آبان
+                                                                        <em class="icon ni ni-alarm-alt"></em>
+                                                                    </div>
+                                                                    <div class="timeline-data">
+                                                                        <h6 class="timeline-title">
+                                                                            درخواست احراز هویت مشتری ارسال شد
+                                                                        </h6>
+                                                                        <div class="timeline-des">
+                                                                            <p>فرم درخواست احراز هویت مشتری دوباره ارسال شد.</p>
+                                                                            <span class="time">09:30 صبح</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="timeline-item">
+                                                                    <div class="timeline-status bg-pink"></div>
+                                                                    <div class="timeline-date">
+                                                                        21 آبان
+                                                                        <em class="icon ni ni-alarm-alt"></em>
+                                                                    </div>
+                                                                    <div class="timeline-data">
+                                                                        <h6 class="timeline-title">
+                                                                            درخواست احراز هویت مشتری ارسال شد
+                                                                        </h6>
+                                                                        <div class="timeline-des">
+                                                                            <p>فرم درخواست احراز هویت مشتری دوباره ارسال شد.</p>
+                                                                            <span class="time">09:30 صبح</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+                                        </div>
+                                        <!-- .row -->
+                                    </div>
+                                    <!-- .nk-block -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</body>
+</html>

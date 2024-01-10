@@ -15,6 +15,9 @@ def Home():
         return redirect("/Login")
     path = session.get('Path')
     return redirect(f"/{path}")
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404/index.html'), 404
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- START LOGIN SECTION
 #---------------------------------------------------------------------------------------------------
@@ -48,9 +51,41 @@ def logout():
 #---------------------------------------------- END LOGIN SECTION
 #---------------------------------------------------------------------------------------------------
 
+#---------------------------------------------------------------------------------------------------
+#---------------------------------------------- START IT SECTION
+#---------------------------------------------------------------------------------------------------
+@app.route("/IT")
+def IT():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        return render_template("/IT/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
 
+@app.route("/IT/Product_list")
+def IT_Product_list():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        return render_template("/IT/Product_list/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/Customers")
+def IT_Customers():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        return render_template("/IT/Customer/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
 
-
+@app.route("/IT/Update_all_data_online_from_server")
+def IT_Update_data():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        return redirect('/')
+#---------------------------------------------------------------------------------------------------
+#---------------------------------------------- END IT SECTION
+#---------------------------------------------------------------------------------------------------
 
 
 

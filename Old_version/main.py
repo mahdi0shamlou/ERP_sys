@@ -64,7 +64,7 @@ def IT():
     auth = session.get('Access_level')
     if auth==0 or auth == 5:
         record_logs = Get_Logs(5)
-        return render_template('IT/index.html',user=session.get('Username'), pathmain=path, email=session.get('email'), record_logs=record_logs)
+        return render_template('IT/index.html', user=session.get('Username'), pathmain=path, email=session.get('email'), record_logs=record_logs)
     else:
         return 'You have not premision'
 
