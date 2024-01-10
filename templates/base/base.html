@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fa" class="js">
+    <head>
+        <base href="../" />
+        <meta charset="utf-8" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <!-- Fav Icon  -->
+        <link rel="shortcut icon" href="static/base/images/favicon.png" />
+        <!-- Page Title  -->
+        <title>Main Dashbord</title>
+        <!-- StyleSheets  -->
+        <link rel="stylesheet" href="static/base/assets/css/dashlite.rtl.css" />
+        <link id="skin-default" rel="stylesheet" href="static/base/assets/css/theme.css" />
+    </head>
+
+    <body class="has-rtl nk-body bg-lighter npc-general has-sidebar" dir="rtl">
+        <div class="nk-app-root">
+            <!-- main @s -->
+            <div class="nk-main">
+                <!-- sidebar @s -->
+                <div class="nk-sidebar nk-sidebar-fixed is-dark" data-content="sidebarMenu">
+                    <div class="nk-sidebar-element nk-sidebar-head">
+                        <div class="nk-menu-trigger">
+                            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                            <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                        </div>
+                        <div class="nk-sidebar-brand">
+                            <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                                <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="داشبورد" />
+                                <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="داشبورد" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- .nk-sidebar-element -->
+                    <div class="nk-sidebar-element nk-sidebar-body">
+                        {% block menu %}
+                         {% endblock %}
+                        <!-- .nk-sidebar-content -->
+                    </div>
+                    <!-- .nk-sidebar-element -->
+                </div>
+                <!-- sidebar @e -->
+                <!-- wrap @s -->
+                <div class="nk-wrap">
+                    <!-- main header @s -->
+                    <div class="nk-header nk-header-fixed is-light">
+                        <div class="container-fluid">
+                            <div class="nk-header-wrap">
+                                <div class="nk-menu-trigger d-xl-none ms-n1">
+                                    <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                                </div>
+                                <div class="nk-header-brand d-xl-none">
+                                    <a href="html/index.html" class="logo-link">
+                                        <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="لوگو" />
+                                        <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="لوگوی تاریک" />
+                                    </a>
+                                </div>
+                                <!-- .nk-header-brand -->
+                                <div class="nk-header-news d-none d-xl-block">
+                                    <div class="nk-news-list">
+                                        <a class="nk-news-item" href="#">
+                                            <div class="nk-news-icon">
+                                                <em class="icon ni ni-card-view"></em>
+                                            </div>
+                                            <div class="nk-news-text">
+                                                <p>
+                                                    xxxxxxxxxxxxxxxxxxxxxxxxxx
+                                                </p>
+                                                <em class="icon ni ni-external"></em>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- .nk-header-news -->
+                                <div class="nk-header-tools">
+                                    <ul class="nk-quick-nav">
+                                        <li class="dropdown language-dropdown d-none d-sm-block me-n1">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                                <div class="quick-icon border border-light">
+                                                    <img class="icon" src="./images/flags/iran-sq.png" alt="" />
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
+                                                <ul class="language-list">
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <img src="./images/flags/iran.png" alt="" class="language-flag" />
+                                                            <span class="language-name">فارسی</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <img src="./images/flags/english.png" alt="" class="language-flag" />
+                                                            <span class="language-name">انگلیسی</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <img src="./images/flags/germany.png" alt="" class="language-flag" />
+                                                            <span class="language-name">آلمانی</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <img src="./images/flags/french.png" alt="" class="language-flag" />
+                                                            <span class="language-name">فرانسوی</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <!-- .dropdown -->
+                                        <li class="dropdown user-dropdown">
+                                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                <div class="user-toggle">
+                                                    <div class="user-avatar sm">
+                                                        <em class="icon ni ni-user-alt"></em>
+                                                    </div>
+                                                    <div class="user-info d-none d-md-block">
+                                                        <div class="user-status">{{pathmain}}</div>
+                                                        <div class="user-name dropdown-indicator">
+                                                            {{user}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                                                <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                    <div class="user-card">
+                                                        <div class="user-avatar">
+                                                            <span>{{pathmain}}</span>
+                                                        </div>
+                                                        <div class="user-info">
+                                                            <span class="lead-text">{{user}}</span>
+                                                            <span class="sub-text">{{email}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <ul class="link-list">
+                                                        <li>
+                                                            <a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>مشاهده پروفایل</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>تنظیمات حساب</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>فعالیت ورود</span></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>حالت تاریک</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="dropdown-inner">
+                                                    <ul class="link-list">
+                                                        <li>
+                                                            <a href="/logout"><em class="icon ni ni-signout"></em><span>خروج</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- .dropdown -->
+                                        {% block notification %}
+                                        {% endblock %}
+                                        <!-- .dropdown -->
+                                    </ul>
+                                    <!-- .nk-quick-nav -->
+                                </div>
+                                <!-- .nk-header-tools -->
+                            </div>
+                            <!-- .nk-header-wrap -->
+                        </div>
+                        <!-- .container-fliud -->
+                    </div>
+                    <!-- main header @e -->
+                    <!-- content @s -->
+
+                    {% block bodys %}
+                    {% endblock %}
+
+                    <!-- content @e -->
+                    <!-- footer @s -->
+                    <div class="nk-footer">
+                        <div class="container-fluid">
+                            <div class="nk-footer-wrap">
+                                <div class="nk-footer-copyright">
+                                    © تمام حقوق محفوظ است. فارسی و راستچین سازی شده توسط <a target="_blank" rel="nofollow" href="https://www.rtl-theme.com/author/farshid_tarnian">فرشید ترنیان</a>
+                                </div>
+                                <div class="nk-footer-links">
+                                    <ul class="nav nav-sm">
+                                        <li class="nav-item dropup">
+                                            <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link text-base" data-bs-toggle="dropdown" data-offset="0,10"><span>فارسی</span></a>
+                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                <ul class="language-list">
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <span class="language-name">فارسی</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <span class="language-name">انگلیسی</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <span class="language-name">آلمانی</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="language-item">
+                                                            <span class="language-name">فرانسوی</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a data-bs-toggle="modal" href="#region" class="nav-link"><em class="icon ni ni-globe"></em><span class="ms-1">کشور را انتخاب کنید</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer @e -->
+                </div>
+                <!-- wrap @e -->
+            </div>
+            <!-- main @e -->
+        </div>
+        <!-- app-root @e -->
+        <!-- select region modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="region">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                    <div class="modal-body modal-body-md">
+                        <h5 class="title mb-4">کشور خود را انتخاب کنید</h5>
+                        <div class="nk-country-region">
+                            <ul class="country-list text-center gy-2">
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/arg.png" alt="" class="country-flag" />
+                                        <span class="country-name">آرژانتین</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/aus.png" alt="" class="country-flag" />
+                                        <span class="country-name">استرالیا</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/bangladesh.png" alt="" class="country-flag" />
+                                        <span class="country-name">بنگلادش</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/canada.png" alt="" class="country-flag" />
+                                        <span class="country-name">کانادا <small>(انگلیسی)</small></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/s-africa.png" alt="" class="country-flag" />
+                                        <span class="country-name">سانترافریکائین</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/china.png" alt="" class="country-flag" />
+                                        <span class="country-name">چین</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/french.png" alt="" class="country-flag" />
+                                        <span class="country-name">فرانسه</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/germany.png" alt="" class="country-flag" />
+                                        <span class="country-name">آلمان</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/iran.png" alt="" class="country-flag" />
+                                        <span class="country-name">ایران</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/italy.png" alt="" class="country-flag" />
+                                        <span class="country-name">ایتالیا</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/mexico.png" alt="" class="country-flag" />
+                                        <span class="country-name">مکزیک</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/philipine.png" alt="" class="country-flag" />
+                                        <span class="country-name">فیلیپین</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/portugal.png" alt="" class="country-flag" />
+                                        <span class="country-name">پرتقال</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/s-africa.png" alt="" class="country-flag" />
+                                        <span class="country-name">آفریقای جنوبی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/spanish.png" alt="" class="country-flag" />
+                                        <span class="country-name">اسپانیا</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/switzerland.png" alt="" class="country-flag" />
+                                        <span class="country-name">سوئیس</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/uk.png" alt="" class="country-flag" />
+                                        <span class="country-name">انگلستان</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="country-item">
+                                        <img src="./images/flags/english.png" alt="" class="country-flag" />
+                                        <span class="country-name">ایالات متحده آمریکا</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- .modal-content -->
+            </div>
+            <!-- .modla-dialog -->
+        </div>
+        <!-- .modal -->
+        <!-- JavaScript -->
+
+
+        <script src="static/base/assets/js/bundle.js"></script>
+        <script src="static/base/assets/js/scripts.js"></script>
+        <script src="static/base/assets/js/charts/gd-default.js"></script>
+                            {% block script %}
+                         {% endblock %}
+</body>
+<div class="js-preloader">
+    <div class="loading-animation duo-pulse"></div>
+</div>
+</html>
