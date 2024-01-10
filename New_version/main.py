@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect, request, session, json
 from flask_session.__init__ import Session
-from Login.main import Check_login
-from Login.logout import insert_log_login_logout
-
+from Login.main import Check_login #this method do work for login section
+from Login.logout import insert_log_login_logout #this method do work for login section
+from IT.Products.Get_product_list import Get_product_list  #this method get product from local database
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -68,7 +68,8 @@ def IT_Product_list():
         return render_template("/IT/Login_v4/index.html")
     else:
         path = session.get('Path')
-        return render_template("/IT/Product_list/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        Product_list = Get_product_list()
+        return render_template("/IT/Product_list/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'), Product_list=Product_list)
 @app.route("/IT/Customers")
 def IT_Customers():
     if not session.get("Username"):
