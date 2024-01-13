@@ -4,6 +4,8 @@ from Login.main import Check_login #this method do work for login section
 from Login.logout import insert_log_login_logout #this method do work for login section
 from IT.Products.Get_product_list import Get_product_list  #this method get product from local database
 from IT.Customer.Get_customer import Get_customer_list
+from IT.Data_Update.Update_products_value import Start as Start_get_Update_Products_from_server
+from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Customers_from_server
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -96,7 +98,12 @@ def IT_Update_data():
     if not session.get("Username"):
         return render_template("/IT/Login_v4/index.html")
     else:
-        return redirect('/')
+        if session.get("Username") == 'hoseinraz' or session.get("Username") == 'admin':
+            Start_get_Update_Products_from_server()
+            Start_get_Update_Customers_from_server()
+            return redirect('/')
+        else:
+            return 'you have not premision'
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------

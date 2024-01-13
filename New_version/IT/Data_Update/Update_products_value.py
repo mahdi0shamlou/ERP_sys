@@ -91,7 +91,7 @@ def Update_data_into_table(data, resault_product_id):
                 input_data = (min_price, max_price, id)
                 cursor.execute(sql_update_query, input_data)
                 connection.commit()
-                print("Record Updated successfully ")
+                print(f"Record Updated successfully {id}")
 
             except mysql.connector.Error as error:
                 print("Failed to update record to database: {}".format(error))
@@ -159,7 +159,6 @@ def Get_Update_product_form_server():
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-
 def Start():
     resault = Get_Update_product_form_server()
     for i in resault:

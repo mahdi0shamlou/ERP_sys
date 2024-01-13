@@ -8,7 +8,7 @@ def Get_customer_list():
                                              password='',
                                              database="ERP_IT")
         cursor = connection.cursor()
-        sql_select_query = """select * from IT_test_C"""
+        sql_select_query = """select * from IT_customers"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result
@@ -28,6 +28,9 @@ def Get_customer_list():
             list_lab_lab.append(record[i][9])
             list_lab_lab.append(record[i][10])
             list_lab_lab.append(record[i][11])
+            list_lab_lab.append(record[i][12])
+            list_lab_lab.append(record[i][13])
+            list_lab_lab.append(record[i][14])
             list_lab.append(list_lab_lab)
         print(list_lab)
 
