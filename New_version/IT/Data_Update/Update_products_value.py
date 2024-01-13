@@ -165,4 +165,5 @@ def Start():
     for i in resault:
         resault_DB = Insert_update_new_in_DB(i)
 
-Start()
+
+#Start()
