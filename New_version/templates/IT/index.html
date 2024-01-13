@@ -2,7 +2,7 @@
 {% block bodys %}
 
                         <div class="nk-content">
-    <div class="container-fluid">
+                            <div class="container-fluid">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
                                     <div class="nk-block-head nk-block-head-sm">
@@ -337,7 +337,7 @@
                                                         </div>
                                                     </div>
                                                     <ul class="nk-activity">
-                                                    {%for i in record_logs%}
+                                                    {%for i in tickets%}
 
                                                         <li class="nk-activity-item">
                                                             <div class="nk-activity-media user-avatar bg-success">
@@ -345,9 +345,9 @@
                                                             </div>
                                                             <div class="nk-activity-data">
                                                                 <div class="label">
-                                                                    {{i[2]}} فعالیت {{i[3]}} انجام داد .
+                                                                    {{i[1]}} به شما ({{i[3]}})  را گفت
                                                                 </div>
-                                                                <span class="time">در تاریخ {{i[1]}}</span>
+                                                                <span class="time">در تاریخ {{i[4]}}</span>
                                                             </div>
                                                         </li>
 

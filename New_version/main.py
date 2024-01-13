@@ -6,6 +6,9 @@ from IT.Products.Get_product_list import Get_product_list  #this method get prod
 from IT.Customer.Get_customer import Get_customer_list
 from IT.Data_Update.Update_products_value import Start as Start_get_Update_Products_from_server
 from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Customers_from_server
+from IT.Ticket.Get_all_ticket import Get_all_ticket
+
+
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -66,7 +69,8 @@ def IT():
         return render_template("/IT/Login_v4/index.html")
     else:
         path = session.get('Path')
-        return render_template("/IT/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        tickets = Get_all_ticket(session.get("Username"))
+        return render_template("/IT/index.html", tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
 @app.route('/IT/Pre_Invoice')
 def Pre_invoice():
     if not session.get("Username"):

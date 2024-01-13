@@ -1,0 +1,211 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+              <div class="nk-content">
+                        <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block-head">
+                                        <div class="nk-block-between g-3">
+                                            <div class="nk-block-head-content">
+
+                                                <div class="nk-block-des text-soft">
+                                                    <ul class="list-inline">
+                                                        <li>
+                                                            ایجاد شده در:
+                                                            <span class="text-base">21 آبان 1402 01:02 بعد از ظهر</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="nk-block-head-content">
+                                                <a href="/SA/preinvoice" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-arrow-left"></em><span>بازگشت</span></a>
+                                                <a href="/SA/preinvoice" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="invoice">
+                                            <div class="invoice-action">
+
+
+                                            </div>
+                                            <!-- .invoice-actions -->
+                                            <div class="invoice-wrap">
+                                                <div class="invoice-brand text-center">
+                                                    <img src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="" />
+                                                </div>
+                                                <div class="invoice-head">
+                                                    <div class="invoice-contact">
+
+                                                        <div class="invoice-contact-info">
+                                                            <h4 class="title">پیش فاکتور با موفقیت حذف شد</h4>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- .invoice-head -->
+
+                                                <!-- .invoice-bills -->
+                                            </div>
+                                            <!-- .invoice-wrap -->
+                                        </div>
+                                        <!-- .invoice -->
+                                    </div>
+                                    <!-- .nk-block -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}
+{% block menu %}
+                       <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            تست می باشد
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/preinvoice" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">فاکتور ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/preinvoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/list_costumer" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">مشتریان</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/list_costumer" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/list_costumer_vip" class="nk-menu-link"><span class="nk-menu-text">مشتریان ویژه</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <!-- .nk-menu-item -->
+
+
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+{% block notification %}
+                        <li class="dropdown notification-dropdown me-n1">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                                <div class="icon-status icon-status-info">
+                                                    <em class="icon ni ni-bell"></em>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                                <div class="dropdown-head">
+                                                    <span class="sub-title nk-dropdown-title">اطلاع رسانی ها</span>
+                                                    <a href="#">علامت گذاری همه به عنوان خوانده شده</a>
+                                                </div>
+                                                <div class="dropdown-body">
+                                                    <div class="nk-notification">
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-notification -->
+                                                </div>
+                                                <!-- .nk-dropdown-body -->
+                                                <div class="dropdown-foot center">
+                                                    <a href="#">مشاهده همه</a>
+                                                </div>
+                                            </div>
+                                        </li>
+{% endblock %}

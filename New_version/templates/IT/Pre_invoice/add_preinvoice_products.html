@@ -1,0 +1,444 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+
+<div class="nk-content">
+    <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block-head nk-block-head-sm">
+                                        <div class="nk-block-between">
+                                            <div class="nk-block-head-content">
+                                                <h3 class="nk-block-title page-title">
+                                                   اضافه کردن پیش فاکتور
+                                                </h3>
+                                                <div class="nk-block-des text-soft">
+                                                    <p>{{user}}  </p>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                            <div class="nk-block-head-content">
+                                                <div class="toggle-wrap nk-block-tools-toggle">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                                        <ul class="nk-block-tools g-3">
+                                                            <li>
+                                                                <div class="dropdown">
+                                                                    <!--
+                                                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown">
+                                                                        <em class="d-none d-sm-inline icon ni ni-calender-date"></em><span>30 روز <span class="d-none d-md-inline">گذشته</span></span>
+                                                                        <em class="dd-indc icon ni ni-chevron-right"></em>
+                                                                    </a>
+                                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li>
+                                                                                <a href="#"><span>30 روز گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>6 ماه گذشته</span></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#"><span>1 سال گذشته</span></a>
+                                                                            </li>
+                                                                        </ul>
+
+                                                                    </div>
+                                                                    -->
+                                                                </div>
+                                                            </li>
+                                                            <!--
+                                                            <li class="nk-block-tools-opt">
+                                                                <a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>گزارش ها</span></a>
+                                                            </li>
+                                                            -->
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                        </div>
+                                        <!-- .nk-block-between -->
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="row g-gs">
+
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+                                            <div class="col-xxl-8">
+
+                                            <form class="form-group" method="get" action="/SA/add_preinvoice_finall">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="default-01">شماره پیش فاکتور داخلی</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="private_id_num" value="{{private_id_num}}" placeholder="شماره فاکتور داخلی">
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class="form-label" data-search="on">انتخاب مشتری</label>
+                                                        <div class="form-control-wrap" data-search="on">
+                                                            <select class="form-select" data-search="on" name="customer">
+                                                                    {%for i in list_costumers%}
+                                                                        <option id="C_{{i[0]}}" value="{{i[0]}}">
+                                                                            {{i[1]}}
+                                                                        </option>
+                                                                    {%endfor%}
+                                                            </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label" data-search="on" id="C_name">اسم کامل : {{list_costumers[0][1]}}</label>
+                                                    <br>
+                                                     <label class="form-label" data-search="on" id="C_Natnaiol_id">کد اقتصادی : {{list_costumers[0][2]}}</label>
+                                                    <br>
+                                                    <label class="form-label" data-search="on" id="C_Phone">شماره تلفن : {{list_costumers[0][8]}}</label>
+                                                    <br>
+                                                    <label class="form-label" data-search="on" id="C_address">آدرس : {{list_costumers[0][4]}}</label>
+                                                </div>
+                                                <hr>
+
+                                                <div id="product_addabel">
+                                                    <div class="row g-gs">
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                            <label class="form-label" data-search="on">انتخاب کالا</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <select class="form-select" data-search="on" name="product[]">
+                                                                        {%for i in list_product%}
+                                                                        <option value="{{i[0]}}">{{i[1]}}</option>
+                                                                        {%endfor%}
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                            <label class="form-label" data-search="on">انتخاب تعداد</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <input type="text" class="form-control" name="product_number[]" placeholder="تعداد : ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                                    <label class="form-label" data-search="on">اسم کامل محصول : </label>
+                                                                    <br>
+                                                                    <label class="form-label" data-search="on"> کد محصول : </label>
+                                                                    <br>
+                                                                   <label class="form-label" data-search="on">قیمت محصول :</label>
+                                                                    <br>
+                                                                   <label class="form-label" data-search="on">تعداد موجود : </label>
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input class="btn btn-icon  btn-white btn-dim btn-success" type="button" value="اضافه کردن محصول" onclick="add_product()">
+                                                <input class="btn btn-icon  btn-white btn-dim btn-warning" type="button" value="دوباره" onclick="remove_product()">
+
+                                                <br>
+                                                <hr>
+
+                                                <input class="btn btn-success" type="submit" value="مرحله بعد" >
+                                            </form>
+                                                <!-- .card -->
+                                            </div>
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+
+                                            <!-- .col -->
+                                        </div>
+                                        <!-- .row -->
+                                    </div>
+                                    <!-- .nk-block -->
+                                </div>
+                            </div>
+                        </div>
+
+</div>
+{% endblock %}
+{% block menu %}
+                       <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            تست می باشد
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/preinvoice" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">فاکتور ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/preinvoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/list_costumer" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">مشتریان</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/list_costumer" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/list_costumer_vip" class="nk-menu-link"><span class="nk-menu-text">مشتریان ویژه</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <!-- .nk-menu-item -->
+
+
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+{% block notification %}
+                        <li class="dropdown notification-dropdown me-n1">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                                <div class="icon-status icon-status-info">
+                                                    <em class="icon ni ni-bell"></em>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                                <div class="dropdown-head">
+                                                    <span class="sub-title nk-dropdown-title">اطلاع رسانی ها</span>
+                                                    <a href="#">علامت گذاری همه به عنوان خوانده شده</a>
+                                                </div>
+                                                <div class="dropdown-body">
+                                                    <div class="nk-notification">
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-notification -->
+                                                </div>
+                                                <!-- .nk-dropdown-body -->
+                                                <div class="dropdown-foot center">
+                                                    <a href="#">مشاهده همه</a>
+                                                </div>
+                                            </div>
+                                        </li>
+
+{% endblock %}
+{% block script %}
+    <script>
+
+
+        const product_addabel = document.getElementById("product_addabel");
+        var product_addabel_befor = product_addabel.innerHTML;
+        function remove_product(){
+            product_addabel.innerHTML = product_addabel_befor;
+        }
+        function add_product() {
+
+            product_addabel.innerHTML += `<div class="row g-gs">
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                            <label class="form-label" data-search="on">انتخاب کالا</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <select class="form-select" data-search="on" name="product[]">
+                                                                        {%for i in list_product%}
+                                                                        <option value="{{i[0]}}">{{i[1]}}</option>
+                                                                        {%endfor%}
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                            <label class="form-label" data-search="on">انتخاب تعداد</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <input type="text" class="form-control" name="product_number[]" placeholder="تعداد : ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                        <hr>
+                                                            <div class="form-group">
+                                                                    <label class="form-label" data-search="on">اسم کامل محصول : </label>
+                                                                    <br>
+                                                                    <label class="form-label" data-search="on"> کد محصول : </label>
+                                                                    <br>
+                                                                   <label class="form-label" data-search="on">قیمت محصول :</label>
+                                                                    <br>
+                                                                   <label class="form-label" data-search="on">تعداد موجود : </label>
+                                                           </div>
+                                                        </div>
+                                                    </div>`;
+        }
+
+
+
+    </script>
+{% endblock %}
+
+
+
+
+
+<!--
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add another email input</title>
+    <style>
+      .input-plus {
+        display: flex;
+      }
+
+      .inputs-set {
+        border: none;
+      }
+
+      .input-field {
+        border: none;
+        border: 1px solid rgb(209, 209, 209);
+        padding: 8px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        display: block;
+      }
+
+      .btn-submit,
+      .btn-add-input {
+        border: none;
+        padding: 8px 12px;
+      }
+
+      .btn-submit {
+        background-color: rgb(152, 247, 199);
+      }
+
+      .btn-add-input {
+        background-color: rgb(127, 187, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form" action="" method="POST">
+      <fieldset class="inputs-set" id="email-list" class="input-field">
+        <input class="input-field" type="email" name="email_field[]" required />
+      </fieldset>
+      <button class="btn-submit" type="submit">SUBMIT</button>
+    </form>
+    <button class="btn-add-input" onclick="addEmailField()" type="">
+      Add email
+    </button>
+
+    <script>
+      const myForm = document.getElementById("email-list");
+
+      function addEmailField() {
+        // create an input field to insert
+        const newEmailField = document.createElement("input");
+        // set input field data type to text
+        newEmailField.type = "email";
+        // set input field name
+        newEmailField.name = "email_field";
+        // set required
+        newEmailField.setAttribute("required", "");
+
+        newEmailField.classList.add("input-field");
+
+        // insert element
+        myForm.appendChild(newEmailField);
+      }
+    </script>
+  </body>
+</html>
+-->
