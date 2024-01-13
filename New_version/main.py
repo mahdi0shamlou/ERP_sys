@@ -18,6 +18,10 @@ def Home():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404/index.html'), 404
+
+@app.errorhandler(504)
+def internal_error(error):
+    return render_template('504/index.html'), 504
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- START LOGIN SECTION
 #---------------------------------------------------------------------------------------------------
