@@ -2,13 +2,14 @@ from flask import Flask, render_template, redirect, request, session, json
 from flask_session.__init__ import Session
 from Login.main import Check_login #this method do work for login section
 from Login.logout import insert_log_login_logout #this method do work for login section
-from IT.Products.Get_product_list import Get_product_list  #this method get product from local database
-from IT.Customer.Get_customer import Get_customer_list
+from IT.Products.Get_product_list import Get_product_list, Get_product_details #this method get product from local database
+from IT.Customer.Get_site_customer import Get_site_customer_list
 from IT.Data_Update.Update_products_value import Start as Start_get_Update_Products_from_server
 from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Customers_from_server
 from IT.Ticket.Get_all_ticket import Get_all_ticket
-
-
+from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
+from IT.Customer.Add_customer import Insert_g_cutomer
+from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -66,7 +67,7 @@ def logout():
 @app.route("/IT")
 def IT():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         tickets = Get_all_ticket(session.get("Username"))
@@ -77,8 +78,42 @@ def Pre_invoice():
         return render_template("/IT/Login_v4/index.html")
     else:
         path = session.get('Path')
-        return render_template("/IT/Pre_invoice/index.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
-
+        pre_invoice_list = Get_PreInvoice_lookup_list()
+        return render_template("/IT/Pre_invoice/index.html", pre_invoice_list=pre_invoice_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route('/IT/Pre_invoice_add')
+def Pre_Invoice_add():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        list_costumers = Get_g_customer_list()
+        return render_template("/IT/Pre_invoice/Pre_Invoice_add_customer.html", list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route('/IT/Pre_invoice_add_products')
+def Pre_invoice_add_products():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        ID_C = request.args.get('ID_C')
+        path = session.get('Path')
+        list_costumers = Get_g_customer_details(ID_C)
+        list_product = Get_product_list()
+        return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
+#_______________________________---dar dast eghdam
+@app.route('/IT/Pre_invoice_add_products')
+def Pre_invoice_add_products():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        ID_C = request.args.get('ID_C')
+        products = request.args.getlist('product[]', type=str)
+        products_number = request.args.getlist('product_number[]', type=str)
+        path = session.get('Path')
+        list_costumers = Get_g_customer_details(ID_C)
+        list_product = Get_product_list()
+        return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C,
+                               list_product=list_product, list_costumers=list_costumers,
+                               user=session.get('Username'), pathmain=path, email=session.get('email'))
+#_______________________________---dar dast eghdam
 
 @app.route("/IT/Product_list")
 def IT_Product_list():
@@ -94,8 +129,42 @@ def IT_Customers():
         return render_template("/IT/Login_v4/index.html")
     else:
         path = session.get('Path')
-        Customer_list = Get_customer_list()
+        Customer_list = Get_site_customer_list()
         return render_template("/IT/Customer/index.html", Customer_list=Customer_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/Customers_G")
+def IT_Customers_G():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        Customer_list = Get_g_customer_list()
+        return render_template("/IT/Customer/index_G.html", Customer_list=Customer_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/ADD_Customers_G")
+def IT_ADD_Customers_G():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        return render_template("/IT/Customer/Add_customer_G.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/Insert_Customers_G", methods=["POST", "GET"])
+def IT_Insert_Customers_G():
+    if not session.get("Username"):
+        return render_template("/IT/Login_v4/index.html")
+    else:
+        N_id = request.args.get('N_id')
+        address = request.args.get('address')
+        data = []
+        data.append(0)
+        data.append(0)
+        data.append(request.args.get('username'))
+        data.append(request.args.get('firstname'))
+        data.append(request.args.get('lastname'))
+        data.append(request.args.get('email'))
+        data.append(request.args.get('city'))
+        data.append(request.args.get('postcode'))
+        Insert_g_cutomer(data, N_id, address)
+        #path = session.get('Path')
+        return redirect('/')
 
 @app.route("/IT/Update_all_data_online_from_server")
 def IT_Update_data():

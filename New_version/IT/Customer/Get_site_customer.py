@@ -1,14 +1,14 @@
 from mysql.connector import connect, Error
 import mysql.connector
 import json
-def Get_product_list():
+def Get_site_customer_list():
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
                                              database="ERP_IT")
         cursor = connection.cursor()
-        sql_select_query = """select * from IT_products"""
+        sql_select_query = """select * from IT_customers where customer_id != 0"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result
@@ -30,6 +30,7 @@ def Get_product_list():
             list_lab_lab.append(record[i][11])
             list_lab_lab.append(record[i][12])
             list_lab_lab.append(record[i][13])
+            list_lab_lab.append(record[i][14])
             list_lab.append(list_lab_lab)
         print(list_lab)
 
@@ -43,7 +44,3 @@ def Get_product_list():
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-
-def Get_product_details(ids):
-    pass
-#x = Get_product_list()
