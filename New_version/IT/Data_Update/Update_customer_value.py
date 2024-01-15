@@ -12,8 +12,7 @@ def Insert_into_table_products(data, N_id, address):
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
         x = datetime.datetime.now()
         print(x)
-        record = (
-        None, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10],
+        record = (None, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10],
         data[11], N_id, address)
         cursor.execute(mySql_insert_query, record)
         connection.commit()
@@ -65,7 +64,7 @@ def Get_national_code_from_server(C_id):
         connection = mysql.connector.connect(host="185.94.96.98",
                                              user='parso_bazrgani',
                                              password='S{VN^7kOIP7F',
-                                             database="parso_tjart")
+                                             database="parsot_tjart")
         cursor = connection.cursor()
         sql_select_query = """select * from pt_usermeta WHERE user_id = %s"""
         # set variable in query

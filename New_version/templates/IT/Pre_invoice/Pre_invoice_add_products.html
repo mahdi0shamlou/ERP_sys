@@ -67,12 +67,13 @@
                                             <!-- .col -->
                                             <div class="col-xxl-8">
 
-                                            <form class="form-group" method="get" action="/SA/add_preinvoice_finall">
+                                            <form class="form-group" method="get" action="/IT/add_preinvoice_finall">
 
                                                 <div class="form-group">
                                                     <label class="form-label" data-search="on" id="C_name1"><h3>اطلاعات مشتری</h3></label>
                                                     <br>
                                                     <input type="hidden" name="ID_C" value="{{ID_C}}">
+                                                    <input type="hidden" name="NAME_C" value="{{list_costumers[0][5]}}">
                                                     <label class="form-label" data-search="on" id="C_name">اسم کامل : {{list_costumers[0][5]}}</label>
                                                     <br>
                                                      <label class="form-label" data-search="on" id="C_Natnaiol_id">کد پستی : {{list_costumers[0][10]}}</label>
@@ -124,7 +125,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <hr>
+
+                                                <div id="product_addabel_p">
+
+                                                </div>
+                                                <hr>
                                                 <input class="btn btn-icon  btn-white btn-dim btn-success" type="button" value="اضافه کردن محصول" onclick="add_product()">
+                                                <input class="btn btn-icon  btn-white btn-dim btn-success" type="button" value="اضافه کردن محصول دستی" onclick="add_product_p()">
                                                 <input class="btn btn-icon  btn-white btn-dim btn-warning" type="button" value="دوباره" onclick="remove_product()">
 
                                                 <br>
@@ -335,9 +343,47 @@
 
         const product_addabel = document.getElementById("product_addabel");
         var product_addabel_befor = product_addabel.innerHTML;
+        const product_addabel_p = document.getElementById("product_addabel_p");
+        var product_addabel_befor_p = product_addabel_p.innerHTML;
         function remove_product(){
             product_addabel.innerHTML = product_addabel_befor;
+            product_addabel_p.innerHTML = product_addabel_befor_p;
         }
+        function add_product_p(){
+                product_addabel_p.innerHTML +=  `<div class="row g-gs">
+
+
+                                                        <div class="col-xxl-4">
+
+                                                            <div class="form-group">
+
+                                                            <label class="form-label" data-search="on">انتخاب کالا</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <input type="text" class="form-control" name="product_name_p[]" placeholder="نام کالا : ">
+                                                                </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+                                                            <label class="form-label" data-search="on">انتخاب تعداد</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <input type="text" class="form-control" name="product_number_p[]" placeholder="تعداد : ">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                                <label class="form-label" data-search="on">قیمت محصول</label>
+                                                                <div class="form-control-wrap" data-search="on">
+                                                                    <input type="text" class="form-control" name="product_price_p[]" placeholder="قیمت : ">
+                                                                </div>
+                                                        </div>
+                                                    </div>`
+        }
+
+
         function add_product() {
 
             product_addabel.innerHTML += `<div class="row g-gs">

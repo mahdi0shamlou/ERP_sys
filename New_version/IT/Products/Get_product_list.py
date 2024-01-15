@@ -1,6 +1,7 @@
 from mysql.connector import connect, Error
 import mysql.connector
 import json
+
 def Get_product_list():
     try:
         connection = mysql.connector.connect(host="localhost",

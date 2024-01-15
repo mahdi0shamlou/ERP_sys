@@ -9,6 +9,7 @@ from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Custo
 from IT.Ticket.Get_all_ticket import Get_all_ticket
 from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
 from IT.Customer.Add_customer import Insert_g_cutomer
+from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -75,7 +76,7 @@ def IT():
 @app.route('/IT/Pre_Invoice')
 def Pre_invoice():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         pre_invoice_list = Get_PreInvoice_lookup_list()
@@ -83,7 +84,7 @@ def Pre_invoice():
 @app.route('/IT/Pre_invoice_add')
 def Pre_Invoice_add():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         list_costumers = Get_g_customer_list()
@@ -91,7 +92,7 @@ def Pre_Invoice_add():
 @app.route('/IT/Pre_invoice_add_products')
 def Pre_invoice_add_products():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         ID_C = request.args.get('ID_C')
         path = session.get('Path')
@@ -99,26 +100,27 @@ def Pre_invoice_add_products():
         list_product = Get_product_list()
         return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
 #_______________________________---dar dast eghdam
-@app.route('/IT/Pre_invoice_add_products')
-def Pre_invoice_add_products():
+@app.route('/IT/add_preinvoice_finall')
+def Add_preinvoice_finall():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         ID_C = request.args.get('ID_C')
+        NAME_C = request.args.get('NAME_C')
         products = request.args.getlist('product[]', type=str)
         products_number = request.args.getlist('product_number[]', type=str)
+        product_name_p = request.args.getlist('product_name_p[]', type=str)
+        product_number_p = request.args.getlist('product_number_p[]', type=str)
+        product_price_p = request.args.getlist('product_price_p[]', type=str)
+        Add_preinvoice_IT(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
         path = session.get('Path')
-        list_costumers = Get_g_customer_details(ID_C)
-        list_product = Get_product_list()
-        return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C,
-                               list_product=list_product, list_costumers=list_costumers,
-                               user=session.get('Username'), pathmain=path, email=session.get('email'))
+        return redirect('/IT/Pre_Invoice')
 #_______________________________---dar dast eghdam
 
 @app.route("/IT/Product_list")
 def IT_Product_list():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         Product_list = Get_product_list()
@@ -126,7 +128,7 @@ def IT_Product_list():
 @app.route("/IT/Customers")
 def IT_Customers():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         Customer_list = Get_site_customer_list()
@@ -134,7 +136,7 @@ def IT_Customers():
 @app.route("/IT/Customers_G")
 def IT_Customers_G():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         Customer_list = Get_g_customer_list()
@@ -142,14 +144,14 @@ def IT_Customers_G():
 @app.route("/IT/ADD_Customers_G")
 def IT_ADD_Customers_G():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
         return render_template("/IT/Customer/Add_customer_G.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
 @app.route("/IT/Insert_Customers_G", methods=["POST", "GET"])
 def IT_Insert_Customers_G():
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         N_id = request.args.get('N_id')
         address = request.args.get('address')
@@ -168,8 +170,9 @@ def IT_Insert_Customers_G():
 
 @app.route("/IT/Update_all_data_online_from_server")
 def IT_Update_data():
+    print('x')
     if not session.get("Username"):
-        return render_template("/IT/Login_v4/index.html")
+        return render_template("/Login/Login_v4/index.html")
     else:
         if session.get("Username") == 'hoseinraz' or session.get("Username") == 'admin':
             Start_get_Update_Products_from_server()
@@ -177,6 +180,12 @@ def IT_Update_data():
             return redirect('/')
         else:
             return 'you have not premision'
+
+
+
+@app.route("/IT/Pre_invoice_details_it"):
+def Pre_invoice_details_it():
+    pass
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------
@@ -186,5 +195,5 @@ def IT_Update_data():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, port=1000)
 
