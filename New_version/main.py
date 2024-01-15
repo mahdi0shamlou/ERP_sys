@@ -10,6 +10,8 @@ from IT.Ticket.Get_all_ticket import Get_all_ticket
 from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
 from IT.Customer.Add_customer import Insert_g_cutomer
 from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
+from IT.Pre_invoice.Get_preinvoice import Get_IT_preinvoice_details, Get_IT_preinvoice_lookup
+from IT.Pre_invoice.Delet_preinvoice import delet_preinvoice_it
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -183,9 +185,48 @@ def IT_Update_data():
 
 
 
-@app.route("/IT/Pre_invoice_details_it"):
+@app.route("/IT/Pre_invoice_details_it", methods=["POST", "GET"])
 def Pre_invoice_details_it():
-    pass
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        pre_invoice_id = request.args.get('P_ID')
+        pre_invoice_data = Get_IT_preinvoice_details(pre_invoice_id)
+        pre_invoice_lookup = Get_IT_preinvoice_lookup(pre_invoice_id)
+        customer_id = pre_invoice_lookup[0][1]
+        customer_details = Get_g_customer_details(customer_id)
+
+        total_price = 0
+        for i in pre_invoice_data:
+            total_price = total_price + int(i[7])
+        path = session.get('Path')
+        return render_template('/IT/Pre_invoice/Pre_invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/preinvoice_delet_it", methods=["POST", "GET"])
+def preinvoice_delet_it():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        pre_invoice_id = request.args.get('id')
+        delet_preinvoice_it(pre_invoice_id)
+        return redirect('/IT/Pre_Invoice')
+
+
+@app.route("/IT/preinvoice_print_it", methods=["POST", "GET"])
+def preinvoice_print_it():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        pre_invoice_id = request.args.get('id')
+        pre_invoice_data = Get_IT_preinvoice_details(pre_invoice_id)
+        pre_invoice_lookup = Get_IT_preinvoice_lookup(pre_invoice_id)
+        customer_id = pre_invoice_lookup[0][1]
+        customer_details = Get_g_customer_details(customer_id)
+
+        total_price = 0
+        for i in pre_invoice_data:
+            total_price = total_price + int(i[7])
+        path = session.get('Path')
+        return render_template('/IT/Pre_invoice/Pre_invoice_print.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------
