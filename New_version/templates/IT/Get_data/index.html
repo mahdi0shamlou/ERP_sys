@@ -1,133 +1,170 @@
 {% extends './base/base.html' %}
 {% block bodys %}
-              <div class="nk-content">
+                    <div class="nk-content">
                         <div class="container-fluid">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
-                                    <div class="nk-block-head">
-                                        <div class="nk-block-between g-3">
+                                    <div class="nk-block-head nk-block-head-sm">
+                                        <div class="nk-block-between">
                                             <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">
-                                                    فاکتور <strong class="text-primary small">شماره {{pre_invoice_data[0][1]}}</strong>
-                                                </h3>
-                                                <div class="nk-block-des text-soft">
-                                                    <ul class="list-inline">
-                                                        <li>
-                                                            ایجاد شده در:
-                                                            <span class="text-base">{{pre_invoice_lookup[0][7]}}</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                <h3 class="nk-block-title page-title">محصولات</h3>
                                             </div>
+                                            <!-- .nk-block-head-content -->
                                             <div class="nk-block-head-content">
-                                                <a href="/IT/Pre_Invoice" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-arrow-left"></em><span>بازگشت</span></a>
-                                                <a href="/IT/Pre_Invoice" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- .nk-block-head -->
-                                    <div class="nk-block">
-                                        <div class="invoice">
-                                            <div class="invoice-action">
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="IT/preinvoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
-                                                 <a class="btn btn-icon btn-lg btn-danger  " href="IT/preinvoice_delet_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-trash"></em></a>
-                                            </div>
-                                            <!-- .invoice-actions -->
-                                            <div class="invoice-wrap">
-                                                <div class="invoice-brand text-center">
-                                                    <img src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="" />
-                                                </div>
-                                                <div class="invoice-head">
-                                                    <div class="invoice-contact">
-                                                        <span class="overline-title">فاکتور به </span>
-                                                        <div class="invoice-contact-info">
-                                                            <h4 class="title">{{customer_details[0][5]}}</h4>
-                                                            <ul class="list-plain">
-                                                                <li>
-                                                                    <em class="icon ni ni-map-pin-fill"></em>
-                                                                    <span>{{customer_details[0][14]}}
-                                                                    </span>
-                                                                </li>
-                                                                <li><em class="icon ni ni-call-fill"></em><span>{{customer_details[0][3]}}</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="invoice-desc">
-                                                        <h3 class="title">پیش فاکتور ها</h3>
-                                                        <ul class="list-plain">
-                                                            <li class="invoice-id"><span>شناسه فاکتور داخلی</span>:<span>{{pre_invoice_data[0][1]}}</span></li>
-                                                            <li class="invoice-date"><span>{{pre_invoice_lookup[0][7]}}</span></li>
+                                                <div class="toggle-wrap nk-block-tools-toggle">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                                        <ul class="nk-block-tools g-3">
+                                                            <li class="nk-block-tools-opt">
+                                                                <a href="#" data-target="addProduct" class="toggle btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
+                                                                <a href="#" data-target="addProduct" class="toggle btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>افزودن محصول</span></a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <!-- .invoice-head -->
-                                                <div class="invoice-bills">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="w-150px">شناسه محصول</th>
-                                                                    <th class="w-60">نام</th>
-                                                                    <th>قیمت</th>
-                                                                    <th>تعداد</th>
-                                                                    <th>مبلغ</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            {% for i in range(0,len_code)%}
-                                                                <tr>
-                                                                    <td>{{pre_invoice_data[i][2]}}</td>
-                                                                    <td>
-                                                                        {{pre_invoice_data[i][14]}}
-                                                                    </td>
-                                                                    <td>{{pre_invoice_data[i][6]}}  ریال</td>
-                                                                    <td>{{pre_invoice_data[i][3]}}</td>
-                                                                    <td>{{pre_invoice_data[i][6]*pre_invoice_data[i][3]}} ریال</td>
-                                                                </tr>
-                                                            {%endfor%}
-                                                            </tbody>
-                                                            <tfoot>
-                                                                <tr>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">جمع جزء</td>
-                                                                    <td>{{total_price}} ریال</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">کارمزد پردازش</td>
-                                                                    <td>0 تومان</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">مالیات</td>
-                                                                    <td>0 تومان</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">جمع کل</td>
-                                                                    <td>{{total_price}} ریال</td>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-                                                        <div class="nk-notes ff-italic fs-12px text-soft">
-                                                            فاکتور در کامپیوتر ایجاد شده است و بدون امضا و مهر معتبر است.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- .invoice-bills -->
                                             </div>
-                                            <!-- .invoice-wrap -->
+                                            <!-- .nk-block-head-content -->
                                         </div>
-                                        <!-- .invoice -->
+                                        <!-- .nk-block-between -->
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="card card-bordered">
+                                            <div class="card-inner-group">
+                                                <div class="card-inner p-0">
+                                                    <div class="nk-tb-list">
+                                                        <div class="nk-tb-item nk-tb-head">
+                                                            <div class="nk-tb-col tb-col-sm"><span>نام</span></div>
+                                                            <div class="nk-tb-col"><span>کد محصول</span></div>
+                                                            <div class="nk-tb-col"><span>ایمالز</span></div>
+                                                            <div class="nk-tb-col"><span>ترب</span></div>
+                                                            <div class="nk-tb-col"><span>دیجیکالا</span></div>
+                                                            <div class="nk-tb-col tb-col-md"><span>میانگین کل</span></div>
+                                                            <div class="nk-tb-col tb-col-md"><span>نوع</span></div>
+                                                            <div class="nk-tb-col tb-col-md"><span></span></div>
+
+                                                        </div>
+                                                        {%for i in main_data%}
+                                                        <!-- .nk-tb-item -->
+                                                        <div class="nk-tb-item">
+
+                                                            <div class="nk-tb-col tb-col-sm">
+                                                                <span class="tb-product">
+                                                                    <img src="./images/product/a.png" alt="" class="thumb" />
+                                                                    <span class="title"> {{i[0][1]}}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{i[0][0]}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-lead"><a href="{{i[0][2]}}"> {{i[1][0]}} تومان</a></span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-lead"><a href="https://torob.com/p/{{i[0][3]}}">{{i[2][0]}} تومان</a></span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-lead"><a href="https://www.digikala.com/product/dkp-{{i[0][4]}}/">{{i[3][0]}} تومان</a></span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{i[4][0]}} تومان</span>
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub">{{i[0][6]}}</span>
+                                                            </div>
+
+                                                            <div class="nk-tb-col nk-tb-col-tools">
+                                                                <ul class="nk-tb-actions gx-1 my-n1">
+                                                                    <li class="me-n1">
+                                                                        <div class="dropdown">
+                                                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                                <ul class="link-list-opt no-bdr">
+                                                                                    <li>
+                                                                                        <a href="/IT/delet_linksgetdata?id={{i[0][0]}}"><em class="icon ni ni-trash"></em><span>حذف محصول</span></a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .nk-tb-item -->
+                                                        {%endfor%}
+                                                        <!-- .nk-tb-item -->
+                                                    </div>
+                                                    <!-- .nk-tb-list -->
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- .nk-block -->
+                                    <div class="nk-add-product toggle-slide toggle-slide-right" data-content="addProduct" data-toggle-screen="any" data-toggle-overlay="true" data-toggle-body="true" data-simplebar>
+                                        <div class="nk-block-head">
+                                            <div class="nk-block-head-content">
+                                                <h5 class="nk-block-title">محصول جدید</h5>
+                                                <div class="nk-block-des">
+                                                    <p>محصول جدید و اطلاعات آن را اضافه کنید.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .nk-block-head -->
+                                        <div class="nk-block">
+                                            <form action="/IT/add_linksgetdata" method="get">
+                                                <div class="row g-3">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="product-title">عنوان محصول</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" class="form-control" id="product-title" name="name"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+
+                                                            <label class="form-label" for="links_torob">آدرس ترب</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" name="link_torob" class="form-control" id="links_torob" placeholder="ترب : " />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="links">آدرس ایمالز</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" name="link" class="form-control" id="links" placeholder="ایمالز : " />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="link_dg">آدرس دیجیکالا</label>
+                                                            <div class="form-control-wrap">
+                                                                <input type="text" name="link_dg" class="form-control" id="link_dg" placeholder="دیجیکالا : " />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="col-12">
+                                                        <input type="submit" class="btn btn-primary" value="ثبت"/>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- .nk-block -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 {% endblock %}
+
 {% block menu %}
-                       <div class="nk-sidebar-content">
+<div class="nk-sidebar-content">
                             <div class="nk-sidebar-menu" data-simplebar>
                                 <ul class="nk-menu">
 
@@ -213,8 +250,9 @@
                             <!-- .nk-sidebar-menu -->
                         </div>
 {% endblock %}
+
 {% block notification %}
-                        <li class="dropdown notification-dropdown me-n1">
+<li class="dropdown notification-dropdown me-n1">
                                             <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                                 <div class="icon-status icon-status-info">
                                                     <em class="icon ni ni-bell"></em>
@@ -303,12 +341,3 @@
                                             </div>
                                         </li>
 {% endblock %}
-
-
-
-
-
-
-
-
-
