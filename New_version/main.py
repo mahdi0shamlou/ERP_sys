@@ -261,7 +261,15 @@ def getdata():
         main_data = Data_collection_section()
         print(main_data)
         return render_template('/IT/Get_data/index.html', main_data=main_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
-
+@app.route("/IT/print_getdata_sction", methods=["POST", "GET"])
+def print_getdata_sction():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        main_data = Data_collection_section()
+        print(main_data)
+        return render_template('/IT/Get_data/print.html', main_data=main_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------
