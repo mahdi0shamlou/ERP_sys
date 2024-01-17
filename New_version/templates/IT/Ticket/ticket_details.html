@@ -1,206 +1,104 @@
 {% extends './base/base.html' %}
 {% block bodys %}
-
-                           <div class="nk-content">
+ <div class="nk-content">
                         <div class="container-fluid">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
-                                    <div class="nk-block-head nk-block-head-sm">
-                                        <div class="nk-block-between">
-                                            <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">تیکت ها</h3>
+                                    <div class="nk-chat">
+
+                                        <!-- .nk-chat-aside -->
+                                        <div class="nk-chat-body">
+                                            <div class="nk-chat-head">
+                                                <ul class="nk-chat-head-info">
+                                                    <li class="nk-chat-body-close">
+                                                        <a href="#" class="btn btn-icon btn-trigger nk-chat-hide ms-n1"><em class="icon ni ni-arrow-left"></em></a>
+                                                    </li>
+                                                    <li class="nk-chat-head-user">
+                                                        <div class="user-card">
+                                                            <div class="user-avatar bg-purple">
+                                                                <span>{{main_ticket[0][5]}}</span>
+                                                            </div>
+                                                            <div class="user-info">
+                                                                <div class="lead-text">{{main_ticket[0][1]}}</div>
+                                                                <div class="sub-text">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                {% if main_ticket[0][6] == pathmain %}
+
+
+                                                <ul class="nk-chat-head-tools">
+                                                    <li>
+                                                        <a href="/IT/Ticket_status?verify=-1&T_id={{main_ticket[0][0]}}" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-cross-c"></em></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/IT/Ticket_status?verify=1&T_id={{main_ticket[0][0]}}" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-check-c"></em></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/IT/Ticket_status?verify=0&T_id={{main_ticket[0][0]}}" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-zoom-in"></em></a>
+                                                    </li>
+
+                                                </ul>
+                                                {% endif %}
+                                                <!-- .nk-chat-head-search -->
                                             </div>
-                                            <!-- .nk-block-head-content -->
-                                            <div class="nk-block-head-content">
-                                                <div class="toggle-wrap nk-block-tools-toggle">
-                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                                    <div class="toggle-expand-content" data-content="pageMenu">
-                                                        <ul class="nk-block-tools g-3">
+                                            <!-- .nk-chat-head -->
+                                            <div id='Chat_d' class="nk-chat-panel" data-simplebar="init" style="pointer-events: inherit;">
+                                                {%for i in message_ticket%}
+                                                <div class="chat is-you">
+                                                    <div class="chat-avatar">
+                                                        <div class="user-avatar bg-purple">
+                                                            <span>{{i[8]}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="chat-content">
+                                                        <div class="chat-bubbles">
+                                                            <div class="chat-bubble">
+                                                                <div class="chat-msg">
+                                                                    {{i[2]}}
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <ul class="chat-meta">
+                                                            <li>{{i[7]}}</li>
+                                                            <li>{{i[3]}}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
+                                                {%endfor%}
                                             </div>
-                                            <!-- .nk-block-head-content -->
+                                            <!-- .nk-chat-panel -->
+                                             <form action="/IT/add_ticket_message" method="get">
+                                            <div class="nk-chat-editor">
+
+                                                <div class="nk-chat-editor-form">
+                                                    <div class="form-control-wrap">
+                                                        <input type="hidden" name="T_id" value="{{main_ticket[0][0]}}">
+                                                        <textarea name="desck" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="پیام خود را تایپ کنید..."></textarea>
+                                                    </div>
+                                                </div>
+                                                <ul class="nk-chat-editor-tools g-2">
+
+                                                    <li>
+                                                        <button type="submit" class="btn btn-round btn-primary btn-icon">
+                                                            <em class="icon ni ni-send-alt"></em>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                                 </form>
+                                            <!-- .nk-chat-editor -->
+
+                                            <!-- .nk-chat-profile -->
                                         </div>
-                                        <!-- .nk-block-between -->
+                                        <!-- .nk-chat-body -->
                                     </div>
-                                    <!-- .nk-block-head -->
-                                    <div class="nk-block">
-                                        <div class="card card-bordered">
-                                            <div class="card-inner-group">
-                                                <div class="card-inner p-0">
-                                                    <div class="nk-tb-list">
-                                                        <div class="nk-tb-item nk-tb-head">
-
-                                                            <div class="nk-tb-col tb-col-sm">
-                                                                <span>شماره تیکت</span>
-                                                            </div>
-                                                            <div class="nk-tb-col"><span>موضوع</span></div>
-                                                            <div class="nk-tb-col"><span>دپارتمان مبدا</span></div>
-                                                            <div class="nk-tb-col"><span>دپارتمان مقصد</span></div>
-                                                            <div class="nk-tb-col"><span>تاریخ</span></div>
-                                                            <div class="nk-tb-col"><span>وضعیت</span></div>
-
-                                                            <div class="nk-tb-col nk-tb-col-tools">
-                                                                <ul class="nk-tb-actions gx-1 my-n1">
-                                                                    <li class="me-n1">
-                                                                        <div class="dropdown">
-                                                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                                <ul class="link-list-opt no-bdr">
-                                                                                    <li>
-                                                                                        <a href="/IT/Ticket_add"><em class="icon ni ni-edit"></em><span>افزودن جدید</span></a>
-                                                                                    </li>
-
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <!-- .nk-tb-item -->
-                                                        {% for i in ticeket_list%}
-                                                        <div class="nk-tb-item">
-
-                                                            <div class="nk-tb-col tb-col-sm">
-                                                                <span class="tb-product">
-                                                                    <img src="./images/product/a.png" alt="" class="thumb" />
-                                                                    <span class="title"><a href="/IT/Get_ticket_details?T_id={{i[0]}}">{{i[0]}}</a></span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="nk-tb-col">
-                                                                <span class="tb-sub"><span class="badge badge-dot bg-gray">{{i[3]}}</span></span>
-                                                            </div>
-                                                            <div class="nk-tb-col">
-                                                                <span class="tb-sub"><span class="badge bg-outline-dark">{{i[5]}}</span></span>
-                                                            </div>
-                                                            <div class="nk-tb-col">
-                                                                <span class="tb-sub"><span class="badge bg-outline-dark">{{i[6]}}</span></span>
-                                                            </div>
-                                                            <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub">{{i[4]}}</span>
-                                                            </div>
-                                                            {% if i[8] == "تعیین نشده": %}
-                                                            <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-warning">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            {% if i[8] == "در دست اقدام": %}
-                                                            <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-info">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            {% if i[8] == "انجام شده": %}
-                                                            <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-success">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            {% if i[8] == "رد شده": %}
-                                                            <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-danger">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-
-
-
-
-
-                                                        </div>
-                                                        {%endfor%}
-                                                        <!-- .nk-tb-item -->
-
-                                                        <!-- .nk-tb-item -->
-                                                    </div>
-                                                    <!-- .nk-tb-list -->
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- .nk-block -->
-                                    <div class="nk-add-product toggle-slide toggle-slide-right" data-content="addProduct" data-toggle-screen="any" data-toggle-overlay="true" data-toggle-body="true" data-simplebar>
-                                        <div class="nk-block-head">
-                                            <div class="nk-block-head-content">
-                                                <h5 class="nk-block-title">محصول جدید</h5>
-                                                <div class="nk-block-des">
-                                                    <p>محصول جدید و اطلاعات آن را اضافه کنید.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- .nk-block-head -->
-                                        <div class="nk-block">
-                                            <div class="row g-3">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="product-title">عنوان محصول</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="product-title" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="regular-price">قیمت عادی</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="number" class="form-control" id="regular-price" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="sale-price">قیمت فروش</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="number" class="form-control" id="sale-price" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="stock">موجودی</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="stock" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="SKU">شناسه محصول</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="SKU" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="category">دسته بندی</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="category" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="tags">برچسب</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="tags" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="upload-zone small bg-lighter my-2">
-                                                        <div class="dz-message">
-                                                            <span class="dz-message-text">فایل را بکشید و رها کنید</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button class="btn btn-primary"><em class="icon ni ni-plus"></em><span>افزودن جدید</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- .nk-block -->
-                                    </div>
+                                    <!-- .nk-chat -->
                                 </div>
                             </div>
                         </div>
@@ -208,7 +106,7 @@
 {% endblock %}
 
 {% block menu %}
-                           <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-content">
                             <div class="nk-sidebar-menu" data-simplebar>
                                 <ul class="nk-menu">
 
@@ -307,9 +205,8 @@
                             <!-- .nk-sidebar-menu -->
                         </div>
 {% endblock %}
-
 {% block notification %}
-                           <li class="dropdown notification-dropdown me-n1">
+                        <li class="dropdown notification-dropdown me-n1">
                                             <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                                 <div class="icon-status icon-status-info">
                                                     <em class="icon ni ni-bell"></em>
@@ -398,8 +295,12 @@
                                             </div>
                                         </li>
 {% endblock %}
+{% block script %}
+    <script>
+        const div = document.getElementById("Chat_d");
+        div.scrollTo(0, div.scrollHeight);
+    </script>
 
 
-
-
+{% endblock %}
 

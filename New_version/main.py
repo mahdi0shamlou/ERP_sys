@@ -7,7 +7,9 @@ from IT.Products.Get_product_list import Get_product_list, Get_product_details #
 from IT.Customer.Get_site_customer import Get_site_customer_list
 from IT.Data_Update.Update_products_value import Start as Start_get_Update_Products_from_server
 from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Customers_from_server
-from IT.Ticket.Get_all_ticket import Get_all_ticket, Get_ticket_details, Get_all_ticket_list
+from IT.Ticket.Get_all_ticket import Get_all_ticket_new, Get_ticket_details, Get_all_ticket_list
+from IT.Ticket.Add_ticket import start as insert_ticket_at_start_ticket
+from IT.Ticket.Add_ticket import Add_message_IT, Add_status_IT
 from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
 from IT.Customer.Add_customer import Insert_g_cutomer
 from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
@@ -81,7 +83,7 @@ def IT():
         return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
-        tickets = Get_all_ticket(path)
+        tickets = Get_all_ticket_new(path)
         return render_template("/IT/index.html", tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
 @app.route('/IT/Pre_Invoice')
 def Pre_invoice():
@@ -296,12 +298,13 @@ def Ticket_add_finall():
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
     else:
+        username = session.get("Username")
         path = session.get('Path')
         subject = request.args.get('subject')
         desck = request.args.get('desck')
         section_to = request.args.get('section_to')
         if section_to in ['IT', 'SA', 'ACC', 'COM']:
-
+            insert_ticket_at_start_ticket(subject, desck, section_to, username)
             return redirect('/IT/Tickets')
         else:
             return redirect('/IT/Ticket_add')
@@ -311,8 +314,32 @@ def Get_ticket_details_IT():
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
     else:
+        path = session.get('Path')
         t_id = request.args.get('T_id')
-        ticeket_details = Get_ticket_details(t_id)
+        main_ticket, message_ticket = Get_ticket_details(t_id)
+
+        return render_template('/IT/Ticket/ticket_details.html', main_ticket=main_ticket, message_ticket=message_ticket, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/add_ticket_message", methods=["POST", "GET"])
+def add_ticket_message():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        username = session.get("Username")
+        desck = request.args.get('desck')
+        pre_id = request.args.get('T_id')
+        Add_message_IT(desck, pre_id, username)
+        return redirect(f'/IT/Get_ticket_details?T_id={pre_id}')
+
+@app.route("/IT/Ticket_status", methods=["POST", "GET"])
+def Ticket_status_IT():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        username = session.get("Username")
+        verify = request.args.get('verify')
+        pre_id = request.args.get('T_id')
+        Add_status_IT(verify, pre_id)
+        return redirect(f'/IT/Tickets')
 
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
