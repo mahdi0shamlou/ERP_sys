@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request, session, json
+from datetime import timedelta
 from flask_session.__init__ import Session
 from Login.main import Check_login #this method do work for login section
 from Login.logout import insert_log_login_logout #this method do work for login section
@@ -6,7 +7,7 @@ from IT.Products.Get_product_list import Get_product_list, Get_product_details #
 from IT.Customer.Get_site_customer import Get_site_customer_list
 from IT.Data_Update.Update_products_value import Start as Start_get_Update_Products_from_server
 from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Customers_from_server
-from IT.Ticket.Get_all_ticket import Get_all_ticket
+from IT.Ticket.Get_all_ticket import Get_all_ticket, Get_ticket_details, Get_all_ticket_list
 from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
 from IT.Customer.Add_customer import Insert_g_cutomer
 from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
@@ -21,6 +22,10 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=15)
 @app.route("/")
 def Home():
     if not session.get("Username"):
@@ -76,7 +81,7 @@ def IT():
         return render_template("/Login/Login_v4/index.html")
     else:
         path = session.get('Path')
-        tickets = Get_all_ticket(session.get("Username"))
+        tickets = Get_all_ticket(path)
         return render_template("/IT/index.html", tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
 @app.route('/IT/Pre_Invoice')
 def Pre_invoice():
@@ -270,6 +275,45 @@ def print_getdata_sction():
         main_data = Data_collection_section()
         print(main_data)
         return render_template('/IT/Get_data/print.html', main_data=main_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+
+@app.route("/IT/Tickets", methods=["POST", "GET"])
+def Ticket_list_IT():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        ticeket_list = Get_all_ticket_list(path)
+        return render_template('/IT/Ticket/index.html', ticeket_list=ticeket_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/Ticket_add", methods=["POST", "GET"])
+def Ticket_add_IT():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        return render_template('/IT/Ticket/ticket_add.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route("/IT/Ticket_add_finall", methods=["POST", "GET"])
+def Ticket_add_finall():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        path = session.get('Path')
+        subject = request.args.get('subject')
+        desck = request.args.get('desck')
+        section_to = request.args.get('section_to')
+        if section_to in ['IT', 'SA', 'ACC', 'COM']:
+
+            return redirect('/IT/Tickets')
+        else:
+            return redirect('/IT/Ticket_add')
+
+@app.route("/IT/Get_ticket_details", methods=["POST", "GET"])
+def Get_ticket_details_IT():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        t_id = request.args.get('T_id')
+        ticeket_details = Get_ticket_details(t_id)
+
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------

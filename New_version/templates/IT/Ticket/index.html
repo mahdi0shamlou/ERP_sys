@@ -1,14 +1,14 @@
 {% extends './base/base.html' %}
 {% block bodys %}
 
-                     <div class="nk-content">
+                           <div class="nk-content">
                         <div class="container-fluid">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
                                     <div class="nk-block-head nk-block-head-sm">
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">پیش فاکتور ها</h3>
+                                                <h3 class="nk-block-title page-title">تیکت ها</h3>
                                             </div>
                                             <!-- .nk-block-head-content -->
                                             <div class="nk-block-head-content">
@@ -33,14 +33,13 @@
                                                         <div class="nk-tb-item nk-tb-head">
 
                                                             <div class="nk-tb-col tb-col-sm">
-                                                                <span>شماره پیش فاکتور</span>
+                                                                <span>شماره تیکت</span>
                                                             </div>
-                                                            <div class="nk-tb-col"><span>خریدار</span></div>
-                                                            <div class="nk-tb-col"><span>فروشنده</span></div>
+                                                            <div class="nk-tb-col"><span>موضوع</span></div>
+                                                            <div class="nk-tb-col"><span>دپارتمان درخواست کننده</span></div>
+                                                            <div class="nk-tb-col"><span>دپارتمان گیرنده</span></div>
                                                             <div class="nk-tb-col"><span>تاریخ</span></div>
-                                                            <div class="nk-tb-col tb-col-md">
-                                                                <span>وضعیت</span>
-                                                            </div>
+                                                            <div class="nk-tb-col"><span>وضعیت</span></div>
 
                                                             <div class="nk-tb-col nk-tb-col-tools">
                                                                 <ul class="nk-tb-actions gx-1 my-n1">
@@ -50,7 +49,7 @@
                                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                                 <ul class="link-list-opt no-bdr">
                                                                                     <li>
-                                                                                        <a href="/IT/Pre_invoice_add"><em class="icon ni ni-edit"></em><span>افزودن جدید</span></a>
+                                                                                        <a href="/IT/Ticket_add"><em class="icon ni ni-edit"></em><span>افزودن جدید</span></a>
                                                                                     </li>
 
                                                                                 </ul>
@@ -61,27 +60,32 @@
                                                             </div>
                                                         </div>
                                                         <!-- .nk-tb-item -->
-                                                        {% for i in pre_invoice_list%}
+                                                        {% for i in ticeket_list%}
                                                         <div class="nk-tb-item">
 
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-product">
                                                                     <img src="./images/product/a.png" alt="" class="thumb" />
-                                                                    <span class="title"><a href="/IT/Pre_invoice_details_it?P_ID={{i[0]}}">{{i[0]}}</a></span>
+                                                                    <span class="title"><a href="/IT/Get_ticket_details?T_id={{i[0]}}">{{i[0]}}</a></span>
                                                                 </span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{i[9]}}</span>
+                                                                <span class="tb-sub"><span class="badge badge-dot bg-gray">{{i[3]}}</span></span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-lead">{{i[8]}}</span>
+                                                                <span class="tb-sub"><span class="badge bg-outline-dark">{{i[5]}}</span></span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{i[7]}}</span>
+                                                                <span class="tb-sub"><span class="badge bg-outline-dark">{{i[6]}}</span></span>
                                                             </div>
                                                             <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub">{{i[5]}}</span>
+                                                                <span class="tb-sub">{{i[4]}}</span>
                                                             </div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-success">انجام شد</span></span>
+                                                            </div>
+
+
 
 
                                                         </div>
@@ -287,7 +291,7 @@
 {% endblock %}
 
 {% block notification %}
-                        <li class="dropdown notification-dropdown me-n1">
+                           <li class="dropdown notification-dropdown me-n1">
                                             <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                                 <div class="icon-status icon-status-info">
                                                     <em class="icon ni ni-bell"></em>
