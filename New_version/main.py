@@ -375,8 +375,28 @@ def Invoice_details():
         for i in pre_invoice_data:
             total_price = total_price + int(i[7])
         path = session.get('Path')
-        return render_template('/IT/Pre_invoice/Pre_invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        return render_template('/IT/Invoice/Invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
+@app.route("/IT/invoice_print_it", methods=["POST", "GET"])
+def invoice_print_it():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        pre_invoice_id = request.args.get('id')
+        print(pre_invoice_id)
+        pre_invoice_data = Get_IT_Factors_details(pre_invoice_id)
+        print(pre_invoice_data)
+        pre_invoice_lookup = Get_IT_Factors_lookup(pre_invoice_id)
+        print(pre_invoice_lookup)
+        customer_id = pre_invoice_lookup[0][1]
+        print(customer_id)
+        customer_details = Get_customer_details_it_with_userid(customer_id)
+
+        total_price = 0
+        for i in pre_invoice_data:
+            total_price = total_price + int(i[7])
+        path = session.get('Path')
+        return render_template('/IT/Invoice/Invoice_Print.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
