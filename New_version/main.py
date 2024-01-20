@@ -7,10 +7,11 @@ from IT.Products.Get_product_list import Get_product_list, Get_product_details #
 from IT.Customer.Get_site_customer import Get_site_customer_list
 from IT.Data_Update.Update_products_value import Start as Start_get_Update_Products_from_server
 from IT.Data_Update.Update_customer_value import Start as Start_get_Update_Customers_from_server
+from IT.Data_Update.Update_factors_value import Start as Start_get_Update_Factors_from_server
 from IT.Ticket.Get_all_ticket import Get_all_ticket_new, Get_ticket_details, Get_all_ticket_list
 from IT.Ticket.Add_ticket import start as insert_ticket_at_start_ticket
 from IT.Ticket.Add_ticket import Add_message_IT, Add_status_IT
-from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
+from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details, Get_customer_details_it_with_userid
 from IT.Customer.Add_customer import Insert_g_cutomer
 from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
 from IT.Pre_invoice.Get_preinvoice import Get_IT_preinvoice_details, Get_IT_preinvoice_lookup
@@ -19,6 +20,8 @@ from IT.Get_data_analyst.Get_data_analyst_emalls import start as Data_collection
 from IT.Get_data_analyst.Insert_links import insert_links_to_db_getdata
 from IT.Get_data_analyst.delet_links import delet_link_data_from_db
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
+from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT
+from IT.Factors.Get_factors_detials_IT import Get_IT_Factors_lookup, Get_IT_Factors_details
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -189,6 +192,7 @@ def IT_Update_data():
         if session.get("Username") == 'hoseinraz' or session.get("Username") == 'admin':
             Start_get_Update_Products_from_server()
             Start_get_Update_Customers_from_server()
+            Start_get_Update_Factors_from_server()
             return redirect('/')
         else:
             return 'you have not premision'
@@ -340,6 +344,39 @@ def Ticket_status_IT():
         pre_id = request.args.get('T_id')
         Add_status_IT(verify, pre_id)
         return redirect(f'/IT/Tickets')
+
+
+@app.route('/IT/Invoice', methods=["POST", "GET"])
+def invoice():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        list_factors = Get_factors_lookup_IT()
+        path = session.get('Path')
+
+        return render_template("/IT/Invoice/index.html", pre_invoice_list=list_factors,
+                               user=session.get('Username'), pathmain=path, email=session.get('email'))
+@app.route('/IT/Invoice_details', methods=["POST", "GET"])
+def Invoice_details():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        pre_invoice_id = request.args.get('P_ID')
+        print(pre_invoice_id)
+        pre_invoice_data = Get_IT_Factors_details(pre_invoice_id)
+        print(pre_invoice_data)
+        pre_invoice_lookup = Get_IT_Factors_lookup(pre_invoice_id)
+        print(pre_invoice_lookup)
+        customer_id = pre_invoice_lookup[0][1]
+        print(customer_id)
+        customer_details = Get_customer_details_it_with_userid(customer_id)
+
+        total_price = 0
+        for i in pre_invoice_data:
+            total_price = total_price + int(i[7])
+        path = session.get('Path')
+        return render_template('/IT/Pre_invoice/Pre_invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+
 
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION

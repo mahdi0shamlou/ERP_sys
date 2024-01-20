@@ -64,7 +64,7 @@ def Get_national_code_from_server(C_id):
         connection = mysql.connector.connect(host="185.94.96.98",
                                              user='parso_bazrgani',
                                              password='S{VN^7kOIP7F',
-                                             database="parsot_tjart")
+                                             database="parso_tjart")
         cursor = connection.cursor()
         sql_select_query = """select * from pt_usermeta WHERE user_id = %s"""
         # set variable in query
