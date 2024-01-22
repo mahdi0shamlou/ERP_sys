@@ -26,7 +26,6 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-
 @app.before_request
 def make_session_permanent():
     session.permanent = True
@@ -53,7 +52,6 @@ def Login():
     else:
         path = session.get('Path')
         return redirect(f"/{path}")
-
 @app.route("/Login_check", methods=["POST", "GET"])
 def Login_check():
     if request.args.get("username") is None or request.args.get("pass") is None:
@@ -63,15 +61,12 @@ def Login_check():
         password = request.args.get("pass")
         Check_login_resualt = Check_login(user, password)
         return Check_login_resualt
-
-
 @app.route("/logout")
 def logout():
     insert_log_login_logout(None,'2023', session["Username"], 'logout')
     session["Username"] = None
     session["Access_level"] = None
     return redirect("/")
-
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END LOGIN SECTION
 #---------------------------------------------------------------------------------------------------
