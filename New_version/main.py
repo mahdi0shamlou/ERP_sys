@@ -383,13 +383,9 @@ def invoice_print_it():
         return render_template("/Login/Login_v4/index.html")
     else:
         pre_invoice_id = request.args.get('id')
-        print(pre_invoice_id)
         pre_invoice_data = Get_IT_Factors_details(pre_invoice_id)
-        print(pre_invoice_data)
         pre_invoice_lookup = Get_IT_Factors_lookup(pre_invoice_id)
-        print(pre_invoice_lookup)
         customer_id = pre_invoice_lookup[0][1]
-        print(customer_id)
         customer_details = Get_customer_details_it_with_userid(customer_id)
 
         total_price = 0
