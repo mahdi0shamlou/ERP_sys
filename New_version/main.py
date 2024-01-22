@@ -40,7 +40,6 @@ def Home():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404/index.html'), 404
-
 @app.errorhandler(504)
 def internal_error(error):
     return render_template('504/index.html'), 504
@@ -115,7 +114,6 @@ def Pre_invoice_add_products():
         list_costumers = Get_g_customer_details(ID_C)
         list_product = Get_product_list()
         return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
-
 @app.route('/IT/add_preinvoice_finall')
 def Add_preinvoice_finall():
     if not session.get("Username"):
@@ -131,8 +129,6 @@ def Add_preinvoice_finall():
         Add_preinvoice_IT(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
         path = session.get('Path')
         return redirect('/IT/Pre_Invoice')
-
-
 @app.route("/IT/Product_list")
 def IT_Product_list():
     if not session.get("Username"):
@@ -183,7 +179,6 @@ def IT_Insert_Customers_G():
         Insert_g_cutomer(data, N_id, address)
         #path = session.get('Path')
         return redirect('/')
-
 @app.route("/IT/Update_all_data_online_from_server")
 def IT_Update_data():
     print('x')
@@ -197,9 +192,6 @@ def IT_Update_data():
             return redirect('/')
         else:
             return 'you have not premision'
-
-
-
 @app.route("/IT/Pre_invoice_details_it", methods=["POST", "GET"])
 def Pre_invoice_details_it():
     if not session.get("Username"):
@@ -224,8 +216,6 @@ def preinvoice_delet_it():
         pre_invoice_id = request.args.get('id')
         delet_preinvoice_it(pre_invoice_id)
         return redirect('/IT/Pre_Invoice')
-
-
 @app.route("/IT/preinvoice_print_it", methods=["POST", "GET"])
 def preinvoice_print_it():
     if not session.get("Username"):
@@ -242,8 +232,6 @@ def preinvoice_print_it():
             total_price = total_price + int(i[7])
         path = session.get('Path')
         return render_template('/IT/Pre_invoice/Pre_invoice_print.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
-
-
 @app.route('/IT/add_linksgetdata', methods=["POST", "GET"])
 def add_linksgetdata():
     if not session.get("Username"):
@@ -282,7 +270,6 @@ def print_getdata_sction():
         main_data = Data_collection_section()
         print(main_data)
         return render_template('/IT/Get_data/print.html', main_data=main_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
-
 @app.route("/IT/Tickets", methods=["POST", "GET"])
 def Ticket_list_IT():
     if not session.get("Username"):
@@ -313,7 +300,6 @@ def Ticket_add_finall():
             return redirect('/IT/Tickets')
         else:
             return redirect('/IT/Ticket_add')
-
 @app.route("/IT/Get_ticket_details", methods=["POST", "GET"])
 def Get_ticket_details_IT():
     if not session.get("Username"):
@@ -334,7 +320,6 @@ def add_ticket_message():
         pre_id = request.args.get('T_id')
         Add_message_IT(desck, pre_id, username)
         return redirect(f'/IT/Get_ticket_details?T_id={pre_id}')
-
 @app.route("/IT/Ticket_status", methods=["POST", "GET"])
 def Ticket_status_IT():
     if not session.get("Username"):
@@ -345,8 +330,6 @@ def Ticket_status_IT():
         pre_id = request.args.get('T_id')
         Add_status_IT(verify, pre_id)
         return redirect(f'/IT/Tickets')
-
-
 @app.route('/IT/Invoice', methods=["POST", "GET"])
 def invoice():
     if not session.get("Username"):
@@ -377,7 +360,6 @@ def Invoice_details():
             total_price = total_price + int(i[7])
         path = session.get('Path')
         return render_template('/IT/Invoice/Invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
-
 @app.route("/IT/invoice_print_it", methods=["POST", "GET"])
 def invoice_print_it():
     if not session.get("Username"):
@@ -394,15 +376,9 @@ def invoice_print_it():
             total_price = total_price + int(i[7])
         path = session.get('Path')
         return render_template('/IT/Invoice/Invoice_Print.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
-
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------
-
-
-
-
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=1000)
 
