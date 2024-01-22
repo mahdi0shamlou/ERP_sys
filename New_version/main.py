@@ -482,7 +482,7 @@ def invoice_print_it():
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------
-#---------------------------------------------- START SALE SECTION
+#---------------------------------------------- START ACCOUNITNG SECTION
 #---------------------------------------------------------------------------------------------------
 @app.route("/ACC")
 def ACC():
@@ -492,13 +492,13 @@ def ACC():
         auth = session.get('Access_level')
         if auth == 1 or auth == 5:
             path = session.get('Path')
-            tickets = Get_all_ticket_new(path)
+            tickets = Get_all_ticket_new('ACC')
             list_factors = Get_factors_lookup_IT_with_limits()
-            return render_template("/IT/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template("/ACC/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
-#---------------------------------------------- END SALE SECTION
+#---------------------------------------------- END ACCOUNITNG SECTION
 #---------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=1000)
