@@ -8,7 +8,7 @@ def Get_all_ticket_new(section):
                                              password='',
                                              database="ERP_USERS")
         cursor = connection.cursor()
-        sql_select_query = """select * from Users_ticket where `section_to` = %s and `is_new` = 1 order by id DESC"""
+        sql_select_query = """select * from Users_ticket where `section_to` = %s and `status` = 'تعیین نشده' order by id DESC"""
         # set variable in query
         cursor.execute(sql_select_query, (section,))
         # fetch result

@@ -20,7 +20,7 @@ from IT.Get_data_analyst.Get_data_analyst_emalls import start as Data_collection
 from IT.Get_data_analyst.Insert_links import insert_links_to_db_getdata
 from IT.Get_data_analyst.delet_links import delet_link_data_from_db
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
-from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT
+from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT, Get_factors_lookup_IT_with_limits
 from IT.Factors.Get_factors_detials_IT import Get_IT_Factors_lookup, Get_IT_Factors_details
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -87,7 +87,8 @@ def IT():
     else:
         path = session.get('Path')
         tickets = Get_all_ticket_new(path)
-        return render_template("/IT/index.html", tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        list_factors = Get_factors_lookup_IT_with_limits()
+        return render_template("/IT/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
 @app.route('/IT/Pre_Invoice')
 def Pre_invoice():
     if not session.get("Username"):
@@ -114,7 +115,7 @@ def Pre_invoice_add_products():
         list_costumers = Get_g_customer_details(ID_C)
         list_product = Get_product_list()
         return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
-#_______________________________---dar dast eghdam
+
 @app.route('/IT/add_preinvoice_finall')
 def Add_preinvoice_finall():
     if not session.get("Username"):
@@ -130,7 +131,7 @@ def Add_preinvoice_finall():
         Add_preinvoice_IT(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
         path = session.get('Path')
         return redirect('/IT/Pre_Invoice')
-#_______________________________---dar dast eghdam
+
 
 @app.route("/IT/Product_list")
 def IT_Product_list():
