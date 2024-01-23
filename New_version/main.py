@@ -22,7 +22,8 @@ from IT.Get_data_analyst.delet_links import delet_link_data_from_db
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
 from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT, Get_factors_lookup_IT_with_limits
 from IT.Factors.Get_factors_detials_IT import Get_IT_Factors_lookup, Get_IT_Factors_details
-from ACC.Factors.Get_factors_look_up import Get_factors_lookup_ACC_with_limits
+from ACC.Factors.Get_factors_look_up import Get_factors_lookup_ACC_with_limits, Get_factors_lookup_ACC_with_pages
+from ACC.Factors.Get_factors_details_acc import GET_details_factors_acc
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -585,6 +586,67 @@ def Ticket_status_ACC():
             pre_id = request.args.get('T_id')
             Add_status_IT(verify, pre_id)
             return redirect(f'/ACC/Tickets')
+        else:
+            return render_template('Not_Permission/index.html')
+
+
+
+@app.route('/ACC/Invoice', methods=["POST", "GET"])
+def ACC_invoice():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                list_factors = Get_factors_lookup_ACC_with_limits()
+            else:
+                list_factors = Get_factors_lookup_ACC_with_pages(limit_id)
+            #list_factors = Get_factors_lookup_ACC_with_limits()
+            path = session.get('Path')
+            return render_template("/ACC/Invoice/index.html", pre_invoice_list=list_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+
+
+
+
+
+@app.route('/ACC/Invoice_details', methods=["POST", "GET"])
+def Invoice_details_ACC():
+
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            pre_invoice_id = request.args.get('P_ID')
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
+
+            total_price = 0
+            for i in details_factors:
+                total_price = total_price + int(i[7])
+            path = session.get('Path')
+            return render_template('/ACC/Invoice/Invoice_details.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/invoice_print_it", methods=["POST", "GET"])
+def invoice_print_it_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            pre_invoice_id = request.args.get('id')
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
+
+            total_price = 0
+            for i in details_factors:
+                total_price = total_price + int(i[7])
+            path = session.get('Path')
+            return render_template('/ACC/Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------

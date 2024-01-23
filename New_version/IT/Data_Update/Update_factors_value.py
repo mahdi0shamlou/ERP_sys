@@ -373,4 +373,3 @@ def Start():
 
     else:
         print('we dont have any new factors')
-Start()

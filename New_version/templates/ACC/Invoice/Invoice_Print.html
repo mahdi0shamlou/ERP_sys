@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" class="js">
+    <head>
+        <base href="../" />
+        <meta charset="utf-8" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <!-- Fav Icon  -->
+        <link rel="shortcut icon" href="static/base/images/favicon.png" />
+        <!-- Page Title  -->
+        <title>PRINT</title>
+        <!-- StyleSheets  -->
+        <link rel="stylesheet" href="static/base/assets/css/dashlite.rtl.css" />
+        <link id="skin-default" rel="stylesheet" href="static/base/assets/css/theme.css" />
+    </head>
+
+    <body class="has-rtl bg-white" onload="printPromot()" dir="rtl">
+        <div class="nk-block">
+            <div class="invoice invoice-print">
+                <div class="invoice-wrap">
+
+                                                <div class="invoice-head">
+                                                    <div class="invoice-contact">
+                                                        <span class="overline-title">فاکتور به </span>
+                                                        <div class="invoice-contact-info">
+                                                            <h4 class="title">{{customer_details[0][5]}}</h4>
+                                                            <ul class="list-plain">
+                                                                <li>
+                                                                    <em class="icon ni ni-map-pin-fill"></em>
+                                                                    <span>{{customer_details[0][14]}}
+                                                                    </span>
+                                                                </li>
+                                                                <li><em class="icon ni ni-call-fill"></em><span>{{customer_details[0][3]}}</span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="invoice-desc">
+                                                        <h3 class="title">فاکتور</h3>
+                                                        <ul class="list-plain">
+                                                            <li class="invoice-id"><span>شناسه فاکتور داخلی</span>:<span>{{pre_invoice_data[0][1]}}</span></li>
+                                                            <li class="invoice-date"><span>{{pre_invoice_lookup[0][7]}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- .invoice-head -->
+                                                <div class="invoice-bills">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="w-150px">شناسه محصول</th>
+                                                                    <th class="w-60">نام</th>
+                                                                    <th>قیمت</th>
+                                                                    <th>تعداد</th>
+                                                                    <th>مبلغ</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for i in range(0,len_code)%}
+                                                                <tr>
+                                                                    <td>{{pre_invoice_data[i][2]}}</td>
+                                                                    <td>
+                                                                        {{pre_invoice_data[i][14]}}
+                                                                    </td>
+                                                                    <td>{{pre_invoice_data[i][6]}}  ریال</td>
+                                                                    <td>{{pre_invoice_data[i][3]}}</td>
+                                                                    <td>{{pre_invoice_data[i][6]*pre_invoice_data[i][3]}} ریال</td>
+                                                                </tr>
+                                                            {%endfor%}
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td colspan="2"></td>
+                                                                    <td colspan="2">جمع جزء</td>
+                                                                    <td>{{total_price}} ریال</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"></td>
+                                                                    <td colspan="2">کارمزد پردازش</td>
+                                                                    <td>0 تومان</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"></td>
+                                                                    <td colspan="2">مالیات</td>
+                                                                    <td>0 تومان</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"></td>
+                                                                    <td colspan="2">جمع کل</td>
+                                                                    <td>{{total_price}} ریال</td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                    <div class="invoice-brand text-center">
+                        <img src="static/images_mohr/mohr.png" srcset="static/images_mohr/mohr.png 2x" alt="" />
+                    </div>
+                    <!-- .invoice-bills -->
+                </div>
+                <!-- .invoice-wrap -->
+            </div>
+            <!-- .invoice -->
+        </div>
+        <!-- .nk-block -->
+        <script>
+            function printPromot() {
+                window.print();
+            }
+        </script>
+    </body>
+</html>
