@@ -1,14 +1,14 @@
 from mysql.connector import connect, Error
 import mysql.connector
 
-def Get_factors_details_ACC_with_table_lookup(id):
+def Get_preinvoice_details_ACC_with_table_lookup(id):
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
                                              database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_Factors_lookup where id = %s"""
+        sql_select_query = """select * from Accounting_PreInvoice_lookup where id = %s"""
         # set variable in query
         cursor.execute(sql_select_query,(id,))
         # fetch result
@@ -40,14 +40,14 @@ def Get_factors_details_ACC_with_table_lookup(id):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-def Get_factors_details_ACC_with_table_details(id):
+def Get_preinvoice_details_ACC_with_table_details(id):
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
                                              database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_Factors_details where invoice_id = %s"""
+        sql_select_query = """select * from Accounting_PreInvoice_details where invoice_id = %s"""
         # set variable in query
         cursor.execute(sql_select_query,(id,))
         # fetch result
@@ -83,7 +83,7 @@ def Get_factors_details_ACC_with_table_details(id):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-def Get_factors_customer_details_table_customer_IT(id):
+def Get_preinvoice_customer_details_table_customer_IT(id):
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
@@ -122,7 +122,7 @@ def Get_factors_customer_details_table_customer_IT(id):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-def Get_factors_customer_details_table_customer_SALE(id):
+def Get_preinvoice_customer_details_table_customer_SALE(id):
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
@@ -162,7 +162,7 @@ def Get_factors_customer_details_table_customer_SALE(id):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-def Get_factors_seller_details_table_seller_ACC(id):
+def Get_preinvoice_seller_details_table_seller_ACC(id):
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
@@ -201,19 +201,19 @@ def Get_factors_seller_details_table_seller_ACC(id):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-def GET_details_factors_acc(id):
-    lookup_factors = Get_factors_details_ACC_with_table_lookup(id)
-    details_factors = Get_factors_details_ACC_with_table_details(id)
+def GET_details_preinvoice_acc(id):
+    lookup_factors = Get_preinvoice_details_ACC_with_table_lookup(id)
+    details_factors = Get_preinvoice_details_ACC_with_table_details(id)
     if lookup_factors[0][4] == "IT":
 
-        customer_data = Get_factors_customer_details_table_customer_IT(lookup_factors[0][1])
+        customer_data = Get_preinvoice_customer_details_table_customer_IT(lookup_factors[0][1])
     else:
-        customer_data = Get_factors_customer_details_table_customer_SALE(lookup_factors[0][1])
+        customer_data = Get_preinvoice_customer_details_table_customer_SALE(lookup_factors[0][1])
 
 
     if lookup_factors[0][2] == 0:
         seller_details = [0, 'بارمان سیستم', 'میدان فردوسی خیابان ایرانشهر پلاک x', '02199999']
     else:
-        seller_details = Get_factors_seller_details_table_seller_ACC(lookup_factors[0][2])
+        seller_details = Get_preinvoice_seller_details_table_seller_ACC(lookup_factors[0][2])
 
     return lookup_factors, details_factors, customer_data, seller_details

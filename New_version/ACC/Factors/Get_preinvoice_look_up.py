@@ -1,14 +1,14 @@
 from mysql.connector import connect, Error
 import mysql.connector
 
-def Get_factors_lookup_ACC_with_limits():
+def Get_preinvoice_lookup_ACC_with_limits():
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
                                              database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_Factors_lookup ORDER BY id DESC LIMIT 10"""
+        sql_select_query = """select * from Accounting_PreInvoice_lookup ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result
@@ -40,14 +40,14 @@ def Get_factors_lookup_ACC_with_limits():
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-def Get_factors_lookup_ACC_with_pages(ids_limit):
+def Get_preinvoice_lookup_ACC_with_pages(ids_limit):
     try:
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
                                              database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_Factors_lookup where (id < %s) ORDER BY id DESC LIMIT 10"""
+        sql_select_query = """select * from Accounting_PreInvoice_lookup where (id < %s) ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query, (ids_limit,))
         # fetch result
@@ -80,4 +80,4 @@ def Get_factors_lookup_ACC_with_pages(ids_limit):
             print("MySQL connection is closed")
             return list_lab
 
-#Get_factors_lookup_ACC_with_pages(700)
+#Get_preinvoice_lookup_ACC_with_pages(700)

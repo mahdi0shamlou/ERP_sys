@@ -24,6 +24,8 @@ from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT, Get_factors_
 from IT.Factors.Get_factors_detials_IT import Get_IT_Factors_lookup, Get_IT_Factors_details
 from ACC.Factors.Get_factors_look_up import Get_factors_lookup_ACC_with_limits, Get_factors_lookup_ACC_with_pages
 from ACC.Factors.Get_factors_details_acc import GET_details_factors_acc
+from ACC.Factors.Get_preinvoice_details_acc import GET_details_preinvoice_acc
+from ACC.Factors.Get_preinvoice_look_up import Get_preinvoice_lookup_ACC_with_limits, Get_preinvoice_lookup_ACC_with_pages
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -445,20 +447,13 @@ def Invoice_details():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
-            print(pre_invoice_id)
-            pre_invoice_data = Get_IT_Factors_details(pre_invoice_id)
-            print(pre_invoice_data)
-            pre_invoice_lookup = Get_IT_Factors_lookup(pre_invoice_id)
-            print(pre_invoice_lookup)
-            customer_id = pre_invoice_lookup[0][1]
-            print(customer_id)
-            customer_details = Get_customer_details_it_with_userid(customer_id)
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
 
             total_price = 0
-            for i in pre_invoice_data:
+            for i in details_factors:
                 total_price = total_price + int(i[7])
             path = session.get('Path')
-            return render_template('/IT/Invoice/Invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template('/IT/Invoice/Invoice_details.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 @app.route("/IT/invoice_print_it", methods=["POST", "GET"])
@@ -469,15 +464,13 @@ def invoice_print_it():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('id')
-            pre_invoice_data = Get_IT_Factors_details(pre_invoice_id)
-            pre_invoice_lookup = Get_IT_Factors_lookup(pre_invoice_id)
-            customer_id = pre_invoice_lookup[0][1]
-            customer_details = Get_customer_details_it_with_userid(customer_id)
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
+
             total_price = 0
-            for i in pre_invoice_data:
+            for i in details_factors:
                 total_price = total_price + int(i[7])
             path = session.get('Path')
-            return render_template('/IT/Invoice/Invoice_Print.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template('/IT/Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
@@ -499,7 +492,6 @@ def ACC():
             return render_template("/ACC/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route("/ACC/Tickets", methods=["POST", "GET"])
 def Ticket_list_ACC():
     if not session.get("Username"):
@@ -512,9 +504,6 @@ def Ticket_list_ACC():
             return render_template('/ACC/Ticket/index.html', ticeket_list=ticeket_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
-
-
 @app.route("/ACC/Ticket_add", methods=["POST", "GET"])
 def Ticket_add_ACC():
     if not session.get("Username"):
@@ -588,9 +577,6 @@ def Ticket_status_ACC():
             return redirect(f'/ACC/Tickets')
         else:
             return render_template('Not_Permission/index.html')
-
-
-
 @app.route('/ACC/Invoice', methods=["POST", "GET"])
 def ACC_invoice():
     if not session.get("Username"):
@@ -608,12 +594,6 @@ def ACC_invoice():
             return render_template("/ACC/Invoice/index.html", pre_invoice_list=list_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
-
-
-
-
-
 @app.route('/ACC/Invoice_details', methods=["POST", "GET"])
 def Invoice_details_ACC():
 
@@ -647,6 +627,57 @@ def invoice_print_it_ACC():
                 total_price = total_price + int(i[7])
             path = session.get('Path')
             return render_template('/ACC/Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+@app.route('/ACC/Pre_Invoice', methods=["POST", "GET"])
+def ACC_pre_invoice():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                list_factors = Get_preinvoice_lookup_ACC_with_limits()
+            else:
+                list_factors = Get_preinvoice_lookup_ACC_with_pages(limit_id)
+            #list_factors = Get_factors_lookup_ACC_with_limits()
+            path = session.get('Path')
+            return render_template("/ACC/Pre_Invoice/index.html", pre_invoice_list=list_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+@app.route('/ACC/Pre_Invoice_details', methods=["POST", "GET"])
+def Pre_Invoice_details_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            pre_invoice_id = request.args.get('P_ID')
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
+            total_price = 0
+            for i in details_factors:
+                total_price = total_price + int(i[7])
+            path = session.get('Path')
+            return render_template('/ACC/Pre_Invoice/Invoice_details.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/pre_invoice_print_it", methods=["POST", "GET"])
+def pre_invoice_print_it_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            pre_invoice_id = request.args.get('id')
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
+            total_price = 0
+            for i in details_factors:
+                total_price = total_price + int(i[7])
+            path = session.get('Path')
+            return render_template('/ACC/Pre_Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------

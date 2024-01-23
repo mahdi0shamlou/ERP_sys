@@ -6,9 +6,9 @@ def Get_factors_lookup_IT():
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
-                                             database="ERP_IT")
+                                             database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from IT_Factors_lookup ORDER BY id DESC"""
+        sql_select_query = """select * from Accounting_Factors_lookup where `type` = 'IT' ORDER BY id DESC"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result
@@ -45,9 +45,9 @@ def Get_factors_lookup_IT_with_limits():
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
-                                             database="ERP_IT")
+                                             database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from IT_Factors_lookup ORDER BY id DESC LIMIT 5"""
+        sql_select_query = """select * from Accounting_Factors_lookup where `type` = 'IT' ORDER BY id DESC LIMIT 5"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result
