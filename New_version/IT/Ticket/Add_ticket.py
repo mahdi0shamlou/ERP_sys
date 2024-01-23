@@ -2,7 +2,7 @@ from mysql.connector import connect, Error
 import mysql.connector
 import json
 import datetime
-def Add_tickets_IT(subject, section_to, username):
+def Add_tickets_IT(subject, section_to, username, section_from):
     pre_id = 0
     try:
         connection = mysql.connector.connect(host="localhost",
@@ -14,7 +14,7 @@ def Add_tickets_IT(subject, section_to, username):
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
         date_time = datetime.datetime.now()
 
-        record = (None, username, '', subject, date_time, "IT", section_to, 0, 'تعیین نشده', 0, 0)
+        record = (None, username, '', subject, date_time, section_from, section_to, 0, 'تعیین نشده', 0, 0)
         cursor.execute(mySql_insert_query, record)
         pre_id = cursor.lastrowid
         connection.commit()
@@ -29,7 +29,7 @@ def Add_tickets_IT(subject, section_to, username):
             connection.close()
             print("MySQL connection is closed")
             return pre_id
-def Add_message_IT(desck, pre_id, username):
+def Add_message_IT(desck, pre_id, username, section_from):
 
     try:
         connection = mysql.connector.connect(host="localhost",
@@ -41,7 +41,7 @@ def Add_message_IT(desck, pre_id, username):
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) """
         date_time = datetime.datetime.now()
 
-        record = (None, pre_id, desck, date_time, 0, 0, 0, username, 'IT')
+        record = (None, pre_id, desck, date_time, 0, 0, 0, username, section_from)
         cursor.execute(mySql_insert_query, record)
         pre_id = cursor.lastrowid
         connection.commit()
@@ -89,7 +89,7 @@ def Add_status_IT(desck, pre_id):
             print("MySQL connection is closed")
             return pre_id
 
-def start(subject, desck, section_to, username):
-    pre_id = Add_tickets_IT(subject, section_to, username)
-    pre_id = Add_message_IT(desck, pre_id, username)
+def start(subject, desck, section_to, username, section_from):
+    pre_id = Add_tickets_IT(subject, section_to, username, section_from)
+    pre_id = Add_message_IT(desck, pre_id, username, section_from)
     print('inserted')

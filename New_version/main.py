@@ -22,6 +22,7 @@ from IT.Get_data_analyst.delet_links import delet_link_data_from_db
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
 from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT, Get_factors_lookup_IT_with_limits
 from IT.Factors.Get_factors_detials_IT import Get_IT_Factors_lookup, Get_IT_Factors_details
+from ACC.Factors.Get_factors_look_up import Get_factors_lookup_ACC_with_limits
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -373,7 +374,7 @@ def Ticket_add_finall():
             desck = request.args.get('desck')
             section_to = request.args.get('section_to')
             if section_to in ['IT', 'SA', 'ACC', 'COM']:
-                insert_ticket_at_start_ticket(subject, desck, section_to, username)
+                insert_ticket_at_start_ticket(subject, desck, section_to, username, "IT")
                 return redirect('/IT/Tickets')
             else:
                 return redirect('/IT/Ticket_add')
@@ -403,7 +404,7 @@ def add_ticket_message():
             username = session.get("Username")
             desck = request.args.get('desck')
             pre_id = request.args.get('T_id')
-            Add_message_IT(desck, pre_id, username)
+            Add_message_IT(desck, pre_id, username, 'ACC')
             return redirect(f'/IT/Get_ticket_details?T_id={pre_id}')
         else:
             return render_template('Not_Permission/index.html')
@@ -493,8 +494,97 @@ def ACC():
         if auth == 1 or auth == 5:
             path = session.get('Path')
             tickets = Get_all_ticket_new('ACC')
-            list_factors = Get_factors_lookup_IT_with_limits()
+            list_factors = Get_factors_lookup_ACC_with_limits()
             return render_template("/ACC/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+@app.route("/ACC/Tickets", methods=["POST", "GET"])
+def Ticket_list_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            ticeket_list = Get_all_ticket_list('ACC')
+            return render_template('/ACC/Ticket/index.html', ticeket_list=ticeket_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+
+
+@app.route("/ACC/Ticket_add", methods=["POST", "GET"])
+def Ticket_add_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            return render_template('/ACC/Ticket/ticket_add.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/Ticket_add_finall", methods=["POST", "GET"])
+def Ticket_add_finall_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            username = session.get("Username")
+            path = session.get('Path')
+            subject = request.args.get('subject')
+            desck = request.args.get('desck')
+            section_to = request.args.get('section_to')
+            if section_to in ['IT', 'SA', 'ACC', 'COM']:
+                insert_ticket_at_start_ticket(subject, desck, section_to, username, "ACC")
+                return redirect('/ACC/Tickets')
+            else:
+                return redirect('/ACC/Ticket_add')
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/Get_ticket_details", methods=["POST", "GET"])
+def Get_ticket_details_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            path = 'ACC'
+            t_id = request.args.get('T_id')
+            main_ticket, message_ticket = Get_ticket_details(t_id)
+            return render_template('/ACC/Ticket/ticket_details.html', main_ticket=main_ticket, message_ticket=message_ticket, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/add_ticket_message", methods=["POST", "GET"])
+def add_ticket_message_ACC():
+
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            username = session.get("Username")
+            desck = request.args.get('desck')
+            pre_id = request.args.get('T_id')
+            Add_message_IT(desck, pre_id, username, 'ACC')
+            return redirect(f'/ACC/Get_ticket_details?T_id={pre_id}')
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/Ticket_status", methods=["POST", "GET"])
+def Ticket_status_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            username = session.get("Username")
+            verify = request.args.get('verify')
+            pre_id = request.args.get('T_id')
+            Add_status_IT(verify, pre_id)
+            return redirect(f'/ACC/Tickets')
         else:
             return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
