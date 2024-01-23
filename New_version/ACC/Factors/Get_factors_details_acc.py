@@ -99,20 +99,16 @@ def Get_factors_customer_details_table_customer_IT(id):
         for i in range(0, len(record)):
             list_lab_lab = []
             list_lab_lab.append(record[i][0])
-            list_lab_lab.append(record[i][1])
-            list_lab_lab.append(record[i][2])
-            list_lab_lab.append(record[i][3])
             list_lab_lab.append(record[i][4])
-            list_lab_lab.append(record[i][5])
+            list_lab_lab.append(record[i][3])
             list_lab_lab.append(record[i][6])
-            list_lab_lab.append(record[i][7])
-            list_lab_lab.append(record[i][8])
-            list_lab_lab.append(record[i][9])
+            list_lab_lab.append(record[i][14])
             list_lab_lab.append(record[i][10])
             list_lab_lab.append(record[i][11])
             list_lab_lab.append(record[i][12])
-            list_lab_lab.append(record[i][13])
-            list_lab_lab.append(record[i][14])
+            list_lab_lab.append(record[i][3])
+            list_lab_lab.append(record[i][2])
+            list_lab_lab.append(record[i][1])
             list_lab.append(list_lab_lab)
         print(list_lab)
 
@@ -152,10 +148,7 @@ def Get_factors_customer_details_table_customer_SALE(id):
             list_lab_lab.append(record[i][8])
             list_lab_lab.append(record[i][9])
             list_lab_lab.append(record[i][10])
-            list_lab_lab.append(record[i][11])
-            list_lab_lab.append(record[i][12])
-            list_lab_lab.append(record[i][13])
-            list_lab_lab.append(record[i][14])
+
             list_lab.append(list_lab_lab)
         print(list_lab)
 
@@ -212,16 +205,16 @@ def GET_details_factors_acc(id):
     lookup_factors = Get_factors_details_ACC_with_table_lookup(id)
     details_factors = Get_factors_details_ACC_with_table_details(id)
     if lookup_factors[0][4] == "IT":
-        print('test')
+
         customer_data = Get_factors_customer_details_table_customer_IT(lookup_factors[0][1])
     else:
         customer_data = Get_factors_customer_details_table_customer_SALE(lookup_factors[0][1])
+
 
     if lookup_factors[0][2] == 0:
         seller_details = [0, 'بارمان سیستم', 'میدان فردوسی خیابان ایرانشهر پلاک x', '02199999']
     else:
         seller_details = Get_factors_seller_details_table_seller_ACC(lookup_factors[0][2])
-    print(len(details_factors))
-    return lookup_factors, details_factors, customer_data, seller_details
 
+    return lookup_factors, details_factors, customer_data, seller_details
 print(GET_details_factors_acc(697))
