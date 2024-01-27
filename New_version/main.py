@@ -317,17 +317,21 @@ def delet_linksgetdata():
             return render_template('Not_Permission/index.html')
 @app.route('/IT/getdata')
 def getdata():
-    if not session.get("Username"):
-        return render_template("/Login/Login_v4/index.html")
-    else:
-        auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
-            path = session.get('Path')
-            main_data = Data_collection_section()
-            print(main_data)
-            return render_template('/IT/Get_data/index.html', main_data=main_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+    try:
+
+        if not session.get("Username"):
+            return render_template("/Login/Login_v4/index.html")
         else:
-            return render_template('Not_Permission/index.html')
+            auth = session.get('Access_level')
+            if auth == 0 or auth == 5:
+                path = session.get('Path')
+                main_data = Data_collection_section()
+                print(main_data)
+                return render_template('/IT/Get_data/index.html', main_data=main_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            else:
+                return render_template('Not_Permission/index.html')
+    except:
+        return render_template('Error/index.html')
 @app.route("/IT/print_getdata_sction", methods=["POST", "GET"])
 def print_getdata_sction():
     if not session.get("Username"):

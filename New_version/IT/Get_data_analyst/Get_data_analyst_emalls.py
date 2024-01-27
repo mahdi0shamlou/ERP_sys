@@ -24,7 +24,10 @@ def Get_torob_data(links):
                         avarage = avarage + i['price']
                         counter = counter + 1
     print(counter)
-    avarage = avarage/counter
+    if counter > 0:
+        avarage = avarage/counter
+    else:
+        avarage = avarage
     print(avarage)
     avarage = round(avarage, -3)
     numbers = "{:,}".format(avarage)
