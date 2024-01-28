@@ -205,7 +205,6 @@ def GET_details_preinvoice_acc(id):
     lookup_factors = Get_preinvoice_details_ACC_with_table_lookup(id)
     details_factors = Get_preinvoice_details_ACC_with_table_details(id)
     if lookup_factors[0][4] == "IT":
-
         customer_data = Get_preinvoice_customer_details_table_customer_IT(lookup_factors[0][1])
     else:
         customer_data = Get_preinvoice_customer_details_table_customer_SALE(lookup_factors[0][1])

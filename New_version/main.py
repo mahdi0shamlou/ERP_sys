@@ -27,7 +27,7 @@ from ACC.Factors.Get_factors_details_acc import GET_details_factors_acc
 from ACC.Factors.Get_preinvoice_details_acc import GET_details_preinvoice_acc
 from ACC.Factors.Get_preinvoice_look_up import Get_preinvoice_lookup_ACC_with_limits, Get_preinvoice_lookup_ACC_with_pages
 from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended, Send_invoice_to_sended_status_remove, Send_invoice_to_sended_status_backe, Send_invoice_to_sended_status_okay
-from ACC.Factors.Send_preinvoice_to_invoice import Send_invoice_to_sended
+from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -780,7 +780,7 @@ def preinvoice_to_invoice():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             id = request.args.get('id')
-            Send_invoice_to_sended(id)
+            Send_preinvoice_to_invoice(id)
             return redirect('/ACC/Invoice')
         else:
             return render_template('Not_Permission/index.html')

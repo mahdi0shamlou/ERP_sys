@@ -8,7 +8,7 @@ def Get_preinvoice_lookup_ACC_with_limits():
                                              password='',
                                              database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_PreInvoice_lookup ORDER BY id DESC LIMIT 10"""
+        sql_select_query = """select * from Accounting_PreInvoice_lookup where (status=0) ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result
@@ -47,7 +47,7 @@ def Get_preinvoice_lookup_ACC_with_pages(ids_limit):
                                              password='',
                                              database="ERP_ACCOUNTING")
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_PreInvoice_lookup where (id < %s) ORDER BY id DESC LIMIT 10"""
+        sql_select_query = """select * from Accounting_PreInvoice_lookup where (id < %s) AND (status=0) ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query, (ids_limit,))
         # fetch result
