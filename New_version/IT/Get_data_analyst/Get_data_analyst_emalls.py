@@ -10,20 +10,25 @@ def Get_torob_data(links):
     str_tst = f'''https://api.torob.com/v4/base-product/sellers/?source=next_desktop&discover_method=direct&_bt__experiment=&search_id=&cities=&province=&prk={links}&list_type=products_info&seed=1705388100'''
     resp = requests.get(str_tst)
     resp = json.loads(resp.text)
-    print(resp['results'][0]['price'])
+    #print(resp['results'][0]['price'])
     avarage = 0
     counter = 0
     for i in resp['results']:
         if i['availability'] == True:
-            print(i['last_price_change_date'])
+
+            #print(i['last_price_change_date'])
             if i['last_price_change_date'] != None:
                 if 'روز' in i['last_price_change_date'] or 'ماه' in i['last_price_change_date']:
-                    print(i['last_price_change_date'])
+                    #print(i['last_price_change_date'])
+                    pass
                 else:
-                        print('true')
-                        avarage = avarage + i['price']
-                        counter = counter + 1
-    print(counter)
+
+                    counter = counter + 1
+
+                    avarage = avarage + i['price']
+
+
+
     if counter > 0:
         avarage = avarage/counter
     else:
@@ -36,17 +41,17 @@ def Get_torob_data(links):
     #elements = soup.select('div[class^="seller-element"]')
     #print(resp)
     # print(len(elements))
-    print(numbers)
+    #print(numbers)
     return [numbers, avarage]
 def Get_dgkala_data(links):
     try:
         str_text = f'https://api.digikala.com/v1/product/{links}/'
         resp = requests.get(str_text)
         resp = json.loads(resp.text)
-        print(resp['data']['product']['default_variant']['price']['selling_price'])
+        #print(resp['data']['product']['default_variant']['price']['selling_price'])
         avarage = round(resp['data']['product']['default_variant']['price']['selling_price'], -3)
         numbers = "{:,}".format(avarage / 10)
-        print(numbers)
+        #print(numbers)
         return [numbers, avarage]
     except:
         return ['null', 'null']
@@ -111,17 +116,18 @@ def select_products_from_db():
             list_lab_lab.append(record[i][5])
             list_lab_lab.append(record[i][6])
             list_lab.append(list_lab_lab)
-        print(list_lab)
+        #print(list_lab)
 
 
     except mysql.connector.Error as error:
-        print("Failed to get record from MySQL table: {}".format(error))
+        #print("Failed to get record from MySQL table: {}".format(error))
+        pass
 
     finally:
         if connection.is_connected():
             cursor.close()
             connection.close()
-            print("MySQL connection is closed")
+            #print("MySQL connection is closed")
 
             return list_lab
 def start():
@@ -136,17 +142,17 @@ def start():
         if data_dgkala[0] == 'null':
             avrage_total = data_torob[1] + (data_emalss[1]/10)
             avrage_total = avrage_total/2
-            print(f'xxxxxx{avrage_total}')
+            #print(f'xxxxxx{avrage_total}')
             avrage_total = round(avrage_total, -3)
             numbers = "{:,}".format(avrage_total)
 
         else:
             avrage_total = data_torob[1] + (data_emalss[1]/10) + (data_dgkala[1]/10)
-            print(f'xxxxxx{avrage_total}')
+            #print(f'xxxxxx{avrage_total}')
             avrage_total = avrage_total/3
-            print(f'xxxxxx{avrage_total}')
+            #print(f'xxxxxx{avrage_total}')
             avrage_total = round(avrage_total, -3)
-            print(f'xxxxxx{avrage_total}')
+            #print(f'xxxxxx{avrage_total}')
             numbers = "{:,}".format(avrage_total)
 
 
