@@ -556,7 +556,6 @@ def Get_ticket_details_ACC():
             return render_template('Not_Permission/index.html')
 @app.route("/ACC/add_ticket_message", methods=["POST", "GET"])
 def add_ticket_message_ACC():
-
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
     else:
@@ -635,7 +634,6 @@ def invoice_print_it_ACC():
             return render_template('/ACC/Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route('/ACC/Pre_Invoice', methods=["POST", "GET"])
 def ACC_pre_invoice():
     if not session.get("Username"):
@@ -653,7 +651,6 @@ def ACC_pre_invoice():
             return render_template("/ACC/Pre_Invoice/index.html", pre_invoice_list=list_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route('/ACC/Pre_Invoice_details', methods=["POST", "GET"])
 def Pre_Invoice_details_ACC():
     if not session.get("Username"):
@@ -686,7 +683,6 @@ def pre_invoice_print_it_ACC():
             return render_template('/ACC/Pre_Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route('/ACC/invoice_sended_inovice_section', methods=["POST", "GET"])
 def invoice_sended_inovice_section():
     if not session.get("Username"):
@@ -699,7 +695,6 @@ def invoice_sended_inovice_section():
             return redirect('/ACC/Invoice')
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route('/ACC/Invoice_sended', methods=["POST", "GET"])
 def Invoice_sended():
     if not session.get("Username"):
@@ -771,7 +766,6 @@ def invoice_sended_inovice_section_back():
             return redirect('/ACC/Invoice_sended')
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route("/ACC/preinvoice_to_invoice",  methods=["POST", "GET"])
 def preinvoice_to_invoice():
     if not session.get("Username"):
