@@ -79,3 +79,5 @@ def Get_factors_lookup_IT_with_limits():
             connection.close()
             print("MySQL connection is closed")
             return list_lab
+
+

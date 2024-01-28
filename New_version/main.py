@@ -100,7 +100,7 @@ def Pre_invoice():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             path = session.get('Path')
-            pre_invoice_list = Get_PreInvoice_lookup_list()
+            pre_invoice_list = Get_preinvoice_lookup_ACC_with_pages(10000)
             return render_template("/IT/Pre_invoice/index.html", pre_invoice_list=pre_invoice_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')

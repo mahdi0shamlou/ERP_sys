@@ -42,7 +42,6 @@ def Get_IT_preinvoice_lookup(Pre_invoice):
             connection.close()
             print("MySQL connection is closed")
             return list_lab
-
 def Get_IT_preinvoice_details(Pre_invoice):
     try:
         connection = mysql.connector.connect(host="localhost",
