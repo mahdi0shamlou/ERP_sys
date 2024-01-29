@@ -61,10 +61,10 @@ def Update_data_into_table(data, resault_customer_id):
             pass
 def Get_national_code_from_server(C_id):
     try:
-        connection = mysql.connector.connect(host="185.94.96.98",
-                                             user='parso_bazrgani',
+        connection = mysql.connector.connect(host="78.159.108.71",
+                                             user='parsot_bazrgani',
                                              password='S{VN^7kOIP7F',
-                                             database="parso_tjart")
+                                             database="parsot_tjart")
         cursor = connection.cursor()
         sql_select_query = """select * from pt_usermeta WHERE user_id = %s"""
         # set variable in query
@@ -164,10 +164,10 @@ def Insert_update_new_in_DB(data):
         return 1
 def Get_Update_customer_form_server():
     try:
-        connection = mysql.connector.connect(host="185.94.96.98",
-                                             user='parso_bazrgani',
+        connection = mysql.connector.connect(host="78.159.108.71",
+                                             user='parsot_bazrgani',
                                              password='S{VN^7kOIP7F',
-                                             database="parso_tjart")
+                                             database="parsot_tjart")
         cursor = connection.cursor()
         sql_select_query = """select * from pt_wc_customer_lookup"""
         # set variable in query

@@ -82,8 +82,27 @@
                                                             <div class="nk-tb-col tb-col-md">
                                                                 <span class="tb-sub">{{i[12]}}</span>
                                                             </div>
+                                                            <div class="nk-tb-col nk-tb-col-tools">
+                                                                <form action="/IT/Change_price_products_sever" method="get">
 
+                                                                        <ul class="nk-tb-actions gx-1">
 
+                                                                                    <li class="nk-tb-action-hidden">
+                                                                                        <input type="text" name="price" placeholder="قیمت : {{i[5]}}">
+                                                                                        <input type="hidden" name="id" value="{{i[1]}}">
+                                                                                    </li>
+
+                                                                                <li class="nk-tb-action-hidden">
+                                                                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title=" کردن" >
+                                                                                        <button class="btn btn-trigger btn-icon" type="submit"><em class="icon ni ni-pen2"></em></button>
+
+                                                                                    </a>
+                                                                                </li>
+
+                                                                        </ul>
+
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                         {%endfor%}
                                                         <!-- .nk-tb-item -->

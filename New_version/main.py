@@ -29,6 +29,7 @@ from ACC.Factors.Get_preinvoice_look_up import Get_preinvoice_lookup_ACC_with_li
 from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended, Send_invoice_to_sended_status_remove, Send_invoice_to_sended_status_backe, Send_invoice_to_sended_status_okay
 from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
+from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -117,9 +118,6 @@ def Invoice_sended_IT_section():
             return render_template("/IT/Invoice/Invoice_sended.html", pre_invoice_list=sended_invoice_it, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
-
-
 @app.route('/IT/Pre_invoice_add')
 def Pre_Invoice_add():
     if not session.get("Username"):
@@ -495,6 +493,20 @@ def invoice_print_it():
             return render_template('/IT/Invoice/Invoice_Print.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
+
+@app.route('/IT/Change_price_products_sever', methods=["POST", "GET"])
+def change_price_products_to_server():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            id = request.args.get('id')
+            price = request.args.get('price')
+            Change_products_price_to_seve(id, price)
+            return redirect('/IT/Product_list')
+        else:
+            return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------
@@ -778,7 +790,7 @@ def invoice_sended_inovice_section_back():
             return redirect('/ACC/Invoice_sended')
         else:
             return render_template('Not_Permission/index.html')
-@app.route("/ACC/preinvoice_to_invoice",  methods=["POST", "GET"])
+@app.route("/ACC/preinvoice_to_invoice", methods=["POST", "GET"])
 def preinvoice_to_invoice():
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
@@ -790,9 +802,39 @@ def preinvoice_to_invoice():
             return redirect('/ACC/Invoice')
         else:
             return render_template('Not_Permission/index.html')
+
+
+
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END ACCOUNITNG SECTION
 #---------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------
+#---------------------------------------------- START SALE SECTION
+#---------------------------------------------------------------------------------------------------
+@app.route("/SA")
+def Sale_index_page():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            tickets = Get_all_ticket_new('SA')
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                list_factors = Get_factors_lookup_ACC_with_pages(100000)
+            else:
+                list_factors = Get_factors_lookup_ACC_with_pages(limit_id)
+            return render_template("/SA/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+#---------------------------------------------------------------------------------------------------
+#---------------------------------------------- END SALE SECTION
+#---------------------------------------------------------------------------------------------------
+
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=1000)
 

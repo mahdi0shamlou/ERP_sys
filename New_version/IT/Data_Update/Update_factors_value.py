@@ -148,10 +148,10 @@ def Select_last_factor_id():
                 return 0
 def Select_factors_from_server_wordpres(id):
     try:
-        connection = mysql.connector.connect(host="185.94.96.98",
-                                             user='parso_bazrgani',
+        connection = mysql.connector.connect(host="78.159.108.71",
+                                             user='parsot_bazrgani',
                                              password='S{VN^7kOIP7F',
-                                             database="parso_tjart")
+                                             database="parsot_tjart")
         cursor = connection.cursor()
         sql_select_query = """select * from pt_wc_orders WHERE id>%s"""
         # set variable in query
@@ -226,10 +226,10 @@ def Insert_new_factors_lookup(data):
             print("MySQL connection is closed")
 def Select_new_factors_details(id):
     try:
-        connection = mysql.connector.connect(host="185.94.96.98",
-                                             user='parso_bazrgani',
+        connection = mysql.connector.connect(host="78.159.108.71",
+                                             user='parsot_bazrgani',
                                              password='S{VN^7kOIP7F',
-                                             database="parso_tjart")
+                                             database="parsot_tjart")
         cursor = connection.cursor()
         sql_select_query = """select * from pt_wc_order_product_lookup WHERE order_id=%s"""
         # set variable in query
