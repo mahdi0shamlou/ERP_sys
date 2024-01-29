@@ -28,6 +28,7 @@ from ACC.Factors.Get_preinvoice_details_acc import GET_details_preinvoice_acc
 from ACC.Factors.Get_preinvoice_look_up import Get_preinvoice_lookup_ACC_with_limits, Get_preinvoice_lookup_ACC_with_pages
 from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended, Send_invoice_to_sended_status_remove, Send_invoice_to_sended_status_backe, Send_invoice_to_sended_status_okay
 from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
+from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -104,6 +105,21 @@ def Pre_invoice():
             return render_template("/IT/Pre_invoice/index.html", pre_invoice_list=pre_invoice_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
+@app.route('/IT/Invoice_sended')
+def Invoice_sended_IT_section():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            sended_invoice_it = Get_factors_lookup_IT_sended_section_fro_pages(10000)
+            return render_template("/IT/Invoice/Invoice_sended.html", pre_invoice_list=sended_invoice_it, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+
+
 @app.route('/IT/Pre_invoice_add')
 def Pre_Invoice_add():
     if not session.get("Username"):
@@ -438,7 +454,7 @@ def invoice():
     else:
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
-            list_factors = Get_factors_lookup_IT()
+            list_factors = Get_factors_lookup_IT_only_factors_fro_pages(100000)
             path = session.get('Path')
             return render_template("/IT/Invoice/index.html", pre_invoice_list=list_factors,
                                    user=session.get('Username'), pathmain=path, email=session.get('email'))
@@ -601,7 +617,6 @@ def ACC_invoice():
             return render_template('Not_Permission/index.html')
 @app.route('/ACC/Invoice_details', methods=["POST", "GET"])
 def Invoice_details_ACC():
-
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
     else:
@@ -609,7 +624,6 @@ def Invoice_details_ACC():
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
-
             total_price = 0
             for i in details_factors:
                 total_price = total_price + int(i[7])
@@ -626,7 +640,6 @@ def invoice_print_it_ACC():
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
-
             total_price = 0
             for i in details_factors:
                 total_price = total_price + int(i[7])
@@ -643,7 +656,7 @@ def ACC_pre_invoice():
         if auth == 0 or auth == 5:
             limit_id = request.args.get('limit_id')
             if limit_id is None:
-                list_factors = Get_preinvoice_lookup_ACC_with_limits()
+                list_factors = Get_preinvoice_lookup_ACC_with_pages(100000)
             else:
                 list_factors = Get_preinvoice_lookup_ACC_with_pages(limit_id)
             #list_factors = Get_factors_lookup_ACC_with_limits()
@@ -722,7 +735,6 @@ def Invoice_sended_details():
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
-
             total_price = 0
             for i in details_factors:
                 total_price = total_price + int(i[7])
