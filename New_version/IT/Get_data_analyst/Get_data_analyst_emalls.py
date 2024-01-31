@@ -130,6 +130,31 @@ def select_products_from_db():
             #print("MySQL connection is closed")
 
             return list_lab
+
+def update_price_into_it_products_price(avarage_price, emalls, torob, dgkala, id):
+    try:
+
+
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='',
+                                             database="ERP_IT")
+
+        cursor = connection.cursor()
+        sql_update_query = """Update IT_getdata_list set price_emalls = %s, price_torob = %s, price_dgkala = %s, avarage_price=%s where id = %s"""
+        # print(str(data[5]))
+        input_data = (emalls, torob, dgkala, avarage_price, id,)
+        cursor.execute(sql_update_query, input_data)
+        connection.commit()
+        print(f"Record Updated successfully {id}")
+
+    except mysql.connector.Error as error:
+        print("Failed to update record to database: {}".format(error))
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
 def start():
     data = select_products_from_db()
     data_finall = []
@@ -139,12 +164,14 @@ def start():
         data_torob = Get_torob_data(i[3])
         data_emalss = Get_emalls_data(i[2])
         data_dgkala = Get_dgkala_data(i[4])
+
         if data_dgkala[0] == 'null':
             avrage_total = data_torob[1] + (data_emalss[1]/10)
             avrage_total = avrage_total/2
             #print(f'xxxxxx{avrage_total}')
             avrage_total = round(avrage_total, -3)
             numbers = "{:,}".format(avrage_total)
+            update_price_into_it_products_price(avrage_total, data_emalss[1]/10, data_torob[1], 000, i[0])
 
         else:
             avrage_total = data_torob[1] + (data_emalss[1]/10) + (data_dgkala[1]/10)
@@ -154,11 +181,59 @@ def start():
             avrage_total = round(avrage_total, -3)
             #print(f'xxxxxx{avrage_total}')
             numbers = "{:,}".format(avrage_total)
+            update_price_into_it_products_price(avrage_total, data_emalss[1]/10, data_torob[1], data_dgkala[1]/10, i[0])
 
 
         data_finall.append([i, data_emalss, data_torob, data_dgkala, [numbers, avrage_total]])
     print(data_finall)
     return data_finall
+
+def Get_analysted_data_newst():
+
+    try:
+
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='',
+                                             database="ERP_IT")
+        cursor = connection.cursor()
+        sql_select_query = """select * from IT_getdata_list"""
+        # set variable in query
+        cursor.execute(sql_select_query)
+        # fetch result
+        record = cursor.fetchall()
+        # print(record)
+        list_lab = []
+        for i in range(0, len(record)):
+            list_lab_lab = []
+            list_lab_lab.append(record[i][0])
+            list_lab_lab.append(record[i][1])
+            list_lab_lab.append(record[i][2])
+            list_lab_lab.append(record[i][3])
+            list_lab_lab.append(record[i][4])
+            list_lab_lab.append(record[i][5])
+            list_lab_lab.append(record[i][6])
+            list_lab_lab.append("{:,}".format(record[i][7]))
+            list_lab_lab.append("{:,}".format(record[i][8]))
+            list_lab_lab.append("{:,}".format(record[i][9]))
+            list_lab_lab.append("{:,}".format(record[i][10]))
+            list_lab.append(list_lab_lab)
+        print(list_lab)
+
+
+    except mysql.connector.Error as error:
+        #print("Failed to get record from MySQL table: {}".format(error))
+        pass
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            #print("MySQL connection is closed")
+
+            return list_lab
+
+#update_price_into_it_products_price(100,0,0,26)
 #Get_dgkala_data('1867422')
 #Get_torob_data('d7293468-d1b3-4d86-ace1-7033e1c23996')
 #Get_emalls_data('https://emalls.ir/%D9%85%D8%B4%D8%AE%D8%B5%D8%A7%D8%AA_HP-LaserJet-Pro-MFP-M428dw-Multifunction-Printer~id~3581406/')

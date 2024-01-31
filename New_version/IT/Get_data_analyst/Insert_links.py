@@ -8,11 +8,11 @@ def insert_links_to_db_getdata(link_emalls, name, site, link_torob, link_dg):
                                              password='',
                                              database="ERP_IT")
         cursor = connection.cursor()
-        mySql_insert_query = """INSERT INTO IT_getdata_list (id, name, links, link_torob, link_dg, site, type) 
-                                 VALUES (%s, %s, %s, %s, %s, %s, %s) """
+        mySql_insert_query = """INSERT INTO IT_getdata_list (id, name, links, link_torob, link_dg, site, type, price_emalls, price_torob, price_dgkala) 
+                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
         x = datetime.datetime.now()
         print(x)
-        record = (None, name, link_emalls, link_torob, link_dg, site, 0)
+        record = (None, name, link_emalls, link_torob, link_dg, site, 0, 0, 0, 0)
         cursor.execute(mySql_insert_query, record)
         connection.commit()
         print(f"Record inserted successfully into IT_getdata_list table ---> {name} AND link is -----> {link_emalls}")
