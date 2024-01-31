@@ -522,7 +522,7 @@ def ACC():
         if auth == 1 or auth == 5:
             path = session.get('Path')
             tickets = Get_all_ticket_new('ACC')
-            list_factors = Get_factors_lookup_ACC_with_limits()
+            list_factors = Get_factors_lookup_ACC_with_pages(100000)
             return render_template("/ACC/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
