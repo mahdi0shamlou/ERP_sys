@@ -154,7 +154,6 @@ def select_products_from_db():
             #print("MySQL connection is closed")
 
             return list_lab
-
 def update_price_into_it_products_price(avarage_price, emalls, torob, dgkala, id):
     try:
 
@@ -196,7 +195,7 @@ def start():
             avrage_total = round(avrage_total, -3)
             numbers = "{:,}".format(avrage_total)
             update_price_into_it_products_price(avrage_total, data_emalss[1]/10, data_torob[1], 000, i[0])
-            #Save_history_price_products(i, (data_emalss[1]/10), data_torob[1], 0, avrage_total)
+            Save_history_price_products(i, (data_emalss[1]/10), data_torob[1], 0, avrage_total)
 
 
         else:
@@ -208,12 +207,11 @@ def start():
             #print(f'xxxxxx{avrage_total}')
             numbers = "{:,}".format(avrage_total)
             update_price_into_it_products_price(avrage_total, data_emalss[1]/10, data_torob[1], data_dgkala[1]/10, i[0])
-            #Save_history_price_products(i, (data_emalss[1] / 10), data_torob[1], data_dgkala[1]/10, avrage_total)
+            Save_history_price_products(i, (data_emalss[1] / 10), data_torob[1], data_dgkala[1]/10, avrage_total)
 
         data_finall.append([i, data_emalss, data_torob, data_dgkala, [numbers, avrage_total]])
     print(data_finall)
     return data_finall
-
 def Get_analysted_data_newst():
 
     try:
