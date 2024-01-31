@@ -90,6 +90,30 @@ def Get_emalls_data(links):
         # Print the HTML content of the response
         #print("\nResponse Content:")
         #print(resp.text)
+def Save_history_price_products(data, price_emalls, price_torob, price_dgkala, avarage_price):
+    try:
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='',
+                                             database="ERP_IT")
+        cursor = connection.cursor()
+        mySql_insert_query = """INSERT INTO IT_getdata_price_history (id, product_id, price, date, price_emalls, price_torob, price_dgkala) 
+                                 VALUES (%s, %s, %s, %s, %s, %s, %s) """
+        x = datetime.datetime.now()
+        print(x)
+        record = (None, data[0], avarage_price, x, price_emalls, price_torob, price_dgkala)
+        cursor.execute(mySql_insert_query, record)
+        connection.commit()
+        print(f"Record inserted successfully into IT_getdata_list table ---> {data[1]} AND link is -----> {data[2]}")
+
+    except mysql.connector.Error as error:
+        print("Failed to insert into MySQL table {}".format(error))
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
 def select_products_from_db():
 
     try:
@@ -172,6 +196,8 @@ def start():
             avrage_total = round(avrage_total, -3)
             numbers = "{:,}".format(avrage_total)
             update_price_into_it_products_price(avrage_total, data_emalss[1]/10, data_torob[1], 000, i[0])
+            #Save_history_price_products(i, (data_emalss[1]/10), data_torob[1], 0, avrage_total)
+
 
         else:
             avrage_total = data_torob[1] + (data_emalss[1]/10) + (data_dgkala[1]/10)
@@ -182,7 +208,7 @@ def start():
             #print(f'xxxxxx{avrage_total}')
             numbers = "{:,}".format(avrage_total)
             update_price_into_it_products_price(avrage_total, data_emalss[1]/10, data_torob[1], data_dgkala[1]/10, i[0])
-
+            #Save_history_price_products(i, (data_emalss[1] / 10), data_torob[1], data_dgkala[1]/10, avrage_total)
 
         data_finall.append([i, data_emalss, data_torob, data_dgkala, [numbers, avrage_total]])
     print(data_finall)
