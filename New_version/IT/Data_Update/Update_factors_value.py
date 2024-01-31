@@ -287,7 +287,7 @@ def Insert_new_factors_details(data):
                                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
             x = datetime.datetime.now()
             print(x)
-            record = (None, i[1], i[2], i[6], '', 'number', i[8], (i[8]*i[6]), 0,0,0,0, date, date, product_name)
+            record = (None, i[1], i[2], i[6], '', 'number', i[7], (i[7]*i[6]), 0,0,0,0, date, date, product_name)
             cursor.execute(mySql_insert_query, record)
             connection.commit()
             print("Record inserted successfully into IT_products table")
@@ -346,7 +346,7 @@ def Insert_new_factors_details_in_accountig_db(data, invoice_id):
                                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
             x = datetime.datetime.now()
             print(x)
-            record = (None, invoice_id, i[2], i[6], '', 'number', i[8], (i[8]*i[6]), 0,0,0,0, date, date, product_name)
+            record = (None, invoice_id, i[2], i[6], '', 'number', i[7], (i[7]*i[6]), 0,0,0,0, date, date, product_name)
             cursor.execute(mySql_insert_query, record)
             connection.commit()
             print("Record inserted successfully into IT_products table")
@@ -369,7 +369,5 @@ def Start():
             Insert_new_factors_details(list_data_factors_details)
             invoice_id = Insert_new_factors_lookup_in_accountig_db(i)
             Insert_new_factors_details_in_accountig_db(list_data_factors_details, invoice_id)
-
-
     else:
         print('we dont have any new factors')
