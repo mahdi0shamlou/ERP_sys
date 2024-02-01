@@ -257,7 +257,7 @@ def Select_new_factors_details(id):
             list_lab_lab.append(record[i][12])
 
             list_lab.append(list_lab_lab)
-        
+
         print(list_lab)
 
 

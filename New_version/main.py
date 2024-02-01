@@ -292,16 +292,10 @@ def preinvoice_print_it():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('id')
-            pre_invoice_data = Get_IT_preinvoice_details(pre_invoice_id)
-            pre_invoice_lookup = Get_IT_preinvoice_lookup(pre_invoice_id)
-            customer_id = pre_invoice_lookup[0][1]
-            customer_details = Get_g_customer_details(customer_id)
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
+            print(seller_details)
 
-            total_price = 0
-            for i in pre_invoice_data:
-                total_price = total_price + int(i[7])
-            path = session.get('Path')
-            return render_template('/IT/Pre_invoice/Pre_invoice_print.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template('/IT/Pre_invoice/Pre_invoice_print.html',lookup_factors=lookup_factors, details_factors=details_factors, customer_data=customer_data, seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/IT/add_linksgetdata', methods=["POST", "GET"])
@@ -536,7 +530,7 @@ def chart_data_price():
             id = request.args.get('id')
             chart_data = Get_analysted_data_history(id)
 
-            return render_template('IT/Get_data/charts.html')
+            return render_template('IT/Get_data/charts.html', chart_data=chart_data)
         else:
             return render_template('Not_Permission/index.html')
 
