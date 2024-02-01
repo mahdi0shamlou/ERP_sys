@@ -213,9 +213,7 @@ def start():
     print(data_finall)
     return data_finall
 def Get_analysted_data_newst():
-
     try:
-
         connection = mysql.connector.connect(host="localhost",
                                              user='root',
                                              password='',
@@ -257,6 +255,46 @@ def Get_analysted_data_newst():
 
             return list_lab
 
+
+def Get_analysted_data_history(id):
+    try:
+        connection = mysql.connector.connect(host="localhost",
+                                             user='root',
+                                             password='',
+                                             database="ERP_IT")
+        cursor = connection.cursor()
+        sql_select_query = """select * from IT_getdata_price_history where product_id = %s limit 100"""
+        # set variable in query
+        cursor.execute(sql_select_query, (id,))
+        # fetch result
+        record = cursor.fetchall()
+        # print(record)
+        list_lab = []
+        for i in range(0, len(record)):
+            list_lab_lab = []
+            list_lab_lab.append(record[i][0])
+            list_lab_lab.append(record[i][1])
+            list_lab_lab.append(record[i][2])
+            list_lab_lab.append(record[i][3])
+            list_lab_lab.append(record[i][4])
+            list_lab_lab.append(record[i][5])
+            list_lab_lab.append(record[i][6])
+            list_lab.append(list_lab_lab)
+        print(list_lab)
+
+
+    except mysql.connector.Error as error:
+        #print("Failed to get record from MySQL table: {}".format(error))
+        pass
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            #print("MySQL connection is closed")
+
+            return list_lab
+Get_analysted_data_history(21)
 #update_price_into_it_products_price(100,0,0,26)
 #Get_dgkala_data('1867422')
 #Get_torob_data('d7293468-d1b3-4d86-ace1-7033e1c23996')

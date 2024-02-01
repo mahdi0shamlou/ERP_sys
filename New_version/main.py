@@ -17,7 +17,7 @@ from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
 from IT.Pre_invoice.Get_preinvoice import Get_IT_preinvoice_details, Get_IT_preinvoice_lookup
 from IT.Pre_invoice.Delet_preinvoice import delet_preinvoice_it
 from IT.Get_data_analyst.Get_data_analyst_emalls import start as Data_collection_section
-from IT.Get_data_analyst.Get_data_analyst_emalls import Get_analysted_data_newst
+from IT.Get_data_analyst.Get_data_analyst_emalls import Get_analysted_data_newst, Get_analysted_data_history
 from IT.Get_data_analyst.Insert_links import insert_links_to_db_getdata
 from IT.Get_data_analyst.delet_links import delet_link_data_from_db
 from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
@@ -525,6 +525,21 @@ def change_price_products_to_server():
             return redirect('/IT/Product_list')
         else:
             return render_template('Not_Permission/index.html')
+
+@app.route("/IT/chart_data_price", methods=["POST", "GET"])
+def chart_data_price():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            id = request.args.get('id')
+            chart_data = Get_analysted_data_history(id)
+
+            return render_template('IT/Get_data/charts.html')
+        else:
+            return render_template('Not_Permission/index.html')
+
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------

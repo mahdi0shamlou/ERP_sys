@@ -257,6 +257,7 @@ def Select_new_factors_details(id):
             list_lab_lab.append(record[i][12])
 
             list_lab.append(list_lab_lab)
+        
         print(list_lab)
 
 
@@ -366,6 +367,7 @@ def Start():
         for i in list_of_new_factors:
             Insert_new_factors_lookup(i)
             list_data_factors_details = Select_new_factors_details(i[0])
+            print(list_data_factors_details)
             Insert_new_factors_details(list_data_factors_details)
             invoice_id = Insert_new_factors_lookup_in_accountig_db(i)
             Insert_new_factors_details_in_accountig_db(list_data_factors_details, invoice_id)
