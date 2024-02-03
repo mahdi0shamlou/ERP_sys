@@ -293,9 +293,14 @@ def preinvoice_print_it():
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
+            invoice_total_price = 0
+            for i in details_factors:
+                invoice_total_price = invoice_total_price + i[7]
+
+            invoice_total_price = "{:,}".format(invoice_total_price)
             print(seller_details)
 
-            return render_template('/IT/Pre_invoice/Pre_invoice_print.html',lookup_factors=lookup_factors, details_factors=details_factors, customer_data=customer_data, seller_details=seller_details)
+            return render_template('/IT/Pre_invoice/Pre_invoice_print.html', invoice_total_price=invoice_total_price, lookup_factors=lookup_factors, details_factors=details_factors, customer_data=customer_data, seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/IT/add_linksgetdata', methods=["POST", "GET"])
@@ -533,7 +538,23 @@ def chart_data_price():
             return render_template('IT/Get_data/charts.html', chart_data=chart_data)
         else:
             return render_template('Not_Permission/index.html')
-
+@app.route("/IT/chart_data_price_all", methods=["POST", "GET"])
+def chart_data_price_all():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            #id = request.args.get('id')'
+            charts_list_data = []
+            products_id_list = [[21,'404dn'],[25,'404n'],[26,'402d'],[27,'15w'],[28,'28w'],[29,'428fdn'],[31,'428dw']]
+            for i in products_id_list:
+                chart_data = Get_analysted_data_history(i[0])
+                charts_list_data.append([i, chart_data])
+            print(charts_list_data)
+            return render_template('IT/Get_data/charts_all.html', charts_list_data=charts_list_data)
+        else:
+            return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END IT SECTION
 #---------------------------------------------------------------------------------------------------

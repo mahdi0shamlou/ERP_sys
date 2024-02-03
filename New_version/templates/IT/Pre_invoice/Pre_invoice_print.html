@@ -12012,9 +12012,9 @@ body.dark .ui-datepicker select {
                     </div>
                     <div class="col-2"></div>
                     <div class="col-2 text-center">
-                        <p class="m-0"> شماره سریال: 175</p>
+                        <p class="m-0"> شماره سریال: {{lookup_factors[0][0]}}</p>
                         <hr class="mt-0">
-                        <p class="m-0">تاریخ: 1402/11/01</p>
+                        <p class="m-0">تاریخ: {{lookup_factors[0][7]}}</p>
                         <hr class="mt-0">
                     </div>
                 </div>
@@ -12032,14 +12032,14 @@ body.dark .ui-datepicker select {
                                 <td class="text-center">
                                     <div class="mb-3">
                                         <span class="mr-100">نام شخص حقیقی/حقوقی: {{seller_details[1]}}</span>
-                                        <span class="mr-100">شماره اقتصادی: 14011383061</span>
-                                        <span class="mr-100">شماره ثبت/شماره ملی: 9931</span>
-                                        <span class="mr-100">شناسه ملی: 14011383061</span>
+                                        <span class="mr-100">شماره اقتصادی: {{seller_details[5]}}</span>
+                                        <span class="mr-100">شماره ثبت/شماره ملی: {{seller_details[6]}}</span>
+                                        <span class="mr-100">شناسه ملی: {{seller_details[4]}}</span>
                                     </div>
                                     <div>
                                         <span class="mr-100">نشانی: تهران، شهرستان ملارد، شهرک صنعتی صفادشت، بلوار خرداد، بین خیابان پنجم و ششم غربی، پلاک 228</span>
-                                        <span class="mr-100">کد پستی: 3164114855</span>
-                                        <span class="mr-100">شماره تلفن: 02165425053</span>
+                                        <span class="mr-100">کد پستی: {{seller_details[7]}}</span>
+                                        <span class="mr-100">شماره تلفن: {{seller_details[3]}}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -12056,8 +12056,8 @@ body.dark .ui-datepicker select {
                                 <td class="text-center">
                                     <div class="mb-3">
                                         <span class="mr-100">نام شخص حقیقی/حقوقی: {{customer_data[0][1]}}</span>
-                                        <span class="mr-100">شماره اقتصادی: {{customer_data[0][2]}}</span>
-                                        <span class="mr-100">شماره ثبت/شماره ملی: {{customer_data[0][2]}}</span>
+                                        <span class="mr-100">شماره اقتصادی: {{customer_data[0][8]}}</span>
+                                        <span class="mr-100">شماره ثبت/شماره ملی: {{customer_data[0][8]}}</span>
                                         <!--<span class="mr-100">استان: گیلان</span>-->
                                     </div>
                                     <div>
@@ -12078,7 +12078,7 @@ body.dark .ui-datepicker select {
                                    <th class="p-0 title-sec" colspan="12">مشخصات کالا یا خدمات مورد معامله</th>
                                 </tr>
                                 <tr>
-                                    <th>ردیف</th>
+                                    <th>کد کالا</th>
                                     <th>کالا</th>
                                     <th>رنگ</th>
                                     <th>تعداد</th>
@@ -12094,31 +12094,31 @@ body.dark .ui-datepicker select {
                                 </thead>
                                 <tbody>
 
+                                {%for i in details_factors%}
+                                    <tr>
+                                                <td>{{i[2]}}</td>
+                                                <td>{{i[14]}}</td>
+                                                <td>{{i[4]}}</td>
+                                                <td>{{i[3]}}</td>
+                                                <td>عدد</td>
+                                                <td>{{i[15]}}</td>
+                                                <td>{{i[16]}}</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>{{i[16]}}</td>
+                                                <td>0</td>
+                                                <td>{{i[16]}}</td>
+                                    </tr>
+                                {%endfor%}
 
-
-                                                                            <tr>
-                                            <td>1</td>
-                                            <td>تونر کارتریج 643A برند اچ پی</td>
-                                            <td>رنگی(ست 4عددی)</td>
-                                            <td>4</td>
-                                            <td>عدد</td>
-                                            <td>13,000,000</td>
-                                            <td>52,000,000</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>52,000,000</td>
-                                            <td>4,680,000</td>
-                                            <td>56,680,000</td>
-                                        </tr>
-
-                                                                                                                <tr>
+                                <tr>
                                         <td colspan="6">جمع کل</td>
-                                        <td>52,000,000</td>
+                                        <td>{{invoice_total_price}}</td>
                                         <td>0</td>
                                         <td>0</td>
-                                        <td>52,000,000</td>
-                                        <td>4,680,000</td>
-                                        <td>56,680,000</td>
+                                        <td>{{invoice_total_price}}</td>
+                                        <td>0</td>
+                                        <td>{{invoice_total_price}}</td>
                                     </tr>
                                     <tr>
                                         <th class="p-0 title-sec" colspan="6">تخفیف نهایی</th>
@@ -12126,7 +12126,7 @@ body.dark .ui-datepicker select {
                                     </tr>
                                     <tr>
                                         <td colspan="6">0</td>
-                                        <td colspan="6">56,680,000</td>
+                                        <td colspan="6">{{invoice_total_price}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="4">

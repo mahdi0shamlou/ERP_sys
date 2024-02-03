@@ -294,7 +294,9 @@ def Get_analysted_data_history(id):
             #print("MySQL connection is closed")
 
             return list_lab
-Get_analysted_data_history(21)
+
+
+#Get_analysted_data_history(21)
 #update_price_into_it_products_price(100,0,0,26)
 #Get_dgkala_data('1867422')
 #Get_torob_data('d7293468-d1b3-4d86-ace1-7033e1c23996')
