@@ -70,6 +70,8 @@ def Get_factors_details_ACC_with_table_details(id):
             list_lab_lab.append(record[i][12])
             list_lab_lab.append(record[i][13])
             list_lab_lab.append(record[i][14])
+            list_lab_lab.append("{:,}".format(record[i][6]))
+            list_lab_lab.append("{:,}".format(record[i][7]))
             list_lab.append(list_lab_lab)
         print(list_lab)
 
@@ -106,7 +108,7 @@ def Get_factors_customer_details_table_customer_IT(id):
             list_lab_lab.append(record[i][10])
             list_lab_lab.append(record[i][11])
             list_lab_lab.append(record[i][12])
-            list_lab_lab.append(record[i][3])
+            list_lab_lab.append(record[i][13])
             list_lab_lab.append(record[i][2])
             list_lab_lab.append(record[i][1])
             list_lab.append(list_lab_lab)
