@@ -32,6 +32,7 @@ def send_request():
                                            str(url_for('verify', _external=True)))
     print(result)
     if result.Status == 100:
+        print(result.Authority)
         return redirect('https://www.zarinpal.com/pg/StartPay/' + result.Authority)
     else:
         return 'Error'
@@ -40,10 +41,12 @@ def send_request():
 @app.route('/verify/', methods=['GET', 'POST'])
 def verify():
     client = Client(ZARINPAL_WEBSERVICE)
+    print(request.args.get('Status'))
     if request.args.get('Status') == 'OK':
         result = client.service.PaymentVerification(MMERCHANT_ID,
                                                     request.args['Authority'],
                                                     amount)
+        print(result)
         if result.Status == 100:
             return 'Transaction success. RefID: ' + str(result.RefID)
         elif result.Status == 101:
@@ -52,7 +55,12 @@ def verify():
             return 'Transaction failed. Status: ' + str(result.Status)
     else:
         return 'Transaction failed or canceled by user'
-
-
+@app.route('/show/', methods=['GET', 'POST'])
+def show():
+    client = Client(ZARINPAL_WEBSERVICE)
+    print(client.service.PaymentVerification(MMERCHANT_ID,
+                                                'A00000000000000000000000000503496773',
+                                                amount))
+    return 'x'
 if __name__ == '__main__':
     app.run(debug=True)
