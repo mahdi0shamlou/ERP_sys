@@ -9,10 +9,10 @@ import datetime
 def insert_log_login_logout(id, date, user, what):
     try:
         what = 'logout'
-        connection = mysql.connector.connect(host="localhost",
-            user='root',
-            password='',
-            database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO Users_Logs (Id, Date, Who, What) 
                                 VALUES (%s, %s, %s, %s) """

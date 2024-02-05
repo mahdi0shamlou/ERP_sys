@@ -9,10 +9,10 @@ import datetime
 
 def Get_password(username):
     try:
-        connection = mysql.connector.connect(host="localhost",
-            user='root',
-            password='',
-            database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_select_query = """select * from Users_users where username = %s"""
@@ -51,10 +51,10 @@ def Get_password(username):
 def insert_log_login(id, date, user, what):
     try:
         what = 'login'
-        connection = mysql.connector.connect(host="localhost",
-            user='root',
-            password='',
-            database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO Users_Logs (Id, Date, Who, What) 
                                 VALUES (%s, %s, %s, %s) """
