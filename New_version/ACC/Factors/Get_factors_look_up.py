@@ -3,10 +3,11 @@ import mysql.connector
 
 def Get_factors_lookup_ACC_with_limits():
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_lookup ORDER BY id DESC LIMIT 10"""
         # set variable in query
@@ -42,10 +43,11 @@ def Get_factors_lookup_ACC_with_limits():
             return list_lab
 def Get_factors_lookup_ACC_with_pages(ids_limit):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_lookup where (id < %s) AND (status = 0) ORDER BY id DESC LIMIT 10"""
         # set variable in query
@@ -81,10 +83,11 @@ def Get_factors_lookup_ACC_with_pages(ids_limit):
             return list_lab
 def Get_factors_sended_lookup_ACC_with_pages(ids_limit):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_lookup where (id < %s) AND (status >= 1) ORDER BY id DESC LIMIT 10"""
         # set variable in query

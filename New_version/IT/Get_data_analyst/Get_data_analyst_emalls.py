@@ -92,10 +92,11 @@ def Get_emalls_data(links):
         #print(resp.text)
 def Save_history_price_products(data, price_emalls, price_torob, price_dgkala, avarage_price):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO IT_getdata_price_history (id, product_id, price, date, price_emalls, price_torob, price_dgkala) 
                                  VALUES (%s, %s, %s, %s, %s, %s, %s) """
@@ -117,11 +118,11 @@ def Save_history_price_products(data, price_emalls, price_torob, price_dgkala, a
 def select_products_from_db():
 
     try:
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
         cursor = connection.cursor()
         sql_select_query = """select * from IT_getdata_list"""
         # set variable in query
@@ -156,12 +157,10 @@ def select_products_from_db():
             return list_lab
 def update_price_into_it_products_price(avarage_price, emalls, torob, dgkala, id):
     try:
-
-
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_update_query = """Update IT_getdata_list set price_emalls = %s, price_torob = %s, price_dgkala = %s, avarage_price=%s where id = %s"""
@@ -214,10 +213,11 @@ def start():
     return data_finall
 def Get_analysted_data_newst():
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_getdata_list"""
         # set variable in query
@@ -258,10 +258,11 @@ def Get_analysted_data_newst():
 
 def Get_analysted_data_history(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_getdata_price_history where product_id = %s limit 100"""
         # set variable in query

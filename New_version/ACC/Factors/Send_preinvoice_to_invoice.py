@@ -2,10 +2,11 @@ from mysql.connector import connect, Error
 import mysql.connector
 def Get_preinvoice_details_ACC_with_table_lookup(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_PreInvoice_lookup where id = %s"""
         # set variable in query
@@ -41,10 +42,11 @@ def Get_preinvoice_details_ACC_with_table_lookup(id):
             return list_lab
 def Get_preinvoice_details_ACC_with_table_details(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_PreInvoice_details where invoice_id = %s"""
         # set variable in query
@@ -86,10 +88,11 @@ def Send_preinvoice_to_invoice(id):
     lookup_data = Get_preinvoice_details_ACC_with_table_lookup(id)
     details_data = Get_preinvoice_details_ACC_with_table_details(id)
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO Accounting_Factors_lookup (id, customer_id, seller_id, user_id, type, status, total_price, uploaded, seller_name, customer_name, private_inside_id) 
                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """

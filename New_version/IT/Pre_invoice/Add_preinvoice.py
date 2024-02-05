@@ -5,10 +5,11 @@ def Insert_into_DB_details(P_I_ID, P_ID, Count, Color, Unit, Price, Total_price,
     pre_invoice_id = -1
     try:
 
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_update_query = """INSERT INTO Accounting_PreInvoice_details (id, invoice_id, product_id, count, color, unit, price, total_price, discount_amount, extra_amount, tax, invoice_net, created_at, updated_at, name_products) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
         # print(str(data[5]))
@@ -30,12 +31,10 @@ def Insert_into_DB_details(P_I_ID, P_ID, Count, Color, Unit, Price, Total_price,
 
 def Insert_into_DB_lookup(Customer_id, User_id, Customer_name, username):
     try:
-
-
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_update_query = """INSERT INTO Accounting_PreInvoice_lookup (customer_id, seller_id, user_id, type, status, total_price, uploaded, seller_name, customer_name) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
@@ -57,10 +56,11 @@ def Insert_into_DB_lookup(Customer_id, User_id, Customer_name, username):
             return pre_invoice_id
 def Get_product_details(ids):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = ""
         sql_select_query = """select * from IT_products WHERE id = %s """

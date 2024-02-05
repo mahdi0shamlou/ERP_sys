@@ -28,10 +28,10 @@ Sec-Fetch-Mode: cors
 Sec-Fetch-Site: same-site
 
 '''
-connection = mysql.connector.connect(host="localhost",
-                                         user='root',
+connection = mysql.connector.connect(host="82.115.21.104",
+                                         user='barma',
                                          password='ya mahdi',
-                                         database="ERP_USERS")
+                                         database="Parso_tejart")
 
 cursor = connection.cursor()
 

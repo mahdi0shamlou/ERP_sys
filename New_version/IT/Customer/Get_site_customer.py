@@ -3,10 +3,11 @@ import mysql.connector
 import json
 def Get_site_customer_list():
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_customers where customer_id != 0"""
         # set variable in query

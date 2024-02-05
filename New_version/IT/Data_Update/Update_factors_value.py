@@ -8,10 +8,11 @@ from orca.orca import start
 def Select_name_products_from_db(id):
     verifyes_x = 0
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_products where product_id=%s"""
         # set variable in query
@@ -55,10 +56,11 @@ def Select_name_products_from_db(id):
 def Select_name_customer_from_db(id):
     verifyes_x = 0
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_customers where user_id=%s"""
         # set variable in query
@@ -102,10 +104,11 @@ def Select_name_customer_from_db(id):
 def Select_last_factor_id():
     verifyes_x = 0
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_Factors_lookup order by id DESC limit 1"""
         # set variable in query
@@ -202,10 +205,11 @@ def Insert_new_factors_lookup(data):
         date = datetime.datetime.now()
         cutstomer_name, idssss = Select_name_customer_from_db(data[6])
         print(idssss)
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO IT_Factors_lookup (id, customer_id, seller_id, user_id, type, status, total_price, uploaded, seller_name, customer_name, is_add) 
                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -279,10 +283,11 @@ def Insert_new_factors_details(data):
             user_id = ''
             date = datetime.datetime.now()
             product_name = Select_name_products_from_db(i[2])
-            connection = mysql.connector.connect(host="localhost",
-                                                 user='root',
-                                                 password='',
-                                                 database="ERP_IT")
+            connection = mysql.connector.connect(host="82.115.21.104",
+                                                 user='barma',
+                                                 password='ya mahdi',
+                                                 database="Parso_tejart")
+
             cursor = connection.cursor()
             mySql_insert_query = """INSERT INTO IT_Factors_details (id, invoice_id, product_id, count, color, unit, price, total_price, discount_amount, extra_amount, tax, invoice_net, created_at, updated_at, name_products) 
                                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -307,10 +312,11 @@ def Insert_new_factors_lookup_in_accountig_db(data):
         user_id = ''
         date = datetime.datetime.now()
         cutstomer_name, idssss = Select_name_customer_from_db(data[6])
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO Accounting_Factors_lookup (id, customer_id, seller_id, user_id, type, status, total_price, uploaded, seller_name, customer_name, private_inside_id) 
                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -338,10 +344,11 @@ def Insert_new_factors_details_in_accountig_db(data, invoice_id):
             user_id = ''
             date = datetime.datetime.now()
             product_name = Select_name_products_from_db(i[2])
-            connection = mysql.connector.connect(host="localhost",
-                                                 user='root',
-                                                 password='',
-                                                 database="ERP_ACCOUNTING")
+            connection = mysql.connector.connect(host="82.115.21.104",
+                                                 user='barma',
+                                                 password='ya mahdi',
+                                                 database="Parso_tejart")
+
             cursor = connection.cursor()
             mySql_insert_query = """INSERT INTO Accounting_Factors_details (id, invoice_id, product_id, count, color, unit, price, total_price, discount_amount, extra_amount, tax, invoice_net, created_at, updated_at, name_products) 
                                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """

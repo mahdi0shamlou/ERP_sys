@@ -3,10 +3,10 @@ import mysql.connector
 
 def Send_invoice_to_sended(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_update_query = """Update Accounting_Factors_lookup set status = 1 where id = %s"""
@@ -25,10 +25,10 @@ def Send_invoice_to_sended(id):
             print("MySQL connection is closed")
 def Send_invoice_to_sended_status_backe(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_update_query = """Update Accounting_Factors_lookup set status = 2 where id = %s"""
@@ -47,10 +47,10 @@ def Send_invoice_to_sended_status_backe(id):
             print("MySQL connection is closed")
 def Send_invoice_to_sended_status_remove(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_update_query = """Update Accounting_Factors_lookup set status = 3 where id = %s"""
@@ -69,10 +69,10 @@ def Send_invoice_to_sended_status_remove(id):
             print("MySQL connection is closed")
 def Send_invoice_to_sended_status_okay(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
 
         cursor = connection.cursor()
         sql_update_query = """Update Accounting_Factors_lookup set status = 4 where id = %s"""

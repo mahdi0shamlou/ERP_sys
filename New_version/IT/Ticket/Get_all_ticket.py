@@ -3,10 +3,11 @@ import mysql.connector
 import json
 def Get_all_ticket_new(section):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Users_ticket where `section_to` = %s and `status` = 'تعیین نشده' order by id DESC"""
         # set variable in query
@@ -36,10 +37,11 @@ def Get_all_ticket_new(section):
             return list_lab
 def Get_all_ticket_list(section):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Users_ticket where `section_to` = %s or `section_from` = %s order by id DESC"""
         # set variable in query
@@ -75,10 +77,11 @@ def Get_all_ticket_list(section):
             return list_lab
 def Get_ticket_details(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from User_ticket_messange where `ticket_id` = %s"""
         # set variable in query

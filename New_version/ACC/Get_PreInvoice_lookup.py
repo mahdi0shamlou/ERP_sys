@@ -3,10 +3,11 @@ import mysql.connector
 import json
 def Get_PreInvoice_lookup_list():
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_PreInvoice_lookup ORDER BY id DESC LIMIT 5"""
         # set variable in query

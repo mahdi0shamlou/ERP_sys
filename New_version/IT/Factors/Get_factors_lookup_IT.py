@@ -3,10 +3,11 @@ import mysql.connector
 import json
 def Get_factors_lookup_IT():
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_lookup where `type` = 'IT' ORDER BY id DESC"""
         # set variable in query
@@ -42,10 +43,11 @@ def Get_factors_lookup_IT():
             return list_lab
 def Get_factors_lookup_IT_with_limits():
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_lookup where (`type` = 'IT') AND (`status` = 0) ORDER BY id DESC LIMIT 5"""
         # set variable in query

@@ -5,10 +5,11 @@ import datetime
 
 def delet_preinvoice_it(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         # Delete a record
         sql_Delete_query = """Delete from Accounting_PreInvoice_lookup where id = %s"""

@@ -5,10 +5,11 @@ import datetime
 def Add_tickets_IT(subject, section_to, username, section_from):
     pre_id = 0
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO Users_ticket (id, `from`, `to`, desck, date, section_from, section_to, is_read, status, is_finish, is_new) 
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -32,10 +33,11 @@ def Add_tickets_IT(subject, section_to, username, section_from):
 def Add_message_IT(desck, pre_id, username, section_from):
 
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO User_ticket_messange (id, ticket_id, messange, date, is_read, is_changed, is_delet, user_send, who_send) 
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -65,10 +67,11 @@ def Add_status_IT(desck, pre_id):
     if desck == '0':
         desck = 'در دست اقدام'
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_USERS")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """Update Users_ticket set status = %s where id = %s"""
         date_time = datetime.datetime.now()

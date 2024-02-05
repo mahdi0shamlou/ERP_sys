@@ -5,10 +5,11 @@ import datetime
 
 def delet_link_data_from_db(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         # Delete a record
         sql_Delete_query = """Delete from IT_getdata_list where id = %s"""

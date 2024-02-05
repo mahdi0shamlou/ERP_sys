@@ -3,10 +3,11 @@ import mysql.connector
 import datetime
 def Get_IT_preinvoice_lookup(Pre_invoice):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_PreInvoice_lookup WHERE id = %s"""
         # set variable in query
@@ -44,10 +45,11 @@ def Get_IT_preinvoice_lookup(Pre_invoice):
             return list_lab
 def Get_IT_preinvoice_details(Pre_invoice):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_PreInvoice_details WHERE invoice_id = %s"""
         # set variable in query

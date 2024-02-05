@@ -3,10 +3,11 @@ import mysql.connector
 import datetime
 def Select_products(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_products where product_id = %s"""
         # set variable in query
@@ -52,10 +53,11 @@ def Select_products(id):
     pass
 def Insert_into_table_products(data):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO IT_products (id, product_id, sku, virtuals, downloadable, min_price, max_price, onsale, stock_quantity, stock_status, rating_count, average_rating, total_sales, tax_status, tax_class) 
                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -81,10 +83,10 @@ def Update_data_into_table(data, resault_product_id):
                 id = resault_product_id[0][0]
                 min_price = data[4]
                 max_price = data[5]
-                connection = mysql.connector.connect(host="localhost",
-                                                     user='root',
-                                                     password='',
-                                                     database="ERP_IT")
+                connection = mysql.connector.connect(host="82.115.21.104",
+                                                     user='barma',
+                                                     password='ya mahdi',
+                                                     database="Parso_tejart")
 
                 cursor = connection.cursor()
                 sql_update_query = """Update IT_products set min_price = %s, max_price = %s where id = %s"""

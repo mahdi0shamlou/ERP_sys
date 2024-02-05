@@ -3,10 +3,11 @@ import mysql.connector
 import datetime
 def Insert_into_table_products(data, N_id, address):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO IT_customers (id, customer_id, user_id, username, first_name, last_name, email, date_last_active, date_registered, country, postcode, city, state, national_id, address) 
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
@@ -35,10 +36,10 @@ def Update_data_into_table(data, resault_customer_id):
             try:
                 id = resault_customer_id[0][0]
 
-                connection = mysql.connector.connect(host="localhost",
-                                                     user='root',
-                                                     password='',
-                                                     database="ERP_IT")
+                connection = mysql.connector.connect(host="82.115.21.104",
+                                                     user='barma',
+                                                     password='ya mahdi',
+                                                     database="Parso_tejart")
 
                 cursor = connection.cursor()
                 sql_update_query = """Update IT_customers set username = %s, first_name = %s, last_name = %s, email = %s, address=%s, postcode=%s, date_last_active=%s where id = %s"""
@@ -103,10 +104,11 @@ def Get_national_code_from_server(C_id):
 def Select_Customer(id):
     verifyes_x = 0
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_customers where customer_id = %s"""
         # set variable in query

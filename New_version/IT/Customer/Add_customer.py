@@ -3,10 +3,11 @@ import mysql.connector
 import datetime
 def Insert_g_cutomer(data, N_id, address):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO IT_customers (id, customer_id, user_id, username, first_name, last_name, email, date_last_active, date_registered, country, postcode, city, state, national_id, address) 
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """

@@ -3,10 +3,11 @@ import mysql.connector
 import datetime
 def insert_links_to_db_getdata(link_emalls, name, site, link_torob, link_dg):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         mySql_insert_query = """INSERT INTO IT_getdata_list (id, name, links, link_torob, link_dg, site, type, price_emalls, price_torob, price_dgkala) 
                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """

@@ -3,10 +3,11 @@ import mysql.connector
 
 def Get_factors_details_ACC_with_table_lookup(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_lookup where id = %s"""
         # set variable in query
@@ -42,10 +43,11 @@ def Get_factors_details_ACC_with_table_lookup(id):
             return list_lab
 def Get_factors_details_ACC_with_table_details(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Factors_details where invoice_id = %s"""
         # set variable in query
@@ -87,10 +89,11 @@ def Get_factors_details_ACC_with_table_details(id):
             return list_lab
 def Get_factors_customer_details_table_customer_IT(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from IT_customers where id = %s"""
         # set variable in query
@@ -126,10 +129,11 @@ def Get_factors_customer_details_table_customer_IT(id):
             return list_lab
 def Get_factors_customer_details_table_customer_SALE(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_SALE")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Sale_Coustomer where id = %s"""
         # set variable in query
@@ -166,10 +170,11 @@ def Get_factors_customer_details_table_customer_SALE(id):
             return list_lab
 def Get_factors_seller_details_table_seller_ACC(id):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_ACCOUNTING")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
         cursor = connection.cursor()
         sql_select_query = """select * from Accounting_Seller where id = %s"""
         # set variable in query
