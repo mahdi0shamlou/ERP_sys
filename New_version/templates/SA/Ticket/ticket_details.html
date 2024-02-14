@@ -1,0 +1,275 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+ <div class="nk-content">
+                        <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-chat">
+
+                                        <!-- .nk-chat-aside -->
+                                        <div class="nk-chat-body">
+                                            <div class="nk-chat-head">
+                                                <ul class="nk-chat-head-info">
+                                                    <li class="nk-chat-body-close">
+                                                        <a href="#" class="btn btn-icon btn-trigger nk-chat-hide ms-n1"><em class="icon ni ni-arrow-left"></em></a>
+                                                    </li>
+                                                    <li class="nk-chat-head-user">
+                                                        <div class="user-card">
+                                                            <div class="user-avatar bg-purple">
+                                                                <span>{{main_ticket[0][5]}}</span>
+                                                            </div>
+                                                            <div class="user-info">
+                                                                <div class="lead-text">{{main_ticket[0][1]}}</div>
+                                                                <div class="sub-text">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                                {% if main_ticket[0][6] == pathmain %}
+
+
+                                                <ul class="nk-chat-head-tools">
+                                                    <li>
+                                                        <a href="/SA/Ticket_status?verify=-1&T_id={{main_ticket[0][0]}}" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-cross-c"></em></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/SA/Ticket_status?verify=1&T_id={{main_ticket[0][0]}}" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-check-c"></em></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/SA/Ticket_status?verify=0&T_id={{main_ticket[0][0]}}" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-zoom-in"></em></a>
+                                                    </li>
+
+                                                </ul>
+                                                {% endif %}
+                                                <!-- .nk-chat-head-search -->
+                                            </div>
+                                            <!-- .nk-chat-head -->
+                                            <div id='Chat_d' class="nk-chat-panel" data-simplebar="init" style="pointer-events: inherit;">
+                                                {%for i in message_ticket%}
+                                                <div class="chat is-you">
+                                                    <div class="chat-avatar">
+                                                        <div class="user-avatar bg-purple">
+                                                            <span>{{i[8]}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="chat-content">
+                                                        <div class="chat-bubbles">
+                                                            <div class="chat-bubble">
+                                                                <div class="chat-msg">
+                                                                    {{i[2]}}
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <ul class="chat-meta">
+                                                            <li>{{i[7]}}</li>
+                                                            <li>{{i[3]}}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                            <!-- .nk-chat-panel -->
+                                             <form action="/SA/add_ticket_message" method="get">
+                                            <div class="nk-chat-editor">
+
+                                                <div class="nk-chat-editor-form">
+                                                    <div class="form-control-wrap">
+                                                        <input type="hidden" name="T_id" value="{{main_ticket[0][0]}}">
+                                                        <textarea name="desck" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="پیام خود را تایپ کنید..."></textarea>
+                                                    </div>
+                                                </div>
+                                                <ul class="nk-chat-editor-tools g-2">
+
+                                                    <li>
+                                                        <button type="submit" class="btn btn-round btn-primary btn-icon">
+                                                            <em class="icon ni ni-send-alt"></em>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                                 </form>
+                                            <!-- .nk-chat-editor -->
+
+                                            <!-- .nk-chat-profile -->
+                                        </div>
+                                        <!-- .nk-chat-body -->
+                                    </div>
+                                    <!-- .nk-chat -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}
+
+{% block menu %}
+                         <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            منو
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/Invoice" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">فاکتور ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/Customer" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">مشتریان</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/Customer" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان</span></a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/Tickets" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
+                                            <span class="nk-menu-text">تیکت ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+{% block notification %}
+                        <li class="dropdown notification-dropdown me-n1">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                                <div class="icon-status icon-status-info">
+                                                    <em class="icon ni ni-bell"></em>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                                <div class="dropdown-head">
+                                                    <span class="sub-title nk-dropdown-title">اطلاع رسانی ها</span>
+                                                    <a href="#">علامت گذاری همه به عنوان خوانده شده</a>
+                                                </div>
+                                                <div class="dropdown-body">
+                                                    <div class="nk-notification">
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-notification -->
+                                                </div>
+                                                <!-- .nk-dropdown-body -->
+                                                <div class="dropdown-foot center">
+                                                    <a href="#">مشاهده همه</a>
+                                                </div>
+                                            </div>
+                                        </li>
+{% endblock %}
+{% block script %}
+    <script>
+        const div = document.getElementById("Chat_d");
+        div.scrollTo(0, div.scrollHeight);
+    </script>
+
+
+{% endblock %}
+

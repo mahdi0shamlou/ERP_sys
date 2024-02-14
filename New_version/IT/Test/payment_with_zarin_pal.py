@@ -20,7 +20,6 @@ description = u'توضیحات تراکنش تستی'  # Required
 email = 'user@userurl.ir'  # Optional
 mobile = '09123456789'  # Optional
 
-
 @app.route('/request/')
 def send_request():
     client = Client(ZARINPAL_WEBSERVICE)
@@ -36,6 +35,7 @@ def send_request():
         return redirect('https://www.zarinpal.com/pg/StartPay/' + result.Authority)
     else:
         return 'Error'
+
 
 
 @app.route('/verify/', methods=['GET', 'POST'])
@@ -62,5 +62,9 @@ def show():
                                                 'A00000000000000000000000000503496773',
                                                 amount))
     return 'x'
+
+def test_amount():
+    
+    pass
 if __name__ == '__main__':
     app.run(debug=True)

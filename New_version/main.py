@@ -448,6 +448,9 @@ def add_ticket_message():
             return redirect(f'/IT/Get_ticket_details?T_id={pre_id}')
         else:
             return render_template('Not_Permission/index.html')
+
+
+
 @app.route("/IT/Ticket_status", methods=["POST", "GET"])
 def Ticket_status_IT():
     if not session.get("Username"):
@@ -502,11 +505,9 @@ def invoice_print_it():
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
-
             invoice_total_price = 0
             for i in details_factors:
                 invoice_total_price = invoice_total_price + i[7]
-
             invoice_total_price = "{:,}".format(invoice_total_price)
             path = session.get('Path')
             return render_template('/IT/Invoice/Invoice_Print.html',lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
@@ -812,6 +813,7 @@ def Invoice_sended_details():
 def invoice_sended_inovice_section_okay():
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
+    #just a comment for nothing for ui desginger
     else:
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
@@ -881,7 +883,90 @@ def Sale_index_page():
             return render_template("/SA/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
+@app.route("/SA/Tickets", methods=["POST", "GET"])
+def Ticket_list_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            ticeket_list = Get_all_ticket_list('SA')
+            return render_template('/SA/Ticket/index.html', ticeket_list=ticeket_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/Ticket_add", methods=["POST", "GET"])
+def Ticket_add_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            return render_template('/SA/Ticket/ticket_add.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/Ticket_add_finall", methods=["POST", "GET"])
+def Ticket_add_finall_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            username = session.get("Username")
+            path = session.get('Path')
+            subject = request.args.get('subject')
+            desck = request.args.get('desck')
+            section_to = request.args.get('section_to')
+            if section_to in ['IT', 'SA', 'ACC', 'COM']:
+                insert_ticket_at_start_ticket(subject, desck, section_to, username, "SA")
+                return redirect('/SA/Tickets')
+            else:
+                return redirect('/SA/Ticket_add')
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/Get_ticket_details", methods=["POST", "GET"])
+def Get_ticket_details_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            path = 'SA'
+            t_id = request.args.get('T_id')
+            main_ticket, message_ticket = Get_ticket_details(t_id)
+            return render_template('/SA/Ticket/ticket_details.html', main_ticket=main_ticket, message_ticket=message_ticket, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/add_ticket_message", methods=["POST", "GET"])
+def add_ticket_message_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            username = session.get("Username")
+            desck = request.args.get('desck')
+            pre_id = request.args.get('T_id')
+            Add_message_IT(desck, pre_id, username, 'SA')
+            return redirect(f'/SA/Get_ticket_details?T_id={pre_id}')
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/Ticket_status", methods=["POST", "GET"])
+def Ticket_status_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            username = session.get("Username")
+            verify = request.args.get('verify')
+            pre_id = request.args.get('T_id')
+            Add_status_IT(verify, pre_id)
+            return redirect(f'/SA/Tickets')
+        else:
+            return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END SALE SECTION
 #---------------------------------------------------------------------------------------------------

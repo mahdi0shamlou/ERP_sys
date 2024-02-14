@@ -33,6 +33,7 @@ connection = mysql.connector.connect(host="82.115.21.104",
                                          password='ya mahdi',
                                          database="Parso_tejart")
 
+
 cursor = connection.cursor()
 
 sql_select_query = """select * from Users_Logs"""
