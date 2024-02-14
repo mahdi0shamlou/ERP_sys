@@ -38,14 +38,14 @@ def Insert_into_DB_lookup(Customer_id, User_id, Customer_name, username):
         sql_update_query = """INSERT INTO Accounting_PreInvoice_lookup (customer_id, seller_id, user_id, type, status, total_price, uploaded, seller_name, customer_name) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         # print(str(data[5]))
-        input_data = (Customer_id, 0, username, 'IT', 0, 0, datetime.datetime.now(), 'شرکت اصلی', Customer_name)
+        input_data = (Customer_id, 0, username, 'SA', 0, 0, datetime.datetime.now(), 'شرکت اصلی', Customer_name)
         cursor.execute(sql_update_query, input_data)
         pre_invoice_id = cursor.lastrowid
         connection.commit()
         print(f"Record Inserted successfully {pre_invoice_id}")
 
     except mysql.connector.Error as error:
-        print("Failed to update record to database: {}".format(error))
+        print("Failed to Inserted record to database: {}".format(error))
     finally:
         if connection.is_connected():
             cursor.close()
@@ -96,12 +96,15 @@ def Add_preinvoice_SA(ID_C, products, products_number, product_name_p, product_n
     P_I_ID = Insert_into_DB_lookup(ID_C, 0, NAME_C, username)
     for i in range(0,len(products)):
         P_ID = products[i]
+        print(P_ID)
         Count = products_number[i]
+        print(type(Count))
         products_de = Get_product_details(P_ID)
+        print(products_de)
         name_p = products_de[0][2]
         #print(Count*products_de[0][5])
         #print(Count * products_de[0][5])
-        Insert_into_DB_details(P_I_ID, P_ID, Count, 'Black', 'number', products_de[0][5], (int(Count)*int(products_de[0][5])), 0, 0, 0,0, name_p)
+        Insert_into_DB_details(P_I_ID, P_ID, Count, 'Black', 'number', products_de[0][2], (int(Count)*int(products_de[0][2])), 0, 0, 0,0, name_p)
 
     for i in range(0, len(product_name_p)):
         P_ID = 0

@@ -1117,7 +1117,7 @@ def add_preinvoice_finall_check_sa():
                 plist = Get_product_add_preinvoice(products[i])
                 list_products.append([products[i], plist[0][1], products_number[i], "{:,}".format(plist[0][2]/10), plist[0][2]])
             print(list_products_p)
-            return render_template('SA/Pre_invoice/Finall_check.html', NAME_C=NAME_C, list_costumers=list_costumers, list_products=list_products, list_products_p=list_products_p)
+            return render_template('SA/Pre_invoice/Finall_check.html',ID_C=ID_C, NAME_C=NAME_C, list_costumers=list_costumers, list_products=list_products, list_products_p=list_products_p)
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/SA/add_preinvoice_finall')
@@ -1134,8 +1134,10 @@ def Add_preinvoice_finall_SA():
             product_name_p = request.args.getlist('product_name_p[]', type=str)
             product_number_p = request.args.getlist('product_number_p[]', type=str)
             product_price_p = request.args.getlist('product_price_p[]', type=str)
+            print(products_number)
+            print(products)
             Add_preinvoice_SA(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
-            #just for doing 
+            #just for doing
             oope = 'city'
             oope_2 = 'country'
             #path = session.get('Path')
