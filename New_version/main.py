@@ -1134,50 +1134,29 @@ def Add_preinvoice_finall_SA():
             product_name_p = request.args.getlist('product_name_p[]', type=str)
             product_number_p = request.args.getlist('product_number_p[]', type=str)
             product_price_p = request.args.getlist('product_price_p[]', type=str)
-            print(products_number)
-            print(products)
             Add_preinvoice_SA(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
-            #just for doing
-            oope = 'city'
-            oope_2 = 'country'
-            #path = session.get('Path')
+
             return redirect('/SA/Pre_Invoice')
         else:
             return render_template('Not_Permission/index.html')
-@app.route("/SA/Pre_invoice_details_it", methods=["POST", "GET"])
-def Pre_invoice_details_SA():
+@app.route('/SA/Pre_Invoice_details', methods=["POST", "GET"])
+def Pre_Invoice_details_SA():
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
-            pre_invoice_data = Get_IT_preinvoice_details(pre_invoice_id)
-            pre_invoice_lookup = Get_IT_preinvoice_lookup(pre_invoice_id)
-            customer_id = pre_invoice_lookup[0][1]
-            customer_details = Get_g_customer_details(customer_id)
-
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             total_price = 0
-            for i in pre_invoice_data:
+            for i in details_factors:
                 total_price = total_price + int(i[7])
             path = session.get('Path')
-            return render_template('/IT/Pre_invoice/Pre_invoice_details.html',pre_invoice_lookup=pre_invoice_lookup, customer_details=customer_details, total_price=total_price , len_code=len(pre_invoice_data), pre_invoice_data=pre_invoice_data, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template('/SA/Pre_invoice/Invoice_details.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-@app.route("/SA/preinvoice_delet_it", methods=["POST", "GET"])
-def preinvoice_delet_SA():
-    if not session.get("Username"):
-        return render_template("/Login/Login_v4/index.html")
-    else:
-        auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
-            pre_invoice_id = request.args.get('id')
-            delet_preinvoice_it(pre_invoice_id)
-            return redirect('/IT/Pre_Invoice')
-        else:
-            return render_template('Not_Permission/index.html')
-@app.route("/SA/preinvoice_print_it", methods=["POST", "GET"])
-def preinvoice_print_SA():
+@app.route("/SA/pre_invoice_print_it", methods=["POST", "GET"])
+def pre_invoice_print_it_SA():
     if not session.get("Username"):
         return render_template("/Login/Login_v4/index.html")
     else:
@@ -1190,11 +1169,23 @@ def preinvoice_print_SA():
                 invoice_total_price = invoice_total_price + i[7]
 
             invoice_total_price = "{:,}".format(invoice_total_price)
-            print(seller_details)
-
-            return render_template('/IT/Pre_invoice/Pre_invoice_print.html', invoice_total_price=invoice_total_price, lookup_factors=lookup_factors, details_factors=details_factors, customer_data=customer_data, seller_details=seller_details)
+            path = session.get('Path')
+            return render_template('/ACC/Pre_Invoice/Invoice_Print.html',lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors),seller_details=seller_details, details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
+@app.route("/SA/preinvoice_delet_it", methods=["POST", "GET"])
+def preinvoice_delet_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            pre_invoice_id = request.args.get('id')
+            delet_preinvoice_it(pre_invoice_id)
+            return redirect('/SA/Pre_Invoice')
+        else:
+            return render_template('Not_Permission/index.html')
+
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END SALE SECTION
 #---------------------------------------------------------------------------------------------------

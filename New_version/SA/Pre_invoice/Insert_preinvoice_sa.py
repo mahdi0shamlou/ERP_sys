@@ -101,7 +101,7 @@ def Add_preinvoice_SA(ID_C, products, products_number, product_name_p, product_n
         print(type(Count))
         products_de = Get_product_details(P_ID)
         print(products_de)
-        name_p = products_de[0][2]
+        name_p = products_de[0][1]
         #print(Count*products_de[0][5])
         #print(Count * products_de[0][5])
         Insert_into_DB_details(P_I_ID, P_ID, Count, 'Black', 'number', products_de[0][2], (int(Count)*int(products_de[0][2])), 0, 0, 0,0, name_p)
