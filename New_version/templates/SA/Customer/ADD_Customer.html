@@ -1,18 +1,18 @@
 {% extends './base/base.html' %}
 {% block bodys %}
 
-                        <div class="nk-content">
-                            <div class="container-fluid">
+<div class="nk-content">
+    <div class="container-fluid">
                             <div class="nk-content-inner">
                                 <div class="nk-content-body">
                                     <div class="nk-block-head nk-block-head-sm">
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
                                                 <h3 class="nk-block-title page-title">
-                                                     فروش
+                                                   اضافه کردن مشتری غیر
                                                 </h3>
                                                 <div class="nk-block-des text-soft">
-                                                    <p>{{user}} خوش اومدی </p>
+                                                    <p>{{user}}  </p>
                                                 </div>
                                             </div>
                                             <!-- .nk-block-head-content -->
@@ -66,140 +66,88 @@
 
                                             <!-- .col -->
                                             <div class="col-xxl-8">
-                                                <div class="card card-bordered card-full">
-                                                    <div class="card-inner">
-                                                        <div class="card-title-group">
-                                                            <div class="card-title">
-                                                                <h6 class="title">
-                                                                    <span class="me-2">سفارش ها</span>
-                                                                    <a href="/SA/Pre_Invoice" class="link d-none d-sm-inline">مشاهده لیست</a>
-                                                                </h6>
-                                                            </div>
-                                                            <!--
-                                                            <div class="card-tools">
-                                                                <ul class="card-tools-nav">
-                                                                    <li>
-                                                                        <a href="#"><span>پرداخت شده</span></a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#"><span>در انتظار</span></a>
-                                                                    </li>
-                                                                    <li class="active">
-                                                                        <a href="#"><span>همه</span></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            -->
-                                                        </div>
+
+                                            <form class="form-group" method="get" action="/IT/Insert_Customers_G">
+                                                <div class="form-group">
+                                                    <label class="form-label" >نام مشتری</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="firstname" value="" placeholder="نام مشتری" required>
                                                     </div>
-                                                    <div class="card-inner p-0 border-top">
-                                                        <div class="nk-tb-list nk-tb-orders">
-                                                            <div class="nk-tb-item nk-tb-head">
-                                                                <div class="nk-tb-col">
-                                                                    <span>شماره سفارش</span>
-                                                                </div>
-                                                                <div class="nk-tb-col tb-col-sm">
-                                                                    <span>خریدار</span>
-                                                                </div>
-                                                                <div class="nk-tb-col tb-col-md">
-                                                                    <span>فروشنده</span>
-                                                                </div>
-                                                                <div class="nk-tb-col tb-col-lg">
-                                                                    <span>تاریخ</span>
-                                                                </div>
-                                                                <div class="nk-tb-col"><span>وضعیت</span></div>
-
-                                                                <div class="nk-tb-col"><span>&nbsp;</span></div>
-                                                            </div>
-                                                            {%for i in list_factors%}
-                                                            <div class="nk-tb-item">
-                                                                <div class="nk-tb-col">
-                                                                    <span class="tb-lead"><a href="/SA/Invoice_details?P_ID={{i[0]}}">#{{i[0]}}</a></span>
-                                                                </div>
-                                                                <div class="nk-tb-col tb-col-sm">
-                                                                    <div class="user-card">
-                                                                        <div class="user-avatar user-avatar-sm bg-info">
-                                                                            <em class="icon ni ni-user-alt"></em>
-
-                                                                        </div>
-                                                                        <div class="user-name">
-                                                                            <span class="tb-lead">{{i[9]}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="nk-tb-col tb-col-md">
-                                                                    <span class="tb-sub">{{i[8]}}</span>
-                                                                </div>
-                                                                <div class="nk-tb-col tb-col-lg">
-                                                                    <span class="tb-sub text-primary">{{i[7]}}</span>
-                                                                </div>
-                                                                <div class="nk-tb-col">
-                                                                    <span class="tb-sub tb-amount">{{i[5]}}</span>
-                                                                </div>
-
-                                                                <div class="nk-tb-col nk-tb-col-action">
-                                                                    <div class="dropdown">
-                                                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                                                            <ul class="link-list-plain">
-                                                                                <li><a href="/SA/Invoice_details?P_ID={{i[0]}}">مشاهده</a></li>
-                                                                                <li><a href="/SA/invoice_print_it?id={{i[0]}}">چاپ</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {%endfor%}
-                                                        </div>
-                                                    </div>
-
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">نام خانوادگی مشتری</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="lastname" value="" placeholder="نام خانوداگی مشتری" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">کد ملی مشتری</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="N_id" value="" placeholder="کدملی مشتری" required>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class="form-label">شماره همراه مشتری</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="text" class="form-control" name="username" value="" placeholder="شماره همراه مشتری (بدون صفر)" required>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class="form-label">ایمیل مشتری</label>
+                                                    <div class="form-control-wrap">
+                                                        <input type="email" class="form-control" name="email" value="" placeholder="ایمیل مشتری" required>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                 <div>
+                                                    <div class="row g-gs">
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+
+                                                                    <label class="form-label">کد پستی مشتری</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="postcode" value="" placeholder="کد پستی مشتری" required>
+                                                                    </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+
+                                                                    <label class="form-label">آدرس مشتری</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="address" value="" placeholder="آدرس مشتری" required>
+                                                                    </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-4">
+                                                            <div class="form-group">
+
+                                                                    <label class="form-label">شهر مشتری</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="city" value="" placeholder="شهر مشتری" required>
+                                                                    </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <br>
+                                                <hr>
+
+                                                <input class="btn btn-success" type="submit" value="مرحله بعد" >
+                                            </form>
                                                 <!-- .card -->
                                             </div>
                                             <!-- .col -->
-                                            <div class="col-md-6 col-xxl-4">
-                                                <div class="card card-bordered card-full">
-                                                    <div class="card-inner border-bottom">
-                                                        <div class="card-title-group">
-                                                            <div class="card-title">
-                                                                <h6 class="title">تیکت های تعیین وضعیت نشده</h6>
-                                                            </div>
-                                                            <div class="card-tools">
-                                                                <ul class="card-tools-nav">
-                                                                    <!--
-                                                                    <li>
-                                                                        <a href="#"><span>لغو</span></a>
-                                                                    </li>
-                                                                    <li class="active">
-                                                                        <a href="#"><span>همه</span></a>
-                                                                    </li>-->
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="nk-activity">
-                                                    {%for i in tickets%}
-                                                        <a href="/SA/Get_ticket_details?T_id={{i[0]}}">
-                                                            <li class="nk-activity-item">
-                                                                <div class="nk-activity-media user-avatar bg-success">
-                                                                        <div class="user-avatar user-avatar-sm bg-success">
-                                                                            <span>{{i[0]}}</span>
-                                                                        </div>
-                                                                </div>
-                                                                <div class="nk-activity-data">
-                                                                    <div class="label">
-                                                                        {{i[1]}} به شما ({{i[3]}})  این تیکت را زد
-                                                                    </div>
-                                                                    <span class="time">در تاریخ {{i[4]}}</span>
-                                                                </div>
-                                                            </li>
-                                                        </a>
-                                                        {%endfor%}
 
-                                                    </ul>
-                                                </div>
-                                                <!-- .card -->
-                                            </div>
                                             <!-- .col -->
 
                                             <!-- .col -->
@@ -210,11 +158,11 @@
                                 </div>
                             </div>
                         </div>
+
 </div>
 {% endblock %}
-
 {% block menu %}
-                        <div class="nk-sidebar-content">
+                 <div class="nk-sidebar-content">
                             <div class="nk-sidebar-menu" data-simplebar>
                                 <ul class="nk-menu">
 
@@ -226,44 +174,81 @@
                                     </li>
                                     <!-- .nk-menu-heading -->
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/SA/Invoice" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/IT/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
                                             <span class="nk-menu-text">فاکتور ها</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
+                                                <a href="/IT/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                                <a href="/IT/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                                <a href="/IT/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/SA/Customer" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/IT/Product_list" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
+                                            <span class="nk-menu-text">محصولات</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Product_list" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Customers" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
                                             <span class="nk-menu-text">مشتریان</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Customer" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان</span></a>
+                                                <a href="/IT/Customers" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان سایت</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Customers_G" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان غیر</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/getdata" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
+                                            <span class="nk-menu-text">جمع آوری دیتا</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/getdata" class="nk-menu-link"><span class="nk-menu-text">جمع آوری دیتا</span></a>
                                             </li>
 
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/getdata_update" class="nk-menu-link"><span class="nk-menu-text">آپدیت دیتا</span></a>
+                                            </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/SA/Tickets" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/IT/Tickets" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
                                             <span class="nk-menu-text">تیکت ها</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                                <a href="/IT/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
                                             </li>
 
                                         </ul>
@@ -282,6 +267,7 @@
                             <!-- .nk-sidebar-menu -->
                         </div>
 {% endblock %}
+
 {% block notification %}
                         <li class="dropdown notification-dropdown me-n1">
                                             <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
@@ -292,6 +278,7 @@
                                             <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
                                                 <div class="dropdown-head">
                                                     <span class="sub-title nk-dropdown-title">اطلاع رسانی ها</span>
+                                                    <a href="#">علامت گذاری همه به عنوان خوانده شده</a>
                                                 </div>
                                                 <div class="dropdown-body">
                                                     <div class="nk-notification">
@@ -370,9 +357,88 @@
                                                 </div>
                                             </div>
                                         </li>
+
+{% endblock %}
+{% block script %}
+
+
 {% endblock %}
 
 
 
 
 
+<!--
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add another email input</title>
+    <style>
+      .input-plus {
+        display: flex;
+      }
+
+      .inputs-set {
+        border: none;
+      }
+
+      .input-field {
+        border: none;
+        border: 1px solid rgb(209, 209, 209);
+        padding: 8px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        display: block;
+      }
+
+      .btn-submit,
+      .btn-add-input {
+        border: none;
+        padding: 8px 12px;
+      }
+
+      .btn-submit {
+        background-color: rgb(152, 247, 199);
+      }
+
+      .btn-add-input {
+        background-color: rgb(127, 187, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form" action="" method="POST">
+      <fieldset class="inputs-set" id="email-list" class="input-field">
+        <input class="input-field" type="email" name="email_field[]" required />
+      </fieldset>
+      <button class="btn-submit" type="submit">SUBMIT</button>
+    </form>
+    <button class="btn-add-input" onclick="addEmailField()" type="">
+      Add email
+    </button>
+
+    <script>
+      const myForm = document.getElementById("email-list");
+
+      function addEmailField() {
+        // create an input field to insert
+        const newEmailField = document.createElement("input");
+        // set input field data type to text
+        newEmailField.type = "email";
+        // set input field name
+        newEmailField.name = "email_field";
+        // set required
+        newEmailField.setAttribute("required", "");
+
+        newEmailField.classList.add("input-field");
+
+        // insert element
+        myForm.appendChild(newEmailField);
+      }
+    </script>
+  </body>
+</html>
+-->

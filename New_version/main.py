@@ -31,6 +31,7 @@ from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended, Send
 from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
 from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
+from SA.Customer.Get_customer import Get_customer_list_SA
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -965,6 +966,75 @@ def Ticket_status_SA():
             pre_id = request.args.get('T_id')
             Add_status_IT(verify, pre_id)
             return redirect(f'/SA/Tickets')
+        else:
+            return render_template('Not_Permission/index.html')
+
+@app.route("/SA/Customer")
+def SA_Customer():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                Customer_list = Get_customer_list_SA(1000)
+            else:
+                Customer_list = Get_customer_list_SA(limit_id)
+
+            return render_template("/SA/Customer/index.html", Customer_list=Customer_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/ADD_Customer")
+def SA_ADD_Customers():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            return render_template("/SA/Customer/Add_customer_G.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/Insert_Customers", methods=["POST", "GET"])
+def SA_Insert_Customers():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            N_id = request.args.get('N_id')
+            address = request.args.get('address')
+            data = []
+            data.append(0)
+            data.append(0)
+            data.append(request.args.get('username'))
+            data.append(request.args.get('firstname'))
+            data.append(request.args.get('lastname'))
+            data.append(request.args.get('email'))
+            data.append(request.args.get('city'))
+            data.append(request.args.get('postcode'))
+            Insert_g_cutomer(data, N_id, address)
+            #path = session.get('Path')
+            return redirect('/SA/Customer')
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route('/SA/Pre_Invoice')
+def Pre_invoice_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                pre_invoice_list = Get_preinvoice_lookup_ACC_with_pages(10000)
+            else:
+                pre_invoice_list = Get_preinvoice_lookup_ACC_with_pages(limit_id)
+
+            return render_template("/SA/Pre_invoice/index.html", pre_invoice_list=pre_invoice_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
