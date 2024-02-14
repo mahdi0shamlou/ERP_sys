@@ -43,4 +43,4 @@ def Get_customer_list_SA(id):
             print("MySQL connection is closed")
             return list_lab
 
-Get_customer_list_SA(10)
+#Get_customer_list_SA(10)

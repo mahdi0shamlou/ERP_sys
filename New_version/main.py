@@ -32,6 +32,7 @@ from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
 from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
 from SA.Customer.Get_customer import Get_customer_list_SA
+from SA.Customer.Add_customer_SA import Insert_cutomer_SA
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -994,7 +995,7 @@ def SA_ADD_Customers():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             path = session.get('Path')
-            return render_template("/SA/Customer/Add_customer_G.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template("/SA/Customer/ADD_Customer.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 @app.route("/SA/Insert_Customers", methods=["POST", "GET"])
@@ -1004,22 +1005,21 @@ def SA_Insert_Customers():
     else:
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
-            N_id = request.args.get('N_id')
-            address = request.args.get('address')
             data = []
-            data.append(0)
-            data.append(0)
-            data.append(request.args.get('username'))
+            data.append(request.args.get('phone'))
             data.append(request.args.get('firstname'))
-            data.append(request.args.get('lastname'))
-            data.append(request.args.get('email'))
-            data.append(request.args.get('city'))
+            data.append(request.args.get('N_code'))
+            data.append(request.args.get('E_code'))
             data.append(request.args.get('postcode'))
-            Insert_g_cutomer(data, N_id, address)
+            data.append(request.args.get('adress'))
+            print(data)
+            Insert_cutomer_SA(data)
             #path = session.get('Path')
             return redirect('/SA/Customer')
         else:
             return render_template('Not_Permission/index.html')
+
+
 @app.route('/SA/Pre_Invoice')
 def Pre_invoice_SA():
     if not session.get("Username"):
