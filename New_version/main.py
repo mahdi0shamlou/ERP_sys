@@ -33,6 +33,7 @@ from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section
 from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
 from SA.Customer.Get_customer import Get_customer_list_SA
 from SA.Customer.Add_customer_SA import Insert_cutomer_SA
+from SA.Customer.Delet_customer_SA import Delet_Customer_SA
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -1019,6 +1020,20 @@ def SA_Insert_Customers():
         else:
             return render_template('Not_Permission/index.html')
 
+@app.route("/SA/delet_customer", methods=["POST", "GET"])
+def SA_Delet_Customer():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            id_delet = request.args.get('id')
+            Delet_Customer_SA(id_delet)
+            #Insert_cutomer_SA(data)
+            #path = session.get('Path')
+            return redirect('/SA/Customer')
+        else:
+            return render_template('Not_Permission/index.html')
 
 @app.route('/SA/Pre_Invoice')
 def Pre_invoice_SA():
