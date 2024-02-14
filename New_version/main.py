@@ -31,10 +31,12 @@ from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended, Send
 from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
 from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
-from SA.Customer.Get_customer import Get_customer_list_SA
+from SA.Customer.Get_customer import Get_customer_list_SA, Get_customer_list_SA_add_preinvoice, Get_customer_details
 from SA.Customer.Add_customer_SA import Insert_cutomer_SA
 from SA.Customer.Delet_customer_SA import Delet_Customer_SA
 from SA.Pre_invoice.Get_Preinvoice import Get_preinvoice_lookup_SA_with_pages
+from SA.Pre_invoice.Get_products import Get_products_list_SA_add_preinvoice, Get_product_add_preinvoice
+from SA.Pre_invoice.Insert_preinvoice_sa import Add_preinvoice_SA
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -1072,8 +1074,8 @@ def Pre_Invoice_add_SA():
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
             path = session.get('Path')
-            list_costumers = Get_g_customer_list()
-            return render_template("/IT/Pre_invoice/Pre_Invoice_add_customer.html", list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            list_costumers = Get_customer_list_SA_add_preinvoice()
+            return render_template("/SA/Pre_invoice/Pre_Invoice_add_customer.html", list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/SA/Pre_invoice_add_products')
@@ -1085,9 +1087,37 @@ def Pre_invoice_add_products_SA():
         if auth == 0 or auth == 5:
             ID_C = request.args.get('ID_C')
             path = session.get('Path')
-            list_costumers = Get_g_customer_details(ID_C)
-            list_product = Get_product_list()
-            return render_template("/IT/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            list_costumers = Get_customer_details(ID_C)
+            list_product = Get_products_list_SA_add_preinvoice()
+            return render_template("/SA/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+
+@app.route('/SA/add_preinvoice_finall_check')
+def add_preinvoice_finall_check_sa():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            ID_C = request.args.get('ID_C')
+            NAME_C = request.args.get('NAME_C')
+            products = request.args.getlist('product[]', type=str)
+            products_number = request.args.getlist('product_number[]', type=str)
+            product_name_p = request.args.getlist('product_name_p[]', type=str)
+            product_number_p = request.args.getlist('product_number_p[]', type=str)
+            product_price_p = request.args.getlist('product_price_p[]', type=str)
+            list_costumers = Get_customer_details(ID_C)
+            list_products = []
+            list_products_p = []
+            for i in range(0,len(product_name_p)):
+                print("{:,}".format(int(product_price_p[i])))
+                list_products_p.append([product_name_p[i], product_number_p[i], "{:,}".format(int(product_price_p[i])), product_price_p[i]])
+            for i in range(0,len(products)):
+                plist = Get_product_add_preinvoice(products[i])
+                list_products.append([products[i], plist[0][1], products_number[i], "{:,}".format(plist[0][2]/10), plist[0][2]])
+            print(list_products_p)
+            return render_template('SA/Pre_invoice/Finall_check.html', NAME_C=NAME_C, list_costumers=list_costumers, list_products=list_products, list_products_p=list_products_p)
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/SA/add_preinvoice_finall')
@@ -1104,9 +1134,12 @@ def Add_preinvoice_finall_SA():
             product_name_p = request.args.getlist('product_name_p[]', type=str)
             product_number_p = request.args.getlist('product_number_p[]', type=str)
             product_price_p = request.args.getlist('product_price_p[]', type=str)
-            Add_preinvoice_IT(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
-            path = session.get('Path')
-            return redirect('/IT/Pre_Invoice')
+            Add_preinvoice_SA(ID_C, products, products_number, product_name_p, product_number_p, product_price_p, session.get("Username"), NAME_C)
+            #just for doing 
+            oope = 'city'
+            oope_2 = 'country'
+            #path = session.get('Path')
+            return redirect('/SA/Pre_Invoice')
         else:
             return render_template('Not_Permission/index.html')
 @app.route("/SA/Pre_invoice_details_it", methods=["POST", "GET"])

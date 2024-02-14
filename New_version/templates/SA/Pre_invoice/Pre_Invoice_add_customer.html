@@ -67,14 +67,14 @@
                                             <!-- .col -->
                                             <div class="col-xxl-8">
 
-                                            <form class="form-group" method="get" action="/IT/Pre_invoice_add_products">
+                                            <form class="form-group" method="get" action="/SA/Pre_invoice_add_products">
                                                 <div class="form-group">
                                                     <label class="form-label" data-search="on">انتخاب مشتری</label>
                                                         <div class="form-control-wrap" data-search="on">
                                                             <select class="form-select" data-search="on" name="ID_C">
                                                                     {%for i in list_costumers%}
                                                                         <option id="C_{{i[0]}}" value="{{i[0]}}">
-                                                                            {{i[4]}}
+                                                                            {{i[1]}}
                                                                         </option>
                                                                     {%endfor%}
                                                             </select>
@@ -164,81 +164,44 @@
                                     </li>
                                     <!-- .nk-menu-heading -->
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Invoice" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/SA/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
                                             <span class="nk-menu-text">فاکتور ها</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                                <a href="/SA/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                                <a href="/SA/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Product_list" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
-                                            <span class="nk-menu-text">محصولات</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Product_list" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Customers" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/SA/Customer" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
                                             <span class="nk-menu-text">مشتریان</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Customers" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان سایت</span></a>
-                                            </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Customers_G" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان غیر</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <!-- .nk-menu-item -->
-
-                                    <!-- .nk-menu-item -->
-
-                                    <!-- .nk-menu-item -->
-
-                                    <!-- .nk-menu-item -->
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/getdata" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
-                                            <span class="nk-menu-text">جمع آوری دیتا</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/getdata" class="nk-menu-link"><span class="nk-menu-text">جمع آوری دیتا</span></a>
+                                                <a href="/SA/Customer" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان</span></a>
                                             </li>
 
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/getdata_update" class="nk-menu-link"><span class="nk-menu-text">آپدیت دیتا</span></a>
-                                            </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Tickets" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/SA/Tickets" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
                                             <span class="nk-menu-text">تیکت ها</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                                <a href="/SA/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
                                             </li>
 
                                         </ul>
