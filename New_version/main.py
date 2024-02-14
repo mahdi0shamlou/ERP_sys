@@ -1092,7 +1092,6 @@ def Pre_invoice_add_products_SA():
             return render_template("/SA/Pre_invoice/Pre_invoice_add_products.html", ID_C=ID_C, list_product=list_product, list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route('/SA/add_preinvoice_finall_check')
 def add_preinvoice_finall_check_sa():
     if not session.get("Username"):
