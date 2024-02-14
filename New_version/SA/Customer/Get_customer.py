@@ -9,7 +9,7 @@ def Get_customer_list_SA(id):
                                              database="Parso_tejart")
 
         cursor = connection.cursor()
-        sql_select_query = """select * from Sale_Coustomer where id < %s LIMIT 100"""
+        sql_select_query = """select * from Sale_Coustomer where id < %s ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query, (id,))
         # fetch result
