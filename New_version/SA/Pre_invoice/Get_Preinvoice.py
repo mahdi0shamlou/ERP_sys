@@ -9,7 +9,7 @@ def Get_preinvoice_lookup_SA_with_pages(ids_limit):
                                              database="Parso_tejart")
 
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_PreInvoice_lookup where (id < %s) AND (type=%s) ORDER BY id DESC LIMIT 10"""
+        sql_select_query = """select * from Accounting_PreInvoice_lookup where (id < %s) AND (type=%s) AND (status=0) ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query, (ids_limit, 'SA',))
         # fetch result

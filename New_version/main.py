@@ -883,10 +883,17 @@ def Sale_index_page():
             tickets = Get_all_ticket_new('SA')
             limit_id = request.args.get('limit_id')
             if limit_id is None:
-                list_factors = Get_factors_lookup_ACC_with_pages(100000)
+                pre_invoice_list = Get_preinvoice_lookup_SA_with_pages(10000)
+                if len(pre_invoice_list) == 0:
+                    limit_id=10000
+                else:
+                    limit_id = pre_invoice_list[0][0]
+                #limit_id = 10
             else:
-                list_factors = Get_factors_lookup_ACC_with_pages(limit_id)
-            return render_template("/SA/index.html", list_factors=list_factors, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
+                limit_id = int(limit_id)
+                pre_invoice_list = Get_preinvoice_lookup_SA_with_pages(limit_id)
+                limit_id = limit_id
+            return render_template("/SA/index.html", list_factors=pre_invoice_list, tickets=tickets, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
 @app.route("/SA/Tickets", methods=["POST", "GET"])
