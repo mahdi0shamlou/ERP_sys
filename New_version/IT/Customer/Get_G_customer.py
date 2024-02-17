@@ -47,10 +47,10 @@ def Get_g_customer_list():
             return list_lab
 def Get_g_customer_details(ids):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
         cursor = connection.cursor()
         sql_select_query = ""
         sql_select_query = """select * from IT_customers WHERE id = %s """
@@ -92,10 +92,10 @@ def Get_g_customer_details(ids):
             return list_lab
 def Get_customer_details_it_with_userid(ids):
     try:
-        connection = mysql.connector.connect(host="localhost",
-                                             user='root',
-                                             password='',
-                                             database="ERP_IT")
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
         cursor = connection.cursor()
         sql_select_query = ""
         sql_select_query = """select * from IT_customers WHERE user_id = %s """

@@ -270,7 +270,7 @@ def Pre_invoice_details_it():
             pre_invoice_lookup = Get_IT_preinvoice_lookup(pre_invoice_id)
             customer_id = pre_invoice_lookup[0][1]
             customer_details = Get_g_customer_details(customer_id)
-
+            print(f'ablsdsasdgpaisgpdaug {customer_details}')
             total_price = 0
             for i in pre_invoice_data:
                 total_price = total_price + int(i[7])
