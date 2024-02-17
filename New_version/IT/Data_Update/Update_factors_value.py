@@ -2,7 +2,6 @@ from mysql.connector import connect, Error
 import mysql.connector
 import datetime
 
-from orca.orca import start
 
 
 def Select_name_products_from_db(id):
