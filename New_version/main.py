@@ -589,7 +589,7 @@ def Ticket_list_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             path = session.get('Path')
             ticeket_list = Get_all_ticket_list('ACC')
             return render_template('/ACC/Ticket/index.html', ticeket_list=ticeket_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
@@ -601,7 +601,7 @@ def Ticket_add_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             path = session.get('Path')
             return render_template('/ACC/Ticket/ticket_add.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
@@ -612,7 +612,7 @@ def Ticket_add_finall_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             username = session.get("Username")
             path = session.get('Path')
             subject = request.args.get('subject')
@@ -631,7 +631,7 @@ def Get_ticket_details_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             path = session.get('Path')
             path = 'ACC'
             t_id = request.args.get('T_id')
@@ -645,7 +645,7 @@ def add_ticket_message_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             username = session.get("Username")
             desck = request.args.get('desck')
             pre_id = request.args.get('T_id')
@@ -659,7 +659,7 @@ def Ticket_status_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             username = session.get("Username")
             verify = request.args.get('verify')
             pre_id = request.args.get('T_id')
@@ -673,7 +673,7 @@ def ACC_invoice():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             limit_id = request.args.get('limit_id')
             if limit_id is None:
                 list_factors = Get_factors_lookup_ACC_with_pages(100000)
@@ -690,7 +690,7 @@ def Invoice_details_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             total_price = 0
@@ -706,7 +706,7 @@ def invoice_print_it_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             invoice_total_price = 0
@@ -724,7 +724,7 @@ def ACC_pre_invoice():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             limit_id = request.args.get('limit_id')
             if limit_id is None:
                 list_factors = Get_preinvoice_lookup_ACC_with_pages(100000)
@@ -741,7 +741,7 @@ def Pre_Invoice_details_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             total_price = 0
@@ -757,7 +757,7 @@ def pre_invoice_print_it_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             invoice_total_price = 0
@@ -775,7 +775,7 @@ def invoice_sended_inovice_section():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             id = request.args.get('id')
             Send_invoice_to_sended(id)
             return redirect('/ACC/Invoice')
@@ -787,7 +787,7 @@ def Invoice_sended():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             limit_id = request.args.get('limit_id')
             if limit_id is None:
                 list_factors = Get_factors_sended_lookup_ACC_with_pages(100000)
@@ -805,7 +805,7 @@ def Invoice_sended_details():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             total_price = 0
@@ -822,7 +822,7 @@ def invoice_sended_inovice_section_okay():
     #just a comment for nothing for ui desginger
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             id = request.args.get('id')
             Send_invoice_to_sended_status_okay(id)
             return redirect('/ACC/Invoice_sended')
@@ -834,7 +834,7 @@ def invoice_sended_inovice_section_remove():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             id = request.args.get('id')
             Send_invoice_to_sended_status_remove(id)
             return redirect('/ACC/Invoice_sended')
@@ -846,7 +846,7 @@ def invoice_sended_inovice_section_back():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             id = request.args.get('id')
             Send_invoice_to_sended_status_backe(id)
             return redirect('/ACC/Invoice_sended')
@@ -858,7 +858,7 @@ def preinvoice_to_invoice():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 1 or auth == 5:
             id = request.args.get('id')
             Send_preinvoice_to_invoice(id)
             return redirect('/ACC/Invoice')
@@ -878,7 +878,7 @@ def Sale_index_page():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             tickets = Get_all_ticket_new('SA')
             limit_id = request.args.get('limit_id')
@@ -902,7 +902,7 @@ def Ticket_list_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             ticeket_list = Get_all_ticket_list('SA')
             return render_template('/SA/Ticket/index.html', ticeket_list=ticeket_list, user=session.get('Username'), pathmain=path, email=session.get('email'))
@@ -914,7 +914,7 @@ def Ticket_add_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             return render_template('/SA/Ticket/ticket_add.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
@@ -925,7 +925,7 @@ def Ticket_add_finall_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             username = session.get("Username")
             path = session.get('Path')
             subject = request.args.get('subject')
@@ -944,7 +944,7 @@ def Get_ticket_details_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             path = 'SA'
             t_id = request.args.get('T_id')
@@ -958,7 +958,7 @@ def add_ticket_message_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             username = session.get("Username")
             desck = request.args.get('desck')
             pre_id = request.args.get('T_id')
@@ -972,7 +972,7 @@ def Ticket_status_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             username = session.get("Username")
             verify = request.args.get('verify')
             pre_id = request.args.get('T_id')
@@ -986,7 +986,7 @@ def SA_Customer():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             limit_id = request.args.get('limit_id')
             if limit_id is None:
@@ -1010,7 +1010,7 @@ def SA_ADD_Customers():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             return render_template("/SA/Customer/ADD_Customer.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
@@ -1021,7 +1021,7 @@ def SA_Insert_Customers():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             data = []
             data.append(request.args.get('phone'))
             data.append(request.args.get('firstname'))
@@ -1041,7 +1041,7 @@ def SA_Delet_Customer():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             id_delet = request.args.get('id')
             Delet_Customer_SA(id_delet)
             #Insert_cutomer_SA(data)
@@ -1055,7 +1055,7 @@ def Pre_invoice_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             limit_id = request.args.get('limit_id')
             if limit_id is None:
@@ -1079,7 +1079,7 @@ def Pre_Invoice_add_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             path = session.get('Path')
             list_costumers = Get_customer_list_SA_add_preinvoice()
             return render_template("/SA/Pre_invoice/Pre_Invoice_add_customer.html", list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
@@ -1091,7 +1091,7 @@ def Pre_invoice_add_products_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             ID_C = request.args.get('ID_C')
             path = session.get('Path')
             list_costumers = Get_customer_details(ID_C)
@@ -1105,7 +1105,7 @@ def add_preinvoice_finall_check_sa():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             ID_C = request.args.get('ID_C')
             NAME_C = request.args.get('NAME_C')
             products = request.args.getlist('product[]', type=str)
@@ -1132,7 +1132,7 @@ def Add_preinvoice_finall_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             ID_C = request.args.get('ID_C')
             NAME_C = request.args.get('NAME_C')
             products = request.args.getlist('product[]', type=str)
@@ -1151,7 +1151,7 @@ def Pre_Invoice_details_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             total_price = 0
@@ -1167,7 +1167,7 @@ def pre_invoice_print_it_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             invoice_total_price = 0
@@ -1185,7 +1185,7 @@ def preinvoice_delet_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
+        if auth == 4 or auth == 5:
             pre_invoice_id = request.args.get('id')
             delet_preinvoice_it(pre_invoice_id)
             return redirect('/SA/Pre_Invoice')
