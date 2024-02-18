@@ -1248,7 +1248,7 @@ def SA_invoice():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 1 or auth == 5:
+        if auth == 4 or auth == 5:
             limit_id = request.args.get('limit_id')
             if limit_id is None:
                 list_factors = Get_factors_lookup_SA_with_pages(10000)
@@ -1270,7 +1270,7 @@ def Invoice_details_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 1 or auth == 5:
+        if auth == 4 or auth == 5:
             pre_invoice_id = request.args.get('P_ID')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             total_price = 0
@@ -1286,7 +1286,7 @@ def invoice_print_it_SA():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 1 or auth == 5:
+        if auth == 4 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             invoice_total_price = 0
