@@ -133,9 +133,31 @@
                                                                 <div class="nk-tb-col tb-col-lg">
                                                                     <span class="tb-sub text-primary">{{i[7]}}</span>
                                                                 </div>
-                                                                <div class="nk-tb-col">
-                                                                    <span class="tb-sub tb-amount">{{i[5]}}</span>
-                                                                </div>
+                                                                                                                   {% if i[5] == 0: %}
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-warning">در انتظار</span></span>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% if i[5] == 1: %}
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-info">در حال ارسال</span></span>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% if i[5] == 2: %}
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-warning">لغو ارسال</span></span>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% if i[5] == 3: %}
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-danger">حذف شده</span></span>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% if i[5] == 4: %}
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-success">برگشت موفق</span></span>
+                                                            </div>
+                                                            {% endif %}
 
                                                                 <div class="nk-tb-col nk-tb-col-action">
                                                                     <div class="dropdown">
