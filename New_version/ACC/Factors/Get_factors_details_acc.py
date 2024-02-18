@@ -219,7 +219,7 @@ def GET_details_factors_acc(id):
 
 
     if lookup_factors[0][2] == 0:
-        seller_details = [0, 'بارمان سیستم', 'میدان فردوسی خیابان ایرانشهر پلاک x', '02199999']
+        seller_details = [0, 'بارمان سیستم سرزمین پارس', 'تهران خیابان آزادی، خیابان دکتر هوشیار، پلاک ۴۷۴ طبقه دوم واحد 12', '۰۲۱۹۹۹۹۹۹', '۱۰۳۲۰۴۷۱۹۲۵', '۴۱۱۴۶۱۷۶۳۴۷۴', '۳۹۶۴۳۱', '۱۳۴۱۹۶۳۳۳۱']
     else:
         seller_details = Get_factors_seller_details_table_seller_ACC(lookup_factors[0][2])
 
