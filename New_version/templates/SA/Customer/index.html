@@ -26,8 +26,8 @@
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
                                                             <li class="nk-block-tools-opt">
-                                                                <a href="/SA/Customer?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex"><span>صفحه بعد</span></a>
-                                                                <a href="/SA/Customer?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex"><span>صفحه قبل</span></a>
+                                                                <a href="/SA/Customer?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex" style="margin-left:10px;"><span>صفحه بعد</span></a>
+                                                                <a href="/SA/Customer?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex" style="margin-left:10px;"><span>صفحه قبل</span></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -44,11 +44,10 @@
                                                 <div class="card-inner p-0">
                                                     <div class="nk-tb-list">
                                                         <div class="nk-tb-item nk-tb-head">
-
-                                                            <div class="nk-tb-col tb-col-sm">
+                                                            <div class="nk-tb-col"><span>شناسه مشتری</span></div>
+                                                            <div class="nk-tb-col">
                                                                 <span>نام</span>
                                                             </div>
-                                                            <div class="nk-tb-col"><span>شناسه مشتری</span></div>
                                                             <div class="nk-tb-col"><span>تلفن</span></div>
                                                             <div class="nk-tb-col"><span>شناسه ملی</span></div>
                                                             <div class="nk-tb-col tb-col-md">
@@ -79,12 +78,11 @@
 
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-product">
-                                                                    <img src="./images/product/a.png" alt="" class="thumb" />
-                                                                    <span class="title">{{i[1]}}</span>
+                                                                    <span class="tb-sub">{{i[0]}}</span>
                                                                 </span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{i[0]}}</span>
+                                                                <span class="tb-lead">{{i[1]}}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
                                                                 <span class="tb-lead">{{i[8]}}</span>
