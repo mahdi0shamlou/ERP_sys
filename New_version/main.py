@@ -34,7 +34,7 @@ from IT.Data_Update.Change_price_products import start as Change_products_price_
 from SA.Customer.Get_customer import Get_customer_list_SA, Get_customer_list_SA_add_preinvoice, Get_customer_details
 from SA.Customer.Add_customer_SA import Insert_cutomer_SA
 from SA.Customer.Delet_customer_SA import Delet_Customer_SA
-from SA.Pre_invoice.Get_Preinvoice import Get_preinvoice_lookup_SA_with_pages
+from SA.Pre_invoice.Get_Preinvoice import Get_preinvoice_lookup_SA_with_pages, Get_factors_lookup_SA_with_pages
 from SA.Pre_invoice.Get_products import Get_products_list_SA_add_preinvoice, Get_product_add_preinvoice
 from SA.Pre_invoice.Insert_preinvoice_sa import Add_preinvoice_SA
 app = Flask(__name__)
@@ -1231,7 +1231,63 @@ def preinvoice_delet_SA():
             return redirect('/SA/Pre_Invoice')
         else:
             return render_template('Not_Permission/index.html')
+@app.route('/SA/Invoice', methods=["POST", "GET"])
+def SA_invoice():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                list_factors = Get_factors_lookup_SA_with_pages(10000)
+                if len(list_factors) == 0:
+                    limit_id=10000
+                else:
+                    limit_id = list_factors[0][0]
+            else:
+                limit_id = int(limit_id)
+                list_factors = Get_factors_lookup_SA_with_pages(limit_id)
+                limit_id = limit_id
+            path = session.get('Path')
+            return render_template("/SA/Invoice/index.html",limit_id=limit_id, pre_invoice_list=list_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route('/SA/Invoice_details', methods=["POST", "GET"])
+def Invoice_details_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            pre_invoice_id = request.args.get('P_ID')
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
+            total_price = 0
+            for i in details_factors:
+                total_price = total_price + int(i[7])
+            path = session.get('Path')
+            return render_template('/SA/Invoice/Invoice_details.html',pre_invoice_lookup=lookup_factors, customer_details=customer_data, total_price=total_price , len_code=len(details_factors), pre_invoice_data=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/SA/invoice_print_it", methods=["POST", "GET"])
+def invoice_print_it_SA():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            pre_invoice_id = request.args.get('id')
+            lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
+            invoice_total_price = 0
+            for i in details_factors:
+                
+                invoice_total_price = invoice_total_price + i[7]
 
+            invoice_total_price = "{:,}".format(invoice_total_price)
+            path = session.get('Path')
+            return render_template('/SA/Invoice/Invoice_Print.html',lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
+        else:
+            return render_template('Not_Permission/index.html')
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END SALE SECTION
 #---------------------------------------------------------------------------------------------------
