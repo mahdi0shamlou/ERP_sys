@@ -1,0 +1,408 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+
+                        <div class="nk-content">
+                        <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block-head nk-block-head-sm">
+                                        <div class="nk-block-between">
+                                            <div class="nk-block-head-content">
+                                                <h3 class="nk-block-title page-title">محصولات</h3>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                            <div class="nk-block-head-content">
+                                                <div class="toggle-wrap nk-block-tools-toggle">
+                                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                    <div class="toggle-expand-content" data-content="pageMenu">
+                                                        <ul class="nk-block-tools g-3">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- .nk-block-head-content -->
+                                        </div>
+                                        <!-- .nk-block-between -->
+                                    </div>
+                                    <!-- .nk-block-head -->
+                                    <div class="nk-block">
+                                        <div class="card card-bordered">
+                                            <div class="card-inner-group">
+                                                <div class="card-inner p-0">
+                                                    <div class="nk-tb-list">
+                                                        <div class="nk-tb-item nk-tb-head">
+
+                                                            <div class="nk-tb-col tb-col-sm">
+                                                                <span>نام</span>
+                                                            </div>
+                                                            <div class="nk-tb-col"><span>شناسه محصول</span></div>
+                                                            <div class="nk-tb-col"><span>قیمت</span></div>
+                                                            <div class="nk-tb-col"><span>موجودی</span></div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span>فروخته شده در کل</span>
+                                                            </div>
+
+                                                            <div class="nk-tb-col nk-tb-col-tools">
+                                                                <ul class="nk-tb-actions gx-1 my-n1">
+                                                                    <li class="me-n1">
+                                                                        <div class="dropdown">
+                                                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                                <ul class="link-list-opt no-bdr">
+                                                                                    <li>
+                                                                                        <a href="/IT/Update_all_data_online_from_server"><em class="icon ni ni-edit"></em><span>آپدیت محصولات</span></a>
+                                                                                    </li>
+
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .nk-tb-item -->
+                                                        {% for i in Product_list%}
+                                                        <div class="nk-tb-item">
+
+                                                            <div class="nk-tb-col tb-col-sm">
+                                                                <span class="tb-product">
+                                                                    <img src="./images/product/a.png" alt="" class="thumb" />
+                                                                    <span class="title">{{i[2]}}</span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{i[1]}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-lead">{{i[5]}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col">
+                                                                <span class="tb-sub">{{i[9]}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <span class="tb-sub">{{i[12]}}</span>
+                                                            </div>
+                                                            <div class="nk-tb-col nk-tb-col-tools">
+                                                                <form action="/IT/Change_price_products_sever" method="get">
+
+                                                                        <ul class="nk-tb-actions gx-1">
+
+                                                                                    <li class="nk-tb-action-hidden">
+                                                                                        <input type="text"  name="price" placeholder="قیمت : {{i[5]}}">
+                                                                                        <input type="hidden" name="id" value="{{i[1]}}">
+                                                                                    </li>
+
+                                                                                <li class="nk-tb-action-hidden">
+                                                                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title=" کردن" >
+                                                                                        <button class="btn btn-trigger btn-icon" type="submit"><em class="icon ni ni-pen2"></em></button>
+
+                                                                                    </a>
+                                                                                </li>
+
+                                                                        </ul>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        {%endfor%}
+                                                        <!-- .nk-tb-item -->
+
+                                                        <!-- .nk-tb-item -->
+                                                    </div>
+                                                    <!-- .nk-tb-list -->
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- .nk-block -->
+                                    <div class="nk-add-product toggle-slide toggle-slide-right" data-content="addProduct" data-toggle-screen="any" data-toggle-overlay="true" data-toggle-body="true" data-simplebar>
+                                        <div class="nk-block-head">
+                                            <div class="nk-block-head-content">
+                                                <h5 class="nk-block-title">محصول جدید</h5>
+                                                <div class="nk-block-des">
+                                                    <p>محصول جدید و اطلاعات آن را اضافه کنید.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .nk-block-head -->
+                                        <div class="nk-block">
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="product-title">عنوان محصول</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" id="product-title" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="regular-price">قیمت عادی</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="number" class="form-control" id="regular-price" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="sale-price">قیمت فروش</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="number" class="form-control" id="sale-price" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="stock">موجودی</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" id="stock" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="SKU">شناسه محصول</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" id="SKU" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="category">دسته بندی</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" id="category" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="tags">برچسب</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" id="tags" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="upload-zone small bg-lighter my-2">
+                                                        <div class="dz-message">
+                                                            <span class="dz-message-text">فایل را بکشید و رها کنید</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary"><em class="icon ni ni-plus"></em><span>افزودن جدید</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- .nk-block -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}
+
+{% block menu %}
+                          <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            منو
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Invoice" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">فاکتور ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Product_list" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
+                                            <span class="nk-menu-text">محصولات</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Product_list" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Customers" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">مشتریان</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Customers" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان سایت</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Customers_G" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان غیر</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/getdata" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
+                                            <span class="nk-menu-text">جمع آوری دیتا</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/getdata" class="nk-menu-link"><span class="nk-menu-text">جمع آوری دیتا</span></a>
+                                            </li>
+
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/getdata_update" class="nk-menu-link"><span class="nk-menu-text">آپدیت دیتا</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Tickets" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
+                                            <span class="nk-menu-text">تیکت ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+
+{% block notification %}
+                        <li class="dropdown notification-dropdown me-n1">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                                <div class="icon-status icon-status-info">
+                                                    <em class="icon ni ni-bell"></em>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                                <div class="dropdown-head">
+                                                    <span class="sub-title nk-dropdown-title">اطلاع رسانی ها</span>
+                                                    <a href="#">علامت گذاری همه به عنوان خوانده شده</a>
+                                                </div>
+                                                <div class="dropdown-body">
+                                                    <div class="nk-notification">
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-notification -->
+                                                </div>
+                                                <!-- .nk-dropdown-body -->
+                                                <div class="dropdown-foot center">
+                                                    <a href="#">مشاهده همه</a>
+                                                </div>
+                                            </div>
+                                        </li>
+{% endblock %}
+
+
+
+
+

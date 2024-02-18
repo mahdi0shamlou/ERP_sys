@@ -905,6 +905,17 @@ def preinvoice_to_invoice():
         else:
             return render_template('Not_Permission/index.html')
 
+@app.route("/ACC/Products", methods=["POST", "GET"])
+def Products_ACC():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            return redirect('/ACC')
+        else:
+            return render_template('Not_Permission/index.html')
+
 
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END ACCOUNITNG SECTION
@@ -1302,6 +1313,8 @@ def invoice_print_it_SA():
             return render_template('/SA/Invoice/Invoice_Print.html', invoice_total_tax=invoice_total_tax,invoice_total_price_with_tax=invoice_total_price_with_tax, lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
+
+
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END SALE SECTION
 #---------------------------------------------------------------------------------------------------
