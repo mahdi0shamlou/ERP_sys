@@ -29,6 +29,7 @@ from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended_statu
 from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
 from ACC.Products.Get_products_Acc import Get_Product_acc_list
+from ACC.Products.Insert_delet_edit_productsAcc import Insert_Product_acc_in_db, Delet_Product_acc_in_db
 from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
 from SA.Customer.Get_customer import Get_customer_list_SA, Get_customer_list_SA_add_preinvoice, Get_customer_details
 from SA.Customer.Add_customer_SA import Insert_cutomer_SA
@@ -866,7 +867,6 @@ def invoice_sended_inovice_section_share():
             return redirect('/ACC/Invoice')
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route('/ACC/invoice_sended_inovice_section_remove', methods=["POST", "GET"])
 def invoice_sended_inovice_section_remove():
     if not session.get("Username"):
@@ -903,7 +903,6 @@ def preinvoice_to_invoice():
             return redirect('/ACC/Invoice')
         else:
             return render_template('Not_Permission/index.html')
-
 @app.route("/ACC/Products", methods=["POST", "GET"])
 def Products_ACC():
     if not session.get("Username"):
@@ -950,7 +949,26 @@ def Products_ACC_add_finall():
     else:
         auth = session.get('Access_level')
         if auth == 1 or auth == 5:
-            path = session.get('Path')
+            #path = session.get('Path')
+            names = request.args.get('name')
+            desck = request.args.get('desck')
+            price = request.args.get('price')
+            number = request.args.get('number')
+            Insert_Product_acc_in_db(name=names, desck=desck, price=int(price), number=int(number))
+            return redirect('/ACC/Products')
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/delet_products", methods=["POST", "GET"])
+def Products_ACC_delet_finall():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            #path = session.get('Path')
+            id = request.args.get('id')
+            Delet_Product_acc_in_db(id)
+
             return redirect('/ACC/Products')
         else:
             return render_template('Not_Permission/index.html')
