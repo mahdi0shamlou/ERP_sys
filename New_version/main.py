@@ -11,7 +11,7 @@ from IT.Data_Update.Update_factors_value import Start as Start_get_Update_Factor
 from IT.Ticket.Get_all_ticket import Get_all_ticket_new, Get_ticket_details, Get_all_ticket_list
 from IT.Ticket.Add_ticket import start as insert_ticket_at_start_ticket
 from IT.Ticket.Add_ticket import Add_message_IT, Add_status_IT
-from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details, Get_customer_details_it_with_userid
+from IT.Customer.Get_G_customer import Get_g_customer_list, Get_g_customer_details
 from IT.Customer.Add_customer import Insert_g_cutomer
 from IT.Pre_invoice.Add_preinvoice import Add_preinvoice_IT
 from IT.Pre_invoice.Get_preinvoice import Get_IT_preinvoice_details, Get_IT_preinvoice_lookup
@@ -20,16 +20,15 @@ from IT.Get_data_analyst.Get_data_analyst_emalls import start as Data_collection
 from IT.Get_data_analyst.Get_data_analyst_emalls import Get_analysted_data_newst, Get_analysted_data_history
 from IT.Get_data_analyst.Insert_links import insert_links_to_db_getdata
 from IT.Get_data_analyst.delet_links import delet_link_data_from_db
-from ACC.Get_PreInvoice_lookup import Get_PreInvoice_lookup_list
-from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT, Get_factors_lookup_IT_with_limits
-from IT.Factors.Get_factors_detials_IT import Get_IT_Factors_lookup, Get_IT_Factors_details
-from ACC.Factors.Get_factors_look_up import Get_factors_lookup_ACC_with_limits, Get_factors_lookup_ACC_with_pages, Get_factors_sended_lookup_ACC_with_pages
+from IT.Factors.Get_factors_lookup_IT import Get_factors_lookup_IT_with_limits
+from ACC.Factors.Get_factors_look_up import  Get_factors_lookup_ACC_with_pages, Get_factors_sended_lookup_ACC_with_pages
 from ACC.Factors.Get_factors_details_acc import GET_details_factors_acc
 from ACC.Factors.Get_preinvoice_details_acc import GET_details_preinvoice_acc
-from ACC.Factors.Get_preinvoice_look_up import Get_preinvoice_lookup_ACC_with_limits, Get_preinvoice_lookup_ACC_with_pages
+from ACC.Factors.Get_preinvoice_look_up import  Get_preinvoice_lookup_ACC_with_pages
 from ACC.Factors.Send_invoice_sended_section import Send_invoice_to_sended_status_share, Send_invoice_to_sended, Send_invoice_to_sended_status_remove, Send_invoice_to_sended_status_backe, Send_invoice_to_sended_status_okay, Cancel_preinvoice
 from ACC.Factors.Send_preinvoice_to_invoice import Send_preinvoice_to_invoice
 from ACC.Factors.Get_Factors_from_DB import Get_factors_lookup_IT_sended_section_fro_pages, Get_factors_lookup_IT_only_factors_fro_pages
+from ACC.Products.Get_products_Acc import Get_Product_acc_list
 from IT.Data_Update.Change_price_products import start as Change_products_price_to_seve
 from SA.Customer.Get_customer import Get_customer_list_SA, Get_customer_list_SA_add_preinvoice, Get_customer_details
 from SA.Customer.Add_customer_SA import Insert_cutomer_SA
@@ -912,10 +911,49 @@ def Products_ACC():
     else:
         auth = session.get('Access_level')
         if auth == 1 or auth == 5:
-            return redirect('/ACC')
+            path = session.get('Path')
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                Product_acc_list = Get_Product_acc_list(10000)
+                for i in Product_acc_list:
+                    i[2] = "{:,}".format(i[2])
+                if len(Product_acc_list) == 0:
+                    limit_id=10000
+                else:
+                    limit_id = Product_acc_list[0][0]
+                #limit_id = 10
+            else:
+                limit_id = int(limit_id)
+                Product_acc_list = Get_Product_acc_list(limit_id)
+                for i in Product_acc_list:
+                    i[2] = "{:,}".format(i[2])
+                limit_id = limit_id
+            return render_template("/ACC/Products/index.html", limit_id=limit_id, Product_acc_list=Product_acc_list,
+                                   user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
-
+@app.route("/ACC/products_add", methods=["POST", "GET"])
+def Products_ACC_add():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            path = session.get('Path')
+            return render_template("/ACC/Products/add.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
+@app.route("/ACC/Products_add_finall", methods=["POST", "GET"])
+def Products_ACC_add_finall():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            path = session.get('Path')
+            return redirect('/ACC/Products')
+        else:
+            return render_template('Not_Permission/index.html')
 
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END ACCOUNITNG SECTION

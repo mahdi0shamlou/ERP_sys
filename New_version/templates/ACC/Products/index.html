@@ -16,6 +16,8 @@
                                                     <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
+                                                                <a href="/ACC/Products?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex" style="margin-left:10px;"><span>صفحه بعد</span></a>
+                                                                <a href="/ACC/Products?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex" style="margin-left:10px;"><span>صفحه قبل</span></a>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -33,13 +35,13 @@
                                                         <div class="nk-tb-item nk-tb-head">
 
                                                             <div class="nk-tb-col tb-col-sm">
-                                                                <span>نام</span>
+                                                                <span>شناسه محصول</span>
                                                             </div>
-                                                            <div class="nk-tb-col"><span>شناسه محصول</span></div>
+                                                            <div class="nk-tb-col"><span>نام محصول</span></div>
                                                             <div class="nk-tb-col"><span>قیمت</span></div>
                                                             <div class="nk-tb-col"><span>موجودی</span></div>
                                                             <div class="nk-tb-col tb-col-md">
-                                                                <span>فروخته شده در کل</span>
+                                                                <span>توضیحات</span>
                                                             </div>
 
                                                             <div class="nk-tb-col nk-tb-col-tools">
@@ -50,7 +52,7 @@
                                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                                 <ul class="link-list-opt no-bdr">
                                                                                     <li>
-                                                                                        <a href="/IT/Update_all_data_online_from_server"><em class="icon ni ni-edit"></em><span>آپدیت محصولات</span></a>
+                                                                                        <a href="/ACC/products_add"><em class="icon ni ni-edit"></em><span>اضافه کردن محصول </span></a>
                                                                                     </li>
 
                                                                                 </ul>
@@ -61,47 +63,55 @@
                                                             </div>
                                                         </div>
                                                         <!-- .nk-tb-item -->
-                                                        {% for i in Product_list%}
+                                                        {% for i in Product_acc_list%}
                                                         <div class="nk-tb-item">
 
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-product">
                                                                     <img src="./images/product/a.png" alt="" class="thumb" />
-                                                                    <span class="title">{{i[2]}}</span>
+                                                                    <span class="tb-sub">{{i[0]}}</span>
                                                                 </span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{i[1]}}</span>
+                                                                <span class="tb-lead">{{i[1]}}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-lead">{{i[5]}}</span>
+                                                                <span class="tb-lead">{{i[2]}}</span>
                                                             </div>
                                                             <div class="nk-tb-col">
-                                                                <span class="tb-sub">{{i[9]}}</span>
+                                                                {%if i[3] == 0%}
+                                                                    <span class="tb-sub"><span class="badge rounded-pill bg-danger">0</span></span>
+                                                                {%elif i[3] >= 1%}
+                                                                    <span class="tb-sub"><span class="badge rounded-pill bg-success">{{i[3]}}</span></span>
+                                                                {%endif%}
                                                             </div>
                                                             <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub">{{i[12]}}</span>
+                                                                <span class="tb-sub">{{i[4]}}</span>
                                                             </div>
                                                             <div class="nk-tb-col nk-tb-col-tools">
-                                                                <form action="/IT/Change_price_products_sever" method="get">
 
-                                                                        <ul class="nk-tb-actions gx-1">
 
-                                                                                    <li class="nk-tb-action-hidden">
-                                                                                        <input type="text"  name="price" placeholder="قیمت : {{i[5]}}">
-                                                                                        <input type="hidden" name="id" value="{{i[1]}}">
-                                                                                    </li>
+                                                                <ul class="nk-tb-actions gx-1">
+                                                                    <ul class="nk-tb-actions gx-1 my-n1">
+                                                                        <li class="me-n1">
+                                                                            <div class="dropdown">
+                                                                                <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                                    <ul class="link-list-opt no-bdr">
+                                                                                        <li>
+                                                                                            <a href="/ACC/delet_products?id={{i[0]}}"><em class="icon ni ni-trash"></em><span>حذف مشتری</span></a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="/ACC/Products"><em class="icon ni ni-edit"></em><span>ویرایش مشتری</span></a>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
 
-                                                                                <li class="nk-tb-action-hidden">
-                                                                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title=" کردن" >
-                                                                                        <button class="btn btn-trigger btn-icon" type="submit"><em class="icon ni ni-pen2"></em></button>
+                                                                    </ul>
 
-                                                                                    </a>
-                                                                                </li>
-
-                                                                        </ul>
-
-                                                                </form>
+                                                                </ul>
                                                             </div>
                                                         </div>
                                                         {%endfor%}
@@ -217,81 +227,40 @@
                                     </li>
                                     <!-- .nk-menu-heading -->
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Invoice" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/ACC/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                                            <span class="nk-menu-text">فاکتور ها</span>
+                                            <span class="nk-menu-text">سفارشات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                                <a href="/ACC/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
-                                            </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                                <a href="/ACC/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور شده ها</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Product_list" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/ACC/Products" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
                                             <span class="nk-menu-text">محصولات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Product_list" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
+                                                <a href="/ACC/Products" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Customers" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
-                                            <span class="nk-menu-text">مشتریان</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Customers" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان سایت</span></a>
-                                            </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/Customers_G" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان غیر</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <!-- .nk-menu-item -->
-
-                                    <!-- .nk-menu-item -->
-
-                                    <!-- .nk-menu-item -->
-
-                                    <!-- .nk-menu-item -->
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/getdata" class="nk-menu-link nk-menu-toggle">
-                                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
-                                            <span class="nk-menu-text">جمع آوری دیتا</span>
-                                        </a>
-                                        <ul class="nk-menu-sub">
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/getdata" class="nk-menu-link"><span class="nk-menu-text">جمع آوری دیتا</span></a>
-                                            </li>
-
-                                            <li class="nk-menu-item">
-                                                <a href="/IT/getdata_update" class="nk-menu-link"><span class="nk-menu-text">آپدیت دیتا</span></a>
-                                            </li>
-                                        </ul>
-                                        <!-- .nk-menu-sub -->
-                                    </li>
-                                    <li class="nk-menu-item has-sub">
-                                        <a href="/IT/Tickets" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/ACC/Tickets" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
                                             <span class="nk-menu-text">تیکت ها</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/IT/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                                <a href="/ACC/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
                                             </li>
 
                                         </ul>
