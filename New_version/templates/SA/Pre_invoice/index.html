@@ -27,8 +27,8 @@
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
                                                             <li class="nk-block-tools-opt">
-                                                                <a href="/SA/Pre_Invoice?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex"><span>صفحه بعد</span></a>
-                                                                <a href="/SA/Pre_Invoice?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex"><span>صفحه قبل</span></a>
+                                                                <a href="/SA/Pre_Invoice?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex" style="margin-left:10px;"><span>صفحه بعد</span></a>
+                                                                <a href="/SA/Pre_Invoice?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex" style="margin-left:10px;"><span>صفحه قبل</span></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -80,7 +80,7 @@
 
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-product">
-                                                                    <img src="./images/product/a.png" alt="" class="thumb" />
+                                                                    <!--<img src="./images/product/a.png" alt="" class="thumb" />-->
                                                                     <span class="title"><a href="/SA/Pre_Invoice_details?P_ID={{i[0]}}">{{i[0]}}</a></span>
                                                                 </span>
                                                             </div>
@@ -100,7 +100,9 @@
                                                                 {% if i[5] == -1: %}
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-danger">تایید نشده</span></span>
                                                                 {% endif %}
-
+                                                                {% if i[5] == 1: %}
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-success">تایید شده</span></span>
+                                                                {% endif %}
                                                             </div>
 
 
@@ -206,7 +208,7 @@
 {% endblock %}
 
 {% block menu %}
-                          <div class="nk-sidebar-content">
+                           <div class="nk-sidebar-content">
                             <div class="nk-sidebar-menu" data-simplebar>
                                 <ul class="nk-menu">
 
@@ -220,18 +222,16 @@
                                     <li class="nk-menu-item has-sub">
                                         <a href="/SA/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                                            <span class="nk-menu-text">فاکتور ها</span>
+                                            <span class="nk-menu-text">سفارشات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
                                                 <a href="/SA/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور شده ها</span></a>
                                             </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/SA/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
-                                            </li>
+
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>

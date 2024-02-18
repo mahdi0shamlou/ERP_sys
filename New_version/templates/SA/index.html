@@ -134,7 +134,15 @@
                                                                     <span class="tb-sub text-primary">{{i[7]}}</span>
                                                                 </div>
                                                                 <div class="nk-tb-col">
-                                                                    <span class="tb-sub tb-amount">{{i[5]}}</span>
+                                                                    {% if i[5] == 0: %}
+                                                                    <span class="tb-sub"><span class="badge rounded-pill bg-warning">در انتظار تایید</span></span>
+                                                                    {% endif %}
+                                                                    {% if i[5] == -1: %}
+                                                                    <span class="tb-sub"><span class="badge rounded-pill bg-danger">تایید نشده</span></span>
+                                                                    {% endif %}
+                                                                    {% if i[5] == 1: %}
+                                                                    <span class="tb-sub"><span class="badge rounded-pill bg-success">تایید شده</span></span>
+                                                                    {% endif %}
                                                                 </div>
 
                                                                 <div class="nk-tb-col nk-tb-col-action">
@@ -228,18 +236,16 @@
                                     <li class="nk-menu-item has-sub">
                                         <a href="/SA/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                                            <span class="nk-menu-text">فاکتور ها</span>
+                                            <span class="nk-menu-text">سفارشات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
                                                 <a href="/SA/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور شده ها</span></a>
                                             </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/SA/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
-                                            </li>
+
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>

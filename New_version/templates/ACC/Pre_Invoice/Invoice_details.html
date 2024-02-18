@@ -29,8 +29,11 @@
                                     <div class="nk-block">
                                         <div class="invoice">
                                             <div class="invoice-action">
+                                                {%if pre_invoice_lookup[0][5] == 0%}
                                                 <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="/ACC/pre_invoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
+                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-danger" href="/ACC/pre_invoice_cancel?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-cross"></em></a>
                                                 <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-success" href="/ACC/preinvoice_to_invoice?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-clipboad-check-fill"></em></a>
+                                                {%endif%}
                                             </div>
                                             <!-- .invoice-actions -->
                                             <div class="invoice-wrap">
@@ -141,17 +144,14 @@
                                     <li class="nk-menu-item has-sub">
                                         <a href="/ACC/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
-                                            <span class="nk-menu-text">فاکتور ها</span>
+                                            <span class="nk-menu-text">سفارشات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/ACC/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                                <a href="/ACC/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/ACC/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
-                                            </li>
-                                            <li class="nk-menu-item">
-                                                <a href="/ACC/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                                <a href="/ACC/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور شده ها</span></a>
                                             </li>
                                         </ul>
                                         <!-- .nk-menu-sub -->
