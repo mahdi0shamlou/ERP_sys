@@ -1280,7 +1280,7 @@ def invoice_print_it_SA():
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             invoice_total_price = 0
             for i in details_factors:
-                
+
                 invoice_total_price = invoice_total_price + i[7]
 
             invoice_total_price = "{:,}".format(invoice_total_price)

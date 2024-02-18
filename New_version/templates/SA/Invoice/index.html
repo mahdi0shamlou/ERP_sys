@@ -16,8 +16,8 @@
                                                     <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
-                                                                <a href="/ACC/Invoice?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex" style="margin-left:10px;"><span>صفحه بعد</span></a>
-                                                                <a href="/ACC/Invoice?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex" style="margin-left:10px;"><span>صفحه قبل</span></a>
+                                                                <a href="/SA/Invoice?limit_id={{limit_id+10}}" class="btn btn-primary  d-md-inline-flex" style="margin-left:10px;"><span>صفحه بعد</span></a>
+                                                                <a href="/SA/Invoice?limit_id={{limit_id-10}}" class="btn btn-primary d-md-inline-flex" style="margin-left:10px;"><span>صفحه قبل</span></a>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -51,7 +51,7 @@
 
                                                             <div class="nk-tb-col tb-col-sm">
                                                                 <span class="tb-product">
-                                                                    <span class="title"><a href="/ACC/Invoice_details?P_ID={{i[0]}}">{{i[0]}}</a></span>
+                                                                    <span class="title"><a href="/SA/Invoice_details?P_ID={{i[0]}}">{{i[0]}}</a></span>
                                                                 </span>
                                                             </div>
                                                             <div class="nk-tb-col">
@@ -112,29 +112,42 @@
                                     </li>
                                     <!-- .nk-menu-heading -->
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/ACC/Invoice" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/SA/Invoice" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
                                             <span class="nk-menu-text">سفارشات</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/ACC/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
+                                                <a href="/SA/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">سفارش های مشتری</span></a>
                                             </li>
                                             <li class="nk-menu-item">
-                                                <a href="/ACC/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور شده ها</span></a>
+                                                <a href="/SA/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور شده ها</span></a>
                                             </li>
+
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
-
                                     <li class="nk-menu-item has-sub">
-                                        <a href="/ACC/Tickets" class="nk-menu-link nk-menu-toggle">
+                                        <a href="/SA/Customer" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">مشتریان</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/SA/Customer" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان</span></a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/SA/Tickets" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
                                             <span class="nk-menu-text">تیکت ها</span>
                                         </a>
                                         <ul class="nk-menu-sub">
                                             <li class="nk-menu-item">
-                                                <a href="/ACC/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                                <a href="/SA/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
                                             </li>
 
                                         </ul>
