@@ -80,7 +80,15 @@
                                                                 <span class="tb-sub">{{i[7]}}</span>
                                                             </div>
                                                             <div class="nk-tb-col tb-col-md">
-                                                                <span class="tb-sub">{{i[5]}}</span>
+                                                                {% if i[5] == 0: %}
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-warning">در انتظار تایید</span></span>
+
+                                                                {% elif i[5] == -1: %}
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-danger">تایید نشده</span></span>
+
+                                                                {% elif i[5] == 1: %}
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-success">تایید شده</span></span>
+                                                                {% endif %}
                                                             </div>
 
 

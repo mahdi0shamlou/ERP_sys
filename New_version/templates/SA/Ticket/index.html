@@ -81,30 +81,28 @@
                                                             <div class="nk-tb-col tb-col-md">
                                                                 <span class="tb-sub">{{i[4]}}</span>
                                                             </div>
+                                                            <div class="nk-tb-col tb-col-md">
                                                             {% if i[8] == "تعیین نشده": %}
-                                                            <div class="nk-tb-col tb-col-md">
+
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-warning">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            {% if i[8] == "در دست اقدام": %}
-                                                            <div class="nk-tb-col tb-col-md">
+
+                                                            {% elif i[8] == "در دست اقدام": %}
+
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-info">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            {% if i[8] == "انجام شده": %}
-                                                            <div class="nk-tb-col tb-col-md">
+
+                                                            {% elif i[8] == "انجام شده": %}
+
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-success">{{i[8]}}</span></span>
-                                                            </div>
-                                                            {% endif %}
-                                                            {% if i[8] == "رد شده": %}
-                                                            <div class="nk-tb-col tb-col-md">
+
+                                                            {% elif i[8] == "رد شده": %}
+
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-danger">{{i[8]}}</span></span>
-                                                            </div>
+
                                                             {% endif %}
+                                                            </div>
                                                             <div class="nk-tb-col">
                                                                 <ul class="nk-tb-actions gx-1 my-n1">
                                                                     <a href="/SA/Get_ticket_details?T_id={{i[0]}}"><em class="icon ni ni-emails"></em></a>
-
                                                                 </ul>
                                                             </div>
 
