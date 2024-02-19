@@ -1192,6 +1192,8 @@ def Pre_Invoice_add_SA():
             return render_template("/SA/Pre_invoice/Pre_Invoice_add_customer.html", list_costumers=list_costumers, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
+
+
 @app.route('/SA/Pre_invoice_add_products')
 def Pre_invoice_add_products_SA():
     if not session.get("Username"):
@@ -1374,9 +1376,20 @@ def invoice_print_it_SA():
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END SALE SECTION
 #---------------------------------------------------------------------------------------------------
+@app.route("/User", methods=["POST", "GET"])
+def user_index():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        path = session.get('Path')
+        return render_template('/User/profile.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
+    from werkzeug.middleware.profiler import ProfilerMiddleware
+    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[5], profile_dir='logs')
     app.run(host='0.0.0.0', debug=True, port=1000)
 

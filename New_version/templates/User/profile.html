@@ -1,0 +1,400 @@
+{% extends './base/base.html' %}
+{% block bodys %}
+
+                            <div class="nk-content">
+                        <div class="container-fluid">
+                            <div class="nk-content-inner">
+                                <div class="nk-content-body">
+                                    <div class="nk-block">
+                                        <div class="card card-bordered">
+                                            <div class="card-aside-wrap">
+                                                <div class="card-inner card-inner-lg">
+                                                    <div class="nk-block-head nk-block-head-lg">
+                                                        <div class="nk-block-between">
+                                                            <div class="nk-block-head-content">
+                                                                <h4 class="nk-block-title">
+                                                                    اطلاعات شخصی
+                                                                </h4>
+                                                                <div class="nk-block-des">
+                                                                    <p>
+                                                                        اطلاعات پایه، مانند نام و نشانی شما، که در پلتفرم Nio استفاده می کنید.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="nk-block-head-content align-self-start d-lg-none">
+                                                                <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-block-head -->
+                                                    <div class="nk-block">
+                                                        <div class="nk-data data-list">
+                                                            <div class="data-head">
+                                                                <h6 class="overline-title">پایه</h6>
+                                                            </div>
+                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">نام کامل</span>
+                                                                    <span class="data-value">{{user}}</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">نام نمایشی</span>
+                                                                    <span class="data-value">فرشید</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">ایمیل</span>
+                                                                    <span class="data-value">{{email}}</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">شماره تلفن</span>
+                                                                    <span class="data-value text-soft">هنوز اضافه نشده</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">تاریخ تولد</span>
+                                                                    <span class="data-value">21 آبان 1373</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit" data-tab-target="#address">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">نشانی</span>
+                                                                    <span class="data-value">
+                                                                        ایران، استان البرز، کرج، میدان آزادگان
+                                                                    </span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                        </div>
+                                                        <!-- data-list -->
+                                                        <div class="nk-data data-list">
+                                                            <div class="data-head">
+                                                                <h6 class="overline-title">تنظیمات برگزیده</h6>
+                                                            </div>
+                                                            <div class="data-item">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">زبان</span>
+                                                                    <span class="data-value">فارسی</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <a href="#" class="link link-primary">تغییر زبان</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">فرمت تاریخ</span>
+                                                                    <span class="data-value">YYYY, M, D</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <a href="#" class="link link-primary">تغییر</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">منطقه زمانی</span>
+                                                                    <span class="data-value">ایران (GMT+3:30)</span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <a href="#" class="link link-primary">تغییر</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                        </div>
+                                                        <!-- data-list -->
+                                                    </div>
+                                                    <!-- .nk-block -->
+                                                </div>
+                                                <div
+                                                    class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg"
+                                                    data-toggle-body="true"
+                                                    data-content="userAside"
+                                                    data-toggle-screen="lg"
+                                                    data-toggle-overlay="true"
+                                                >
+                                                    <div class="card-inner-group" data-simplebar>
+                                                        <div class="card-inner">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar bg-primary">
+                                                                    <span>{{pathmain}}</span>
+                                                                </div>
+                                                                <div class="user-info">
+                                                                    <span class="lead-text">{{user}}</span>
+                                                                    <span class="sub-text">{{email}}</span>
+                                                                </div>
+                                                                <div class="user-action">
+                                                                    <div class="dropdown">
+                                                                        <a class="btn btn-icon btn-trigger me-n2" data-bs-toggle="dropdown" href="#"><em class="icon ni ni-more-v"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-camera-fill"></em><span>تغییر عکس</span></a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a href="#"><em class="icon ni ni-edit-fill"></em><span>به روز رسانی پروفایل</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- .user-card -->
+                                                        </div>
+                                                        <!-- .card-inner -->
+
+                                                        <!-- .card-inner -->
+                                                        <div class="card-inner p-0">
+                                                            <ul class="link-list-menu">
+                                                                <li>
+                                                                    <a class="active" href="/User"><em class="icon ni ni-user-fill-c"></em><span>اطلاعات شخصی</span></a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <!-- .card-inner -->
+                                                    </div>
+                                                    <!-- .card-inner-group -->
+                                                </div>
+                                                <!-- card-aside -->
+                                            </div>
+                                            <!-- .card-aside-wrap -->
+                                        </div>
+                                        <!-- .card -->
+                                    </div>
+                                    <!-- .nk-block -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}
+
+{% block menu %}
+                        <div class="nk-sidebar-content">
+                            <div class="nk-sidebar-menu" data-simplebar>
+                                <ul class="nk-menu">
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-heading">
+                                        <h6 class="overline-title text-primary-alt">
+                                            منو
+                                        </h6>
+                                    </li>
+                                    <!-- .nk-menu-heading -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Invoice" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-card-view"></em></span>
+                                            <span class="nk-menu-text">فاکتور ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Pre_Invoice" class="nk-menu-link"><span class="nk-menu-text">پیش فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Invoice" class="nk-menu-link"><span class="nk-menu-text">فاکتور</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Invoice_sended" class="nk-menu-link"><span class="nk-menu-text">ارسال شده</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Product_list" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
+                                            <span class="nk-menu-text">محصولات</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Product_list" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Customers" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                                            <span class="nk-menu-text">مشتریان</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Customers" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان سایت</span></a>
+                                            </li>
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Customers_G" class="nk-menu-link"><span class="nk-menu-text">لیست مشتریان غیر</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/getdata" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tranx"></em></span>
+                                            <span class="nk-menu-text">جمع آوری دیتا</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/getdata" class="nk-menu-link"><span class="nk-menu-text">جمع آوری دیتا</span></a>
+                                            </li>
+
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/getdata_update" class="nk-menu-link"><span class="nk-menu-text">آپدیت دیتا</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/IT/Tickets" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
+                                            <span class="nk-menu-text">تیکت ها</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/IT/Tickets" class="nk-menu-link"><span class="nk-menu-text">تیکت ها</span></a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                    <!-- .nk-menu-item -->
+
+                                </ul>
+                                <!-- .nk-menu -->
+                            </div>
+                            <!-- .nk-sidebar-menu -->
+                        </div>
+{% endblock %}
+{% block notification %}
+                        <li class="dropdown notification-dropdown me-n1">
+                                            <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                                <div class="icon-status icon-status-info">
+                                                    <em class="icon ni ni-bell"></em>
+                                                </div>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                                                <div class="dropdown-head">
+                                                    <span class="sub-title nk-dropdown-title">اطلاع رسانی ها</span>
+                                                </div>
+                                                <div class="dropdown-body">
+                                                    <div class="nk-notification">
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text">شما درخواست <span>برداشت</span> کردید</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-icon">
+                                                                <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                                                            </div>
+                                                            <div class="nk-notification-content">
+                                                                <div class="nk-notification-text"><span>سفارش واریز</span> شما ثبت شد</div>
+                                                                <div class="nk-notification-time">
+                                                                    2 ساعت پیش
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-notification -->
+                                                </div>
+                                                <!-- .nk-dropdown-body -->
+                                                <div class="dropdown-foot center">
+                                                    <a href="#">مشاهده همه</a>
+                                                </div>
+                                            </div>
+                                        </li>
+{% endblock %}
+
+
+
+
+
