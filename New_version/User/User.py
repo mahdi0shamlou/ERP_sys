@@ -1,0 +1,44 @@
+from mysql.connector import connect, Error
+import mysql.connector
+
+def Get_User_Profile(username):
+    try:
+        connection = mysql.connector.connect(host="82.115.21.104",
+                                             user='barma',
+                                             password='ya mahdi',
+                                             database="Parso_tejart")
+
+        cursor = connection.cursor()
+        sql_select_query = """select * from Users_users where username = %s"""
+        # set variable in query
+        cursor.execute(sql_select_query,(username,))
+        # fetch result
+        record = cursor.fetchall()
+        list_lab = []
+        for i in range(0, len(record)):
+            list_lab_lab = []
+            list_lab_lab.append(record[i][0])
+            list_lab_lab.append(record[i][1])
+            list_lab_lab.append(record[i][2])
+            list_lab_lab.append(record[i][3])
+            list_lab_lab.append(record[i][4])
+            list_lab_lab.append(record[i][5])
+            list_lab_lab.append(record[i][6])
+            list_lab_lab.append(record[i][7])
+            list_lab_lab.append(record[i][8])
+
+            list_lab.append(list_lab_lab)
+        print(list_lab)
+
+
+    except mysql.connector.Error as error:
+        print("Failed to get record from MySQL table: {}".format(error))
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+            return list_lab
+
+#Get_User_Profile('mahdi0shamlou')

@@ -45,7 +45,7 @@
                                                             <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                                                 <div class="data-col">
                                                                     <span class="data-label">نام نمایشی</span>
-                                                                    <span class="data-value">فرشید</span>
+                                                                    <span class="data-value">{{profile[0][1]}}</span>
                                                                 </div>
                                                                 <div class="data-col data-col-end">
                                                                     <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
@@ -65,55 +65,28 @@
                                                             <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                                                 <div class="data-col">
                                                                     <span class="data-label">شماره تلفن</span>
-                                                                    <span class="data-value text-soft">هنوز اضافه نشده</span>
+                                                                    <span class="data-value text-soft">{{profile[0][3]}}</span>
                                                                 </div>
                                                                 <div class="data-col data-col-end">
                                                                     <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
                                                                 </div>
                                                             </div>
-                                                            <!-- data-item -->
-                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
-                                                                <div class="data-col">
-                                                                    <span class="data-label">تاریخ تولد</span>
-                                                                    <span class="data-value">21 آبان 1373</span>
-                                                                </div>
-                                                                <div class="data-col data-col-end">
-                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- data-item -->
-                                                            <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit" data-tab-target="#address">
-                                                                <div class="data-col">
-                                                                    <span class="data-label">نشانی</span>
-                                                                    <span class="data-value">
-                                                                        ایران، استان البرز، کرج، میدان آزادگان
-                                                                    </span>
-                                                                </div>
-                                                                <div class="data-col data-col-end">
-                                                                    <span class="data-more"><em class="icon ni ni-forward-ios"></em></span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- data-item -->
+
                                                         </div>
                                                         <!-- data-list -->
                                                         <div class="nk-data data-list">
                                                             <div class="data-head">
-                                                                <h6 class="overline-title">تنظیمات برگزیده</h6>
+                                                                <h6 class="overline-title">تنظیمات</h6>
                                                             </div>
                                                             <div class="data-item">
                                                                 <div class="data-col">
-                                                                    <span class="data-label">زبان</span>
-                                                                    <span class="data-value">فارسی</span>
-                                                                </div>
-                                                                <div class="data-col data-col-end">
-                                                                    <a href="#" class="link link-primary">تغییر زبان</a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- data-item -->
-                                                            <div class="data-item">
-                                                                <div class="data-col">
-                                                                    <span class="data-label">فرمت تاریخ</span>
-                                                                    <span class="data-value">YYYY, M, D</span>
+                                                                    <span class="data-label">شماره تلفن جدید</span>
+                                                                    <span class="data-value">
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control" name="phone" value="" placeholder="شماره تلفن بدون ۰ : " required>
+                                                                    </div>
+
+                                                                    </span>
                                                                 </div>
                                                                 <div class="data-col data-col-end">
                                                                     <a href="#" class="link link-primary">تغییر</a>
@@ -122,8 +95,28 @@
                                                             <!-- data-item -->
                                                             <div class="data-item">
                                                                 <div class="data-col">
-                                                                    <span class="data-label">منطقه زمانی</span>
-                                                                    <span class="data-value">ایران (GMT+3:30)</span>
+                                                                    <span class="data-label">ایمیل جدید</span>
+                                                                    <span class="data-value">
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="email" class="form-control" name="email" value="" placeholder="ایمیل : " required>
+                                                                    </div>
+
+                                                                    </span>
+                                                                </div>
+                                                                <div class="data-col data-col-end">
+                                                                    <a href="#" class="link link-primary">تغییر</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- data-item -->
+                                                            <div class="data-item">
+                                                                <div class="data-col">
+                                                                    <span class="data-label">پسورد جدید</span>
+                                                                    <span class="data-value">
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="password" class="form-control" name="password" value="" placeholder="پسورد : " required>
+                                                                    </div>
+
+                                                                    </span>
                                                                 </div>
                                                                 <div class="data-col data-col-end">
                                                                     <a href="#" class="link link-primary">تغییر</a>

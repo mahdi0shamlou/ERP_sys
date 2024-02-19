@@ -37,6 +37,7 @@ from SA.Customer.Delet_customer_SA import Delet_Customer_SA
 from SA.Pre_invoice.Get_Preinvoice import Get_preinvoice_lookup_SA_with_pages, Get_factors_lookup_SA_with_pages
 from SA.Pre_invoice.Get_products import Get_products_list_SA_add_preinvoice, Get_product_add_preinvoice
 from SA.Pre_invoice.Insert_preinvoice_sa import Add_preinvoice_SA
+from User.User import Get_User_Profile
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -1383,7 +1384,9 @@ def user_index():
     else:
         auth = session.get('Access_level')
         path = session.get('Path')
-        return render_template('/User/profile.html', user=session.get('Username'), pathmain=path, email=session.get('email'))
+        username = session.get('Username')
+        profile = Get_User_Profile(username)
+        return render_template('/User/profile.html',profile=profile, user=session.get('Username'), pathmain=path, email=session.get('email'))
 
 
 
