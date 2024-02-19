@@ -713,16 +713,31 @@ def invoice_print_it_ACC():
         return render_template("/Login/Login_v4/index.html")
     else:
         auth = session.get('Access_level')
-        if auth == 1 or auth == 5:
+        if auth == 4 or auth == 5:
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_factors_acc(pre_invoice_id)
             invoice_total_price = 0
+            invoice_total_price_with_tax = 0
+            invoice_total_tax = 0
             for i in details_factors:
+                price_tax = i[7] * 9 / 100
+                price_tax_txt = "{:,}".format(price_tax)
+                price_with_tax = i[7] + price_tax
+                price_with_tax_text = "{:,}".format(price_with_tax)
+                #print(price_darsad)
+                i.append(price_tax)
+                i.append(price_tax_txt)
+                i.append(price_with_tax)
+                i.append(price_with_tax_text)
                 invoice_total_price = invoice_total_price + i[7]
+                invoice_total_price_with_tax = invoice_total_price_with_tax + price_with_tax
+                invoice_total_tax = invoice_total_tax + price_tax
 
             invoice_total_price = "{:,}".format(invoice_total_price)
+            invoice_total_price_with_tax = "{:,}".format(invoice_total_price_with_tax)
+            invoice_total_tax = "{:,}".format(invoice_total_tax)
             path = session.get('Path')
-            return render_template('/ACC/Invoice/Invoice_Print.html',lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
+            return render_template('/SA/Invoice/Invoice_Print.html', invoice_total_tax=invoice_total_tax,invoice_total_price_with_tax=invoice_total_price_with_tax, lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/ACC/Pre_Invoice', methods=["POST", "GET"])
@@ -774,12 +789,31 @@ def pre_invoice_print_it_ACC():
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             invoice_total_price = 0
+            invoice_total_price_with_tax = 0
+            invoice_total_tax = 0
             for i in details_factors:
+                price_tax = i[7] * 9 / 100
+                price_tax_txt = "{:,}".format(price_tax)
+                price_with_tax = i[7] + price_tax
+                price_with_tax_text = "{:,}".format(price_with_tax)
+                # print(price_darsad)
+                i.append(price_tax)
+                i.append(price_tax_txt)
+                i.append(price_with_tax)
+                i.append(price_with_tax_text)
                 invoice_total_price = invoice_total_price + i[7]
+                invoice_total_price_with_tax = invoice_total_price_with_tax + price_with_tax
+                invoice_total_tax = invoice_total_tax + price_tax
 
             invoice_total_price = "{:,}".format(invoice_total_price)
+            invoice_total_price_with_tax = "{:,}".format(invoice_total_price_with_tax)
+            invoice_total_tax = "{:,}".format(invoice_total_tax)
             path = session.get('Path')
-            return render_template('/ACC/Pre_Invoice/Invoice_Print.html',lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors),seller_details=seller_details, details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template('/ACC/Pre_Invoice/Invoice_Print.html', invoice_total_tax=invoice_total_tax,invoice_total_price_with_tax=invoice_total_price_with_tax,
+                                   lookup_factors=lookup_factors, customer_data=customer_data,
+                                   invoice_total_price=invoice_total_price, len_code=len(details_factors),
+                                   details_factors=details_factors, user=session.get('Username'), pathmain=path,
+                                   email=session.get('email'), seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
 @app.route('/ACC/invoice_sended_inovice_section', methods=["POST", "GET"])
@@ -1281,14 +1315,31 @@ def pre_invoice_print_it_SA():
             pre_invoice_id = request.args.get('id')
             lookup_factors, details_factors, customer_data, seller_details = GET_details_preinvoice_acc(pre_invoice_id)
             invoice_total_price = 0
+            invoice_total_price_with_tax = 0
+            invoice_total_tax = 0
             for i in details_factors:
+                price_tax = i[7] * 9 / 100
+                price_tax_txt = "{:,}".format(price_tax)
+                price_with_tax = i[7] + price_tax
+                price_with_tax_text = "{:,}".format(price_with_tax)
+                #print(price_darsad)
+                i.append(price_tax)
+                i.append(price_tax_txt)
+                i.append(price_with_tax)
+                i.append(price_with_tax_text)
                 invoice_total_price = invoice_total_price + i[7]
+                invoice_total_price_with_tax = invoice_total_price_with_tax + price_with_tax
+                invoice_total_tax = invoice_total_tax + price_tax
 
             invoice_total_price = "{:,}".format(invoice_total_price)
+            invoice_total_price_with_tax = "{:,}".format(invoice_total_price_with_tax)
+            invoice_total_tax = "{:,}".format(invoice_total_tax)
             path = session.get('Path')
-            return render_template('/ACC/Pre_Invoice/Invoice_Print.html',lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors),seller_details=seller_details, details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template('/ACC/Pre_Invoice/Invoice_Print.html', invoice_total_tax=invoice_total_tax,invoice_total_price_with_tax=invoice_total_price_with_tax, lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
+
+
 @app.route("/SA/preinvoice_delet_it", methods=["POST", "GET"])
 def preinvoice_delet_SA():
     if not session.get("Username"):

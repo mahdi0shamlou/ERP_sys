@@ -12056,15 +12056,15 @@ body.dark .ui-datepicker select {
                                 <td class="text-center">
                                     <div class="mb-3">
                                         <span class="mr-100">نام شخص حقیقی/حقوقی: {{customer_data[0][1]}}</span>
-                                        <span class="mr-100">شماره اقتصادی: {{customer_data[0][8]}}</span>
-                                        <span class="mr-100">شماره ثبت/شماره ملی: {{customer_data[0][8]}}</span>
+                                        <span class="mr-100">شماره اقتصادی: {{customer_data[0][2]}}</span>
+                                        <span class="mr-100">شماره ثبت/شماره ملی: {{customer_data[0][3]}}</span>
                                         <!--<span class="mr-100">استان: گیلان</span>-->
                                     </div>
                                     <div>
                                         <!--<span class="mr-100">شهر: گیلان</span>-->
+                                        <span class="mr-100">آدرس: {{customer_data[0][4]}}</span>
                                         <span class="mr-100">کد پستی: {{customer_data[0][5]}}</span>
-                                        <span class="mr-100">نشانی: {{customer_data[0][4]}}</span>
-                                        <span class="mr-100">شماره تلفن: {{customer_data[0][2]}}</span>
+                                        <span class="mr-100">شماره تلفن: {{customer_data[0][8]}}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -12106,8 +12106,8 @@ body.dark .ui-datepicker select {
                                                 <td>0</td>
                                                 <td>0</td>
                                                 <td>{{i[16]}}</td>
-                                                <td>0</td>
-                                                <td>{{i[16]}}</td>
+                                                <td>{{i[18]}}</td>
+                                                <td>{{i[20]}}</td>
                                     </tr>
                                 {%endfor%}
 
@@ -12117,8 +12117,8 @@ body.dark .ui-datepicker select {
                                         <td>0</td>
                                         <td>0</td>
                                         <td>{{invoice_total_price}}</td>
-                                        <td>0</td>
-                                        <td>{{invoice_total_price}}</td>
+                                        <td>{{invoice_total_tax}}</td>
+                                        <td>{{invoice_total_price_with_tax}}</td>
                                     </tr>
                                     <tr>
                                         <th class="p-0 title-sec" colspan="6">تخفیف نهایی</th>
@@ -12126,7 +12126,7 @@ body.dark .ui-datepicker select {
                                     </tr>
                                     <tr>
                                         <td colspan="6">0</td>
-                                        <td colspan="6">{{invoice_total_price}}</td>
+                                        <td colspan="6">{{invoice_total_price_with_tax}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="4">
