@@ -50,7 +50,7 @@ def Get_factors_lookup_IT_only_factors_fro_pages(id):
                                              database="Parso_tejart")
 
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_Factors_lookup where (`type` = 'IT') AND (`status` = 0) AND (id < %s) ORDER BY id DESC LIMIT 10"""
+        sql_select_query = """select * from Accounting_Factors_lookup where (`type` = 'IT') AND (id < %s) ORDER BY id DESC LIMIT 10"""
         # set variable in query
         cursor.execute(sql_select_query, (id,))
         # fetch result

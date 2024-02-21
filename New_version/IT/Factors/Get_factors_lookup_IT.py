@@ -47,9 +47,8 @@ def Get_factors_lookup_IT_with_limits():
                                              user='barma',
                                              password='ya mahdi',
                                              database="Parso_tejart")
-
         cursor = connection.cursor()
-        sql_select_query = """select * from Accounting_Factors_lookup where (`type` = 'IT') AND (`status` = 0) ORDER BY id DESC LIMIT 5"""
+        sql_select_query = """select * from Accounting_Factors_lookup where (`type` = 'IT')  ORDER BY id DESC LIMIT 5"""
         # set variable in query
         cursor.execute(sql_select_query)
         # fetch result

@@ -342,19 +342,20 @@ def delet_linksgetdata():
 
 @app.route('/IT/getdata_update')
 def update_getdata():
-
-    if not session.get("Username"):
-        return render_template("/Login/Login_v4/index.html")
-    else:
-        auth = session.get('Access_level')
-        if auth == 0 or auth == 5:
-            path = session.get('Path')
-            main_data = Data_collection_section()
-            print(main_data)
-            return redirect('/IT/getdata')
+    try:
+        if not session.get("Username"):
+            return render_template("/Login/Login_v4/index.html")
         else:
-            return render_template('Not_Permission/index.html')
-
+            auth = session.get('Access_level')
+            if auth == 0 or auth == 5:
+                path = session.get('Path')
+                main_data = Data_collection_section()
+                print(main_data)
+                return redirect('/IT/getdata')
+            else:
+                return render_template('Not_Permission/index.html')
+    except:
+        return render_template('Error/index.html')
 @app.route('/IT/getdata')
 def getdata():
     try:
@@ -479,12 +480,23 @@ def invoice():
     else:
         auth = session.get('Access_level')
         if auth == 0 or auth == 5:
-            list_factors = Get_factors_lookup_IT_only_factors_fro_pages(100000)
+            limit_id = request.args.get('limit_id')
+            if limit_id is None:
+                list_factors = Get_factors_lookup_IT_only_factors_fro_pages(10000)
+                if len(list_factors) == 0:
+                    limit_id=10000
+                else:
+                    limit_id = list_factors[0][0]
+            else:
+                limit_id = int(limit_id)
+                list_factors = Get_factors_lookup_IT_only_factors_fro_pages(limit_id)
+                limit_id = limit_id
             path = session.get('Path')
-            return render_template("/IT/Invoice/index.html", pre_invoice_list=list_factors,
-                                   user=session.get('Username'), pathmain=path, email=session.get('email'))
+            return render_template("/IT/Invoice/index.html",limit_id=limit_id, pre_invoice_list=list_factors, user=session.get('Username'), pathmain=path, email=session.get('email'))
         else:
             return render_template('Not_Permission/index.html')
+
+
 @app.route('/IT/Invoice_details', methods=["POST", "GET"])
 def Invoice_details():
 

@@ -183,10 +183,13 @@ def start():
 
     for i in data:
         avrage_total = 0
-        data_torob = Get_torob_data(i[3])
+        #data_torob = Get_torob_data(i[3])
+        data_torob = 0
+
         data_emalss = Get_emalls_data(i[2])
         data_dgkala = Get_dgkala_data(i[4])
-
+        print('test')
+        '''
         if data_dgkala[0] == 'null':
             avrage_total = data_torob[1] + (data_emalss[1]/10)
             avrage_total = avrage_total/2
@@ -211,6 +214,7 @@ def start():
         data_finall.append([i, data_emalss, data_torob, data_dgkala, [numbers, avrage_total]])
     print(data_finall)
     return data_finall
+    '''
 def Get_analysted_data_newst():
     try:
         connection = mysql.connector.connect(host="82.115.21.104",

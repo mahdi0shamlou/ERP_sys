@@ -16,6 +16,9 @@
                                                     <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                                     <div class="toggle-expand-content" data-content="pageMenu">
                                                         <ul class="nk-block-tools g-3">
+                                                            <li class="nk-block-tools-opt">
+                                                                <a href="/ACC/Ticket_add" class="btn btn-primary  d-md-inline-flex"><em class="icon ni ni-plus-fill-c"></em></a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -99,8 +102,13 @@
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-danger">{{i[8]}}</span></span>
 
                                                             {% endif %}
-                                                            </div>
 
+                                                            </div>
+                                                            <div class="nk-tb-col tb-col-md">
+                                                                <ul class="nk-tb-actions gx-1 my-n1">
+                                                                    <a href="/ACC/Get_ticket_details?T_id={{i[0]}}"><em class="icon ni ni-emails"></em></a>
+                                                                </ul>
+                                                            </div>
 
 
 
@@ -152,7 +160,18 @@
                                         </ul>
                                         <!-- .nk-menu-sub -->
                                     </li>
-
+                                    <li class="nk-menu-item has-sub">
+                                        <a href="/ACC/Products" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb "></em></span>
+                                            <span class="nk-menu-text">محصولات</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="/ACC/Products" class="nk-menu-link"><span class="nk-menu-text">لیست محصولات</span></a>
+                                            </li>
+                                        </ul>
+                                        <!-- .nk-menu-sub -->
+                                    </li>
                                     <li class="nk-menu-item has-sub">
                                         <a href="/ACC/Tickets" class="nk-menu-link nk-menu-toggle">
                                             <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
