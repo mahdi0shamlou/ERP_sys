@@ -342,20 +342,19 @@ def delet_linksgetdata():
 
 @app.route('/IT/getdata_update')
 def update_getdata():
-    try:
-        if not session.get("Username"):
-            return render_template("/Login/Login_v4/index.html")
+
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 0 or auth == 5:
+            path = session.get('Path')
+            main_data = Data_collection_section()
+            print(main_data)
+            return redirect('/IT/getdata')
         else:
-            auth = session.get('Access_level')
-            if auth == 0 or auth == 5:
-                path = session.get('Path')
-                main_data = Data_collection_section()
-                print(main_data)
-                return redirect('/IT/getdata')
-            else:
-                return render_template('Not_Permission/index.html')
-    except:
-        return render_template('Error/index.html')
+            return render_template('Not_Permission/index.html')
+
 @app.route('/IT/getdata')
 def getdata():
     try:
