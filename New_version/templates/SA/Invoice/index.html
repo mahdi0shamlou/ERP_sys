@@ -58,14 +58,8 @@
                                                             <div class="nk-tb-col tb-col-md">
                                                             {% if i[5] == 0: %}
                                                                 <span class="tb-sub"><span class="badge rounded-pill bg-warning">در انتظار</span></span>
-                                                            {% elif i[5] == 1:%}
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-info">در حال ارسال</span></span>
-                                                            {% elif i[5] == 2:%}
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-warning">لغو ارسال</span></span>
-                                                            {% elif i[5] == 3:%}
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-danger">حذف شده</span></span>
-                                                            {% elif i[5] == 4:%}
-                                                                <span class="tb-sub"><span class="badge rounded-pill bg-success">برگشت موفق</span></span>
+                                                            {% elif i[5] > 0:%}
+                                                                <span class="tb-sub"><span class="badge rounded-pill bg-info">مراحل انبارداری</span></span>
                                                             {% endif %}
                                                             </div>
 

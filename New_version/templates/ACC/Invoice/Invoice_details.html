@@ -29,20 +29,18 @@
                                     <div class="nk-block">
                                         <div class="invoice">
                                             <div class="invoice-action">
-                                                {%if lookup_factors[0][5] < 0%}
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="/ACC/invoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
+                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="/ACC/invoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank" style="margin-left:25px;"><em class="icon ni ni-printer-fill"></em></a>
+                                                {%if pre_invoice_lookup[0][5] < 0%}
+                                                <span class="badge rounded-pill bg-danger">ابطال شده</span>
 
-
-                                                {%elif lookup_factors[0][5] > 1%}
-                                                تسذیس
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="/ACC/invoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
-                                                سسشی
+                                                {%elif pre_invoice_lookup[0][5] == 0%}
+                                                <span class="badge rounded-pill bg-warning">تحویل انبار : </span>
                                                 <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-success" href="/ACC/Invoice_upgrade_status?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-clipboad-check-fill"></em></a>
-                                                سشی
                                                 <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-danger" href="/ACC/invoice_sended_inovice_section_remove?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-cross-round-fill"></em></a>
-                                                {%elif lookup_factors[0][5] == 1%}
-
                                                 {%else%}
+                                                <span class="badge rounded-pill bg-info">مراحل انبارداری</span>
+
+                                                {%endif%}
                                             </div>
                                             <!-- .invoice-actions -->
                                             <div class="invoice-wrap">
