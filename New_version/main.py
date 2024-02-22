@@ -38,6 +38,7 @@ from SA.Pre_invoice.Get_Preinvoice import Get_preinvoice_lookup_SA_with_pages, G
 from SA.Pre_invoice.Get_products import Get_products_list_SA_add_preinvoice, Get_product_add_preinvoice
 from SA.Pre_invoice.Insert_preinvoice_sa import Add_preinvoice_SA
 from User.User import Get_User_Profile
+from ACC.Factors.Send_invoice_sended_section import Invoice_upgrade_status_acc
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -934,6 +935,19 @@ def invoice_sended_inovice_section_back():
         if auth == 1 or auth == 5:
             id = request.args.get('id')
             Send_invoice_to_sended_status_backe(id)
+            return redirect('/ACC/Invoice')
+        else:
+            return render_template('Not_Permission/index.html')
+
+@app.route('/ACC/Invoice_upgrade_status', methods=["POST", "GET"])
+def Invoice_upgrade_status():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 1 or auth == 5:
+            id = request.args.get('id')
+            Invoice_upgrade_status_acc(id)
             return redirect('/ACC/Invoice')
         else:
             return render_template('Not_Permission/index.html')

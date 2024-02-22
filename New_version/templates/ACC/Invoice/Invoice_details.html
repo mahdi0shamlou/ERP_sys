@@ -29,13 +29,20 @@
                                     <div class="nk-block">
                                         <div class="invoice">
                                             <div class="invoice-action">
-
+                                                {%if lookup_factors[0][5] < 0%}
                                                 <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="/ACC/invoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-success" href="/ACC/invoice_sended_inovice_section_okay?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-clipboad-check-fill"></em></a>
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-info" href="/ACC/invoice_sended_inovice_section_share?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-share-alt"></em></a>
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-warning" href="/ACC/invoice_sended_inovice_section_back?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-repeat-fill"></em></a>
-                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-danger" href="/ACC/invoice_sended_inovice_section_remove?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-cross-round-fill"></em></a>
 
+
+                                                {%elif lookup_factors[0][5] > 1%}
+                                                تسذیس
+                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" href="/ACC/invoice_print_it?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
+                                                سسشی
+                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-success" href="/ACC/Invoice_upgrade_status?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-clipboad-check-fill"></em></a>
+                                                سشی
+                                                <a class="btn btn-icon btn-lg btn-white btn-dim btn-outline-danger" href="/ACC/invoice_sended_inovice_section_remove?id={{pre_invoice_data[0][1]}}" target="_blank"><em class="icon ni ni-cross-round-fill"></em></a>
+                                                {%elif lookup_factors[0][5] == 1%}
+
+                                                {%else%}
                                             </div>
                                             <!-- .invoice-actions -->
                                             <div class="invoice-wrap">
