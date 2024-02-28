@@ -343,7 +343,7 @@ def delet_linksgetdata():
 
 @app.route('/IT/getdata_update')
 def update_getdata():
-    try:
+
         if not session.get("Username"):
             return render_template("/Login/Login_v4/index.html")
         else:
@@ -355,8 +355,7 @@ def update_getdata():
                 return redirect('/IT/getdata')
             else:
                 return render_template('Not_Permission/index.html')
-    except:
-        return render_template('Error/index.html')
+
 @app.route('/IT/getdata')
 def getdata():
     try:
@@ -1448,7 +1447,17 @@ def invoice_print_it_SA():
             return render_template('/SA/Invoice/Invoice_Print.html', invoice_total_tax=invoice_total_tax,invoice_total_price_with_tax=invoice_total_price_with_tax, lookup_factors=lookup_factors, customer_data=customer_data, invoice_total_price=invoice_total_price , len_code=len(details_factors), details_factors=details_factors, user=session.get('Username'), pathmain=path, email=session.get('email'), seller_details=seller_details)
         else:
             return render_template('Not_Permission/index.html')
-
+@app.route("/SA/Customer_details")
+def SA_Customer_details():
+    if not session.get("Username"):
+        return render_template("/Login/Login_v4/index.html")
+    else:
+        auth = session.get('Access_level')
+        if auth == 4 or auth == 5:
+            path = session.get('Path')
+            return render_template("/SA/Customer/Customer_details.html", user=session.get('Username'), pathmain=path, email=session.get('email'))
+        else:
+            return render_template('Not_Permission/index.html')
 
 #---------------------------------------------------------------------------------------------------
 #---------------------------------------------- END SALE SECTION
@@ -1470,7 +1479,9 @@ def user_index():
 #---------------------------------------------- END USER SECTION
 #---------------------------------------------------------------------------------------------------
 
-
+@app.route("/test", methods=["POST", "GET"])
+def test():
+    return render_template('/test/test.html')
 if __name__ == '__main__':
     from werkzeug.middleware.profiler import ProfilerMiddleware
     app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[5], profile_dir='logs')

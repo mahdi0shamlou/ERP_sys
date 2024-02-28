@@ -5,9 +5,11 @@
     <title>Title</title>
 </head>
 <body>
+<button onclick="addData(myChart, 'x' , 2000000)" value="x">xxx</button>
 <div style="width:1500px; height:1500px;">
   <canvas id="myChart"></canvas>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const labels = [
@@ -29,10 +31,27 @@
       ],
     }]
   };
-
+  const datas = {
+    labels: labels,
+    datasets: [{
+      label: 'My First dataset caghnge',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [
+      {%for i in chart_data%}
+          {{i[2]+1000}},
+      {%endfor%}
+      ],
+    }]
+  };
   const config = {
     type: 'line',
     data: data,
+    options: {}
+  };
+  const configs = {
+    type: 'line',
+    data: datas,
     options: {}
   };
 </script>
@@ -41,6 +60,33 @@
     document.getElementById('myChart'),
     config
   );
+  function x(){
+
+          const myChart = new Chart(
+            document.getElementById('myChart'),
+            configs
+          );
+
+         window.alert('x');
+  }
+function addData(chart, label, newData) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(newData);
+    });
+    chart.update();
+}
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
 </script>
 </body>
 </html>
